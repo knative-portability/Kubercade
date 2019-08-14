@@ -13,6 +13,9 @@ COPY package*.json ./
 # Install production dependencies.
 RUN npm install --only=production
 
+# Install TypeScript for compiling
+RUN npm install --global typescript
+
 # Copy local code to the container image.
 COPY . .
 
