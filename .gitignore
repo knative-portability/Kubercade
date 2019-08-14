@@ -61,4 +61,4 @@ typings/
 .next
 
 # TypeScript build output
-dist/*
+build/*
