@@ -2,11 +2,11 @@
   "name": "kubercade",
   "version": "1.0.0",
   "description": "Serverless containerized social arcade built on Knative.",
-  "main": "build/app.js",
+  "main": "build/src/app.js",
   "scripts": {
     "start": "npm run prod",
     "dev": "ts-node-dev --respawn --transpileOnly ./src/app.ts",
-    "prod": "tsc && node ./build/app.js",
+    "prod": "tsc && node ./build/src/app.js",
     "check": "gts check",
     "clean": "gts clean",
     "compile": "tsc -p .",
