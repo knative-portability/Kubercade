@@ -4,15 +4,15 @@ html
     style
       include style.css
   body
-    div#nav_bar
-      div.navtab
+    #nav_bar
+      .navtab
         a(href='#') Nav Link 1
-      div.navtab
+      .navtab
         a(href='#') Nav Link 2
-    div#page_content
-      div#content_window
+    #page_content
+      #content_window
         iframe#kubercade_iframe(
           src='https://pacman-ci5ev6bu6a-uc.a.run.app/'
         )
-      div#chat_window
+      #chat_window
         p Chat about #{game} here!
