@@ -4,6 +4,7 @@
   "description": "Serverless containerized social arcade built on Knative.",
   "main": "build/app.js",
   "scripts": {
+    "start": "npm run prod",
     "dev": "ts-node-dev --respawn --transpileOnly ./src/app.ts",
     "prod": "tsc && node ./build/app.js",
     "check": "gts check",
