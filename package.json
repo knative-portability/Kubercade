@@ -10,7 +10,10 @@
     "type": "git",
     "url": "git+https://github.com/knative-portability/Kubercade.git"
   },
-  "contributors": ["mukobi", "cmei4444"],
+  "contributors": [
+    "mukobi",
+    "cmei4444"
+  ],
   "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/knative-portability/Kubercade/issues"
@@ -20,6 +23,7 @@
     "chai": "^4.2.0",
     "express": "^4.17.1",
     "mocha": "^6.2.0",
-    "sinon": "^7.4.1"
+    "sinon": "^7.4.1",
+    "typescript": "^3.5.3"
   }
 }
