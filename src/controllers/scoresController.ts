@@ -1,4 +1,12 @@
 import express from 'express';
+import pg from 'pg';
+import { parse } from 'pg-connection-string';
+
+const dbUrl: string = process.env.DB_URL || '';
+
+const config: object = parse(dbUrl);
+const pool = new pg.Pool(config);
+pool.connect();
 
 export const scoresController = {
   getScores(req: express.Request, res: express.Response) {
@@ -9,7 +17,7 @@ export const scoresController = {
 };
 
 function gameNameToIndex(gameName: string): number {
-  // TODO actually convert
+  // TODO actually convert it
   return 1;
 }
 
