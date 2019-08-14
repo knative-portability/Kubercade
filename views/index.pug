@@ -4,10 +4,15 @@ html
     style
       include style.css
   body
-    div.topnav
+    div#nav_bar
       div.navtab
         a(href='#') Nav Link 1
       div.navtab
         a(href='#') Nav Link 2
-    h1 Welcome to Kubercade!
-    p You are playing #{game}!
+    div#page_content
+      div#content_window
+        iframe#kubercade_iframe(
+          src='https://pacman-ci5ev6bu6a-uc.a.run.app/'
+        )
+      div#chat_window
+        p Chat about #{game} here!
