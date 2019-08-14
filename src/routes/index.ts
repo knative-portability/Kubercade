@@ -12,4 +12,4 @@ function typeAnnotationTest(name: string): string {
   return `Hello ${name}!`;
 }
 
-module.exports = router;
+export const index = router;

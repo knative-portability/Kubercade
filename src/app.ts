@@ -1,7 +1,8 @@
 import express from 'express';
 const app: express.Application = express();
+import { index } from './routes/index';
 
-app.use('/', require('./routes/index'));
+app.use('/', index);
 
 const port: number = Number(process.env.PORT) || 8080;
 app.listen(port, () => {
