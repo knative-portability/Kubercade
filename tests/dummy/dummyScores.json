@@ -1,0 +1,21 @@
+{
+  "scores": [{
+    "_id": 0,
+    "game_index": 1,
+    "name": "Notch",
+    "score": 9001,
+    "datetime": "2009-05-17 00:00:00"
+  }, {
+    "_id": 1,
+    "game_index": 2,
+    "name": "Gabe",
+    "score": 42,
+    "datetime": "1999-12-15 02:00:00"
+  }, {
+    "_id": 2,
+    "game_index": 1,
+    "name": "Carolyn",
+    "score": 364,
+    "datetime": "2019-07-17 08:00:00"
+  }]
+}

@@ -1,8 +1,10 @@
 import express from 'express';
 const app: express.Application = express();
 import { index } from './routes/index';
+import { scores } from './routes/scores';
 
 app.use('/', index);
+app.use('/scores', scores);
 
 const port: number = Number(process.env.PORT) || 8080;
 app.listen(port, () => {
