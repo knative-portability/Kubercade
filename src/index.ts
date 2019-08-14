@@ -1,9 +1,11 @@
-const express = require("express");
-const app = express();
+import express from "express";
+const app: express.Application = express();
 
 function typeAnnotationTest(name: string) {
   return `Hello ${name}!`;
 }
+
+const list = ["a", "b", "c"];
 
 app.get("/", (req, res) => {
   console.log("Hello world received a request.");
