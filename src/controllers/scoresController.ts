@@ -1,9 +1,9 @@
 import express from 'express';
 import pg from 'pg';
 import { parse } from 'pg-connection-string';
+require('dotenv').config();
 
 const dbUrl: string = process.env.DB_URL || '';
-
 const config: object = parse(dbUrl);
 const pool = new pg.Pool(config);
 pool.connect();
@@ -21,7 +21,15 @@ function gameNameToIndex(gameName: string): number {
   return 1;
 }
 
-function getScoresFromDB(gameIndex: number): object {
-  // TODO actually query the database
-  return { scores: gameIndex };
+function getScoresFromDB(gameIndex: number) {
+  pool.query(
+    'SELECT * FROM high_score_table WHERE game_index = $1',
+    [gameIndex],
+    (err, res) => {
+      if (err) {
+        throw err;
+      }
+      return res.rows;
+    }
+  );
 }
