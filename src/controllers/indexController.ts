@@ -2,10 +2,11 @@ import express from 'express';
 
 export const indexController = {
   index(req: express.Request, res: express.Response) {
-    console.log('Hello world received a request.');
+    console.log('Index received a request.');
 
-    const name: string = req.ip || 'World';
-    res.send(typeAnnotationTest(name));
+    res.render('index.pug', {
+      game: 'Pac-Man'
+    });
   },
 };
 
