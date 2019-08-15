@@ -25,7 +25,7 @@ function getScoresFromDB(gameIndex: number) {
       if (err) {
         throw err;
       }
-      return res.rows;
+      return { scores: res.rows };
     }
   );
 }
