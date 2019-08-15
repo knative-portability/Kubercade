@@ -1,4 +1,5 @@
 import express from 'express';
+import { util } from '../config/util';
 import pg from 'pg';
 import { parse } from 'pg-connection-string';
 require('dotenv').config();
@@ -11,15 +12,10 @@ pool.connect();
 export const scoresController = {
   getScores(req: express.Request, res: express.Response) {
     const gameName: string = req.params['game_name'];
-    const gameIndex: number = gameNameToIndex(gameName);
+    const gameIndex: number = util.gameToIndex(gameName);
     res.send(getScoresFromDB(gameIndex));
   },
 };
-
-function gameNameToIndex(gameName: string): number {
-  // TODO actually convert it
-  return 1;
-}
 
 function getScoresFromDB(gameIndex: number) {
   pool.query(
