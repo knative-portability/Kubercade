@@ -8,9 +8,9 @@ html
   body
     #nav_bar
       .navtab
-        a(href='javascript:void(0);') Nexus
+        a(onClick='changeActivePage("/nexus")') Nexus
       .navtab
-        a(href='javascript:void(0);') Game
+        a(onClick='changeActivePage("/games/pacman")') Game
     #page_content
       #content_window
         iframe#kubercade_iframe(
