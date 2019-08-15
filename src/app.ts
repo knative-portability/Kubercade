@@ -5,6 +5,8 @@ import { scores } from './routes/scores';
 
 app.set('view engine', 'pug');
 
+app.set('view engine', 'pug');
+
 app.use('/', index);
 app.use('/scores', scores);
 

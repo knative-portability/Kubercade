@@ -1,0 +1,12 @@
+steps:
+  # build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/knative-portability-2019/kubercade', '.']
+  # push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/knative-portability-2019/kubercade']
+  # Deploy container image to Cloud Run
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['beta', 'run', 'deploy', 'kubercade', '--image', 'gcr.io/knative-portability-2019/kubercade', '--region', 'us-central1','--platform', 'managed', '--quiet']
+images:
+- gcr.io/knative-portability-2019/kubercade
