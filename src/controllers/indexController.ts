@@ -5,7 +5,7 @@ export const indexController = {
     console.log('Index received a request.');
 
     res.render('index.pug', {
-      game: 'Pac-Man'
+      game: 'Pac-Man',
     });
   },
 };
