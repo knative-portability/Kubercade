@@ -8,8 +8,12 @@ html
   body
     #nav_bar
       a.navtab(onClick='changeActivePage("/nexus")') Nexus
-      a.navtab(onClick='changeActivePage("/games/pacman")') Game
-      a.navtab(onClick='changeActivePage("/scores/pacman")') High Scores
+      .navtab.dropdown Games
+        .dropdown-content
+          a.navtab(onClick='changeActivePage("/games/pacman")') Pac-Man
+      .navtab.dropdown High Scores
+        .dropdown-content
+          a.navtab(onClick='changeActivePage("/scores/pacman")') Pac-Man
     #page_content
       #content_window
         iframe#kubercade_iframe(
