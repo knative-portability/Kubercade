@@ -3,6 +3,8 @@ body {
   font-family: Helvetica, sans-serif, Arial;
 }
 
+/*** navigation ***/
+
 #nav_bar {
   width: 100%;
   background-color: #333;
@@ -14,14 +16,17 @@ body {
   padding: 18px 14px;
 }
 
-.navtab a {
+a.navtab {
   text-decoration: none;
   color: white;
+  cursor: pointer;
 }
 
 .navtab:hover {
   background-color: #888;
 }
+
+/*** content ***/
 
 #page_content {
   display: flex;
@@ -30,9 +35,11 @@ body {
 
 #content_window {
   display: flex;
-  flex-basis: 75%;    /* have game window take up most of horizontal space */
+  flex-basis: 75%;
+  /* have game window take up most of horizontal space */
 }
 
 #kubercade_iframe {
-  flex-grow: 1;   /* have game iframe fill up entire area */
+  flex-grow: 1;
+  /* have game iframe fill up entire area */
 }

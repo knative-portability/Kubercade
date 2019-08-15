@@ -7,12 +7,9 @@ html
       include js/navigation.js
   body
     #nav_bar
-      .navtab
-        a(onClick='changeActivePage("/nexus")') Nexus
-      .navtab
-        a(onClick='changeActivePage("/games/pacman")') Game
-      .navtab
-        a(onClick='changeActivePage("/scores/pacman")') High Scores
+      a.navtab(onClick='changeActivePage("/nexus")') Nexus
+      a.navtab(onClick='changeActivePage("/games/pacman")') Game
+      a.navtab(onClick='changeActivePage("/scores/pacman")') High Scores
     #page_content
       #content_window
         iframe#kubercade_iframe(
