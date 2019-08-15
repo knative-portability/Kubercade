@@ -19,17 +19,19 @@ export const scoresController = {
   },
 };
 
-function getScoresFromDB(gameIndex: number) {
-  pool.query(
-    `SELECT * FROM high_score_table 
-    WHERE game_index = $1 
-    ORDER BY score game_index DESC`,
-    [gameIndex],
-    (err, res) => {
-      if (err) {
-        throw err;
-      }
-      return { scores: res.rows };
-    }
-  );
+async function getScoresFromDB(gameIndex: number) {
+  try {
+    const res = await pool.query(
+      `SELECT * 
+      FROM kubercade.high_score_table
+      WHERE game_index=$1
+      ORDER BY score DESC`,
+      [gameIndex]
+    );
+    return { scores: res.rows };
+  } catch (err) {
+    console.log('Query error');
+    console.log(err.stack);
+    throw err;
+  }
 }
