@@ -1,5 +1,5 @@
 import express from 'express';
-import { util } from '../config/util';
+import { util } from '../config/gameInfoUtil';
 import pg from 'pg';
 import { parse } from 'pg-connection-string';
 require('dotenv').config();

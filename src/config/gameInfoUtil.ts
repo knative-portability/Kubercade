@@ -1,4 +1,4 @@
-import { gameIndexConfigs } from './gameIndex.json';
+import { gameIndexConfigs } from './gameInfo.json';
 
 /* Functions for converting between game index, code-safe game name,
 and human-readable game name using gameIndex.json. */
