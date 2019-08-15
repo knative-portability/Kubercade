@@ -20,7 +20,7 @@ export const scoresController = {
 
 function getScoresFromDB(gameIndex: number) {
   pool.query(
-    'SELECT * FROM high_score_table WHERE game_index = $1',
+    'SELECT * FROM high_score_table WHERE game_index = $1 ORDER BY score DESC',
     [gameIndex],
     (err, res) => {
       if (err) {
