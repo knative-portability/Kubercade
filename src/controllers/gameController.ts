@@ -2,9 +2,7 @@ import express from 'express';
 import { pacmanContent } from '../games/pacman';
 
 function pacman(req: express.Request, res: express.Response) {
-  console.log('Pacman received a request.');
-
-  res.send(pacmanContent);
+  res.redirect('/static/pacman/index.html');
 }
 
 export const gameController = {
