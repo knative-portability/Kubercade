@@ -1,0 +1,8 @@
+html
+  head
+    title High Scores - #{gameName}
+  body
+    h1 High Scores - #{gameName}
+    div
+      each score in scores
+        div= gameName + ': ' score.score + ' - ' + score.name + ' at ' + score.datetime

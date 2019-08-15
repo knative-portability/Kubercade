@@ -13,7 +13,8 @@ export const scoresController = {
   getScores(req: express.Request, res: express.Response) {
     const gameName: string = req.params['game_name'];
     const gameIndex: number = util.gameToIndex(gameName);
-    res.send(getScoresFromDB(gameIndex));
+    const scores = getScoresFromDB(gameIndex);
+    res.render('scores.pug', { scores, gameName });
   },
 };
 
