@@ -7,13 +7,13 @@ chai.should();
 
 describe('Index', () => {
   describe('GET /', () => {
-    it('should contain "Hello"', done => {
+    it('should contain "Kubercade Home"', done => {
       chai
         .request(app)
         .get('/')
         .end((err, res) => {
           res.should.have.status(200);
-          res.text.should.include('Hello');
+          res.text.should.include('Kubercade Home');
           done();
         });
     });
