@@ -5,6 +5,7 @@ import { scores } from './routes/scores';
 import { games } from './routes/games';
 
 app.set('view engine', 'pug');
+app.use(express.static('public'))
 
 app.use('/', index);
 app.use('/scores', scores);
