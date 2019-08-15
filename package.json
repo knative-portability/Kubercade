@@ -31,7 +31,8 @@
   },
   "homepage": "https://github.com/knative-portability/Kubercade#readme",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "typescript": "^3.5.3"
   },
   "devDependencies": {
     "@types/chai": "^4.2.0",
@@ -46,7 +47,6 @@
     "sinon": "^7.4.1",
     "ts-node": "^8.3.0",
     "ts-node-dev": "^1.0.0-pre.40",
-    "tslint": "^5.18.0",
-    "typescript": "^3.5.3"
+    "tslint": "^5.18.0"
   }
 }
