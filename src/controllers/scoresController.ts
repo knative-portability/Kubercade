@@ -11,10 +11,11 @@ pool.connect();
 
 export const scoresController = {
   getScores(req: express.Request, res: express.Response) {
-    const gameName: string = req.params['game_name'];
-    const gameIndex: number = util.gameToIndex(gameName);
+    const internalGameName: string = req.params['game_name'];
+    const gameIndex: number = util.gameToIndex(internalGameName);
     const scores = getScoresFromDB(gameIndex);
-    res.render('scores.pug', { scores, gameName });
+    const prettyGameName: string = util.gameToName(internalGameName);
+    res.render('scores.pug', { scores, prettyGameName });
   },
 };
 

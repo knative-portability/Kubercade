@@ -1,8 +1,8 @@
 html
   head
-    title High Scores - #{gameName}
+    title High Scores - #{prettyGameName}
   body
-    h1 High Scores - #{gameName}
+    h1 High Scores - #{prettyGameName}
     div
       each score in scores
         div= score.score + ' - ' + score.name + ' at ' + score.datetime
