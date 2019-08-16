@@ -19,9 +19,10 @@ export const scoresController = {
   postScore(req: express.Request, res: express.Response) {
     const internalGameName: string = req.params['game_name'];
     const gameIndex: number = util.gameToIndex(internalGameName);
-    const name = req.body.name;
-    const score = req.body.score;
+    const name: string = req.body.name;
+    const score: number = req.body.score;
     postScoreToDB(gameIndex, score, name);
+    res.send('Successfully added score.');
   },
 };
 
@@ -51,7 +52,7 @@ function getCurrentTime(): string {
 
 async function postScoreToDB(gameIndex: number, score: number, name: string) {
   try {
-    const res = await pool.query(
+    await pool.query(
       `INSERT INTO kubercade.high_score_table (game_index, name, score, datetime)
       VALUES ($1, $2, $3, $4)`,
       [gameIndex, name, score, getCurrentTime()]

@@ -4,8 +4,11 @@ import { index } from './routes/index';
 import { scores } from './routes/scores';
 
 app.set('view engine', 'pug');
-
-app.set('view engine', 'pug');
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 
 app.use('/', index);
 app.use('/scores', scores);
