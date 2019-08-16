@@ -8,11 +8,31 @@ body {
   margin: 0px;
 }
 
+div {
+  font-size: 16pt;
+}
+
 h1,
 h2,
 h3,
 h4 {
   font-family: 'Press Start 2P', sans-serif;
+}
+
+h1 {
+  font-size: 48pt;
+}
+
+h2 {
+  font-size: 36pt;
+}
+
+h3 {
+  font-size: 32pt;
+}
+
+h4 {
+  font-size: 24pt;
 }
 
 /*** navigation ***/
@@ -92,11 +112,11 @@ a.navtab {
 }
 
 #kubercade_nexus h1 {
-  font-size: 32pt;
+  text-shadow: 4px 4px 2px rgb(22, 22, 22);
 }
 
 #kubercade_nexus h4 {
-  font-size: 24pt;
+  text-shadow: 2px 2px 2px rgb(22, 22, 22);
 }
 
 #kubercade_nexus a {
