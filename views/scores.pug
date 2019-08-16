@@ -5,7 +5,12 @@ html
       include style.css
     link(href="https://fonts.googleapis.com/css?family=Lexend+Deca|Press+Start+2P&display=swap" rel="stylesheet")
   body
-    h1 High Scores - #{prettyGameName}
-    div
-      each score in scores
-        div= score.score + ' - ' + score.name + ' at ' + score.datetime
+    #high_scores_container
+      h1 High Scores - #{prettyGameName}
+      .scores_list
+        each score, index in scores
+          .individual_score
+            span= index + 1 
+            span.name= score.name
+            span= score.score
+            span= score.datetime
