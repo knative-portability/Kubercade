@@ -7,15 +7,18 @@ html
     script
       include js/navigation.js
   body
-    #nav_bar
-      a.navtab(onClick='changeActivePage("/nexus")') Nexus
-      .navtab.dropdown Games
-        .dropdown-content
-          a.navtab(onClick='changeActivePage("/games/pacman")') Pac-Man
-      .navtab.dropdown High Scores
-        .dropdown-content
-          a.navtab(onClick='changeActivePage("/scores/pacman")') Pac-Man
-    #page_content
+    #wrapper_grid
+      #nav_bar
+        a.navtab(onClick='changeActivePage("/nexus")')
+          div Nexus
+        .navtab.dropdown
+          div Games
+          .dropdown-content
+            a.navtab(onClick='changeActivePage("/games/pacman")') Pac-Man
+        .navtab.dropdown
+          div High Scores
+          .dropdown-content
+            a.navtab(onClick='changeActivePage("/scores/pacman")') Pac-Man
       #content_window
         iframe#kubercade_iframe(
           src='/nexus'

@@ -35,6 +35,31 @@ h4 {
   font-size: 24pt;
 }
 
+/*** layout ***/
+
+#wrapper_grid {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 80% auto;
+  grid-template-rows: 64px auto;
+  grid-template-areas:
+    "nav_bar nav_bar"
+    "content chat"
+}
+
+#nav_bar {
+  grid-area: nav_bar;
+}
+
+#content_window {
+  grid-area: content;
+}
+
+#chat_window {
+  grid-area: chat;
+}
+
 /*** navigation ***/
 
 #nav_bar {
@@ -47,6 +72,10 @@ h4 {
   text-align: center;
   padding: 18px 14px;
   color: white;
+  min-width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 a.navtab {
@@ -61,7 +90,6 @@ a.navtab {
 
 .dropdown {
   position: relative;
-  display: inline-block;
 }
 
 .dropdown-content {
@@ -80,11 +108,6 @@ a.navtab {
 }
 
 /*** content ***/
-
-#page_content {
-  display: flex;
-  height: 100%;
-}
 
 #content_window {
   display: flex;
@@ -127,6 +150,6 @@ a.navtab {
 /*** chat ***/
 
 #chat_window {
-  width: 25%;
-  background: linear-gradient(to top, rgb(255, 163, 185), rgb(206, 180, 175))
+  background: linear-gradient(to top, rgb(64, 64, 64), rgb(128, 128, 128));
+  color: white;
 }
