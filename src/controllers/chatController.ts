@@ -9,35 +9,33 @@ const config: object = parse(dbUrl);
 const pool = new pg.Pool(config);
 pool.connect();
 
-export const scoresController = {
+export const chatController = {
   /**
-   * Get all scores for the game_name specified.
-   * Sends the results as a rendered Pug template.
+   * Get all chat messages for the game_name specified.
+   * Sends the results as JSON.
    * @param req Request object
    * @param res Response object
    */
-  async getScores(req: express.Request, res: express.Response) {
+  async getChat(req: express.Request, res: express.Response) {
     const internalGameName: string = req.params['game_name'];
     const gameIndex: number = util.gameToIndex(internalGameName);
-    const scores = await getScoresFromDB(gameIndex);
-    const prettyGameName: string = util.gameToName(internalGameName);
-    res.render('scores.pug', { scores, prettyGameName });
+    res.send(await getChatFromDB(gameIndex));
   },
 };
 
 /**
- * Queries the db to get all scores for a given game.
+ * Queries the db to get all chat messages for a given game.
  * @param gameIndex Index of game from ../config/gameInfo.json
  * @returns {Promise<object[]>} Returned rows
  * @throws Error from querying the database
  */
-async function getScoresFromDB(gameIndex: number): Promise<object[]> {
+async function getChatFromDB(gameIndex: number): Promise<object[]> {
   try {
     const res = await pool.query(
       `SELECT * 
-      FROM kubercade.high_score_table
+      FROM kubercade.chat_table
       WHERE game_index=$1
-      ORDER BY score DESC, datetime DESC;`,
+      ORDER BY datetime DESC`,
       [gameIndex]
     );
     return res.rows;
