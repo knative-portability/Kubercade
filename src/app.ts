@@ -6,7 +6,7 @@ import { scores } from './routes/scores';
 import { games } from './routes/games';
 
 app.set('view engine', 'pug');
-app.use('/static', express.static('public'));
+app.use('/vendor', express.static('vendor'));
 
 app.use('/', index);
 app.use('/nexus', nexus);
