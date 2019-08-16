@@ -44,7 +44,10 @@ async function getScoresFromDB(gameIndex: number) {
 }
 
 function getCurrentTime(): string {
-  return new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
+  return new Date()
+    .toISOString()
+    .replace(/T/, ' ')
+    .replace(/\..+/, '');
 }
 
 async function postScoreToDB(gameIndex: number, score: number, name: string) {
