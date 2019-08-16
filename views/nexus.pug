@@ -1,0 +1,13 @@
+html
+  head
+    title Kubercade Nexus
+    style
+      include style.css
+  body
+    #kubercade_nexus
+      h1 Kubercade Nexus
+      h4 Browse Games
+      each gameInfo in gamesList
+        div
+          a(href='/games/' + gameInfo.game)= gameInfo.name
+
