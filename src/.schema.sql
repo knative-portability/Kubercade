@@ -13,6 +13,3 @@ CREATE SCHEMA IF NOT EXIST kubercade AUTHORIZATION jxzxrgmv
     message     varchar(400) NOT NULL,
     datetime    varchar(40) NOT NULL
   );
-
-jxzxrgmv
-nrhwqomw
