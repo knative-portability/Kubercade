@@ -42,10 +42,10 @@ h4 {
   width: 100%;
   display: grid;
   grid-template-columns: 80% auto;
-  grid-template-rows: 64px auto;
+  grid-template-rows: 72px auto;
   grid-template-areas:
-    "nav_bar nav_bar"
-    "content chat"
+    'nav_bar nav_bar'
+    'content chat';
 }
 
 #nav_bar {
@@ -67,6 +67,18 @@ h4 {
   background: linear-gradient(to right, #333, #284b83);
   display: flex;
 }
+#nav_bar .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 16px;
+}
+
+#nav_bar img {
+  width: auto;
+  height: 64px;
+  display: block;
+}
 
 .navtab {
   text-align: center;
@@ -81,7 +93,6 @@ h4 {
 a.navtab {
   text-decoration: none;
   cursor: pointer;
-  display: block;
 }
 
 .navtab:hover {
@@ -131,7 +142,7 @@ a.navtab {
   flex-direction: column;
   text-align: center;
   color: white;
-  background: linear-gradient(to right, #8360c3, #2ebf91)
+  background: linear-gradient(to right, #8360c3, #2ebf91);
 }
 
 #kubercade_nexus h1 {
