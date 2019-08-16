@@ -10,6 +10,12 @@ const pool = new pg.Pool(config);
 pool.connect();
 
 export const scoresController = {
+  /**
+   * Get all scores for the game_name specified.
+   * Sends the results as a rendered Pug template.
+   * @param req Request object
+   * @param res Response object
+   */
   async getScores(req: express.Request, res: express.Response) {
     const internalGameName: string = req.params['game_name'];
     const gameIndex: number = util.gameToIndex(internalGameName);
@@ -19,7 +25,13 @@ export const scoresController = {
   },
 };
 
-async function getScoresFromDB(gameIndex: number) {
+/**
+ * Queries the db to get all scores for a given game.
+ * @param gameIndex Index of game from ../config/gameInfo.json
+ * @returns {Promise<object[]>} Returned rows
+ * @throws Error from querying the database
+ */
+async function getScoresFromDB(gameIndex: number): Promise<object[]> {
   try {
     const res = await pool.query(
       `SELECT * 
