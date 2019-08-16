@@ -10,10 +10,10 @@ const pool = new pg.Pool(config);
 pool.connect();
 
 export const scoresController = {
-  getScores(req: express.Request, res: express.Response) {
+  async getScores(req: express.Request, res: express.Response) {
     const internalGameName: string = req.params['game_name'];
     const gameIndex: number = util.gameToIndex(internalGameName);
-    const scores = getScoresFromDB(gameIndex);
+    const scores = await getScoresFromDB(gameIndex);
     const prettyGameName: string = util.gameToName(internalGameName);
     res.render('scores.pug', { scores, prettyGameName });
   },
@@ -28,7 +28,7 @@ async function getScoresFromDB(gameIndex: number) {
       ORDER BY score DESC`,
       [gameIndex]
     );
-    return { scores: res.rows };
+    return res.rows;
   } catch (err) {
     console.log('Query error');
     console.log(err.stack);
