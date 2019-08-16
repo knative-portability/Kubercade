@@ -1,6 +1,8 @@
 import express from 'express';
 
-const gameServes = {
+const gameServes: {
+  [id: string]: (req: express.Request, res: express.Response) => void;
+} = {
   pacman(req: express.Request, res: express.Response) {
     res.redirect('/static/pacman/index.html');
   },
