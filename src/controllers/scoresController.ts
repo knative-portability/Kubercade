@@ -10,25 +10,37 @@ const pool = new pg.Pool(config);
 pool.connect();
 
 export const scoresController = {
-  getScores(req: express.Request, res: express.Response) {
+  /**
+   * Get all scores for the game_name specified.
+   * Sends the results as a rendered Pug template.
+   * @param req Request object
+   * @param res Response object
+   */
+  async getScores(req: express.Request, res: express.Response) {
     const internalGameName: string = req.params['game_name'];
     const gameIndex: number = util.gameToIndex(internalGameName);
-    const scores = getScoresFromDB(gameIndex);
+    const scores = await getScoresFromDB(gameIndex);
     const prettyGameName: string = util.gameToName(internalGameName);
     res.render('scores.pug', { scores, prettyGameName });
   },
 };
 
-async function getScoresFromDB(gameIndex: number) {
+/**
+ * Queries the db to get all scores for a given game.
+ * @param gameIndex Index of game from ../config/gameInfo.json
+ * @returns {Promise<object[]>} Returned rows
+ * @throws Error from querying the database
+ */
+async function getScoresFromDB(gameIndex: number): Promise<object[]> {
   try {
     const res = await pool.query(
       `SELECT * 
       FROM kubercade.high_score_table
       WHERE game_index=$1
-      ORDER BY score DESC`,
+      ORDER BY score DESC, datetime DESC;`,
       [gameIndex]
     );
-    return { scores: res.rows };
+    return res.rows;
   } catch (err) {
     console.log('Query error');
     console.log(err.stack);
