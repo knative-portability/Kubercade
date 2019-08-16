@@ -160,7 +160,13 @@ a.navtab {
 
 /*** chat ***/
 
+/* yt colors for when chat has a UI
+  background dark: #191919
+  background mid: #282828
+  ui dark: #333333
+  ui buttons/hints: #686868 */
+
 #chat_window {
-  background: linear-gradient(to top, rgb(64, 64, 64), rgb(128, 128, 128));
+  background-color: #191919;
   color: white;
 }
