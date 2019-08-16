@@ -3,12 +3,17 @@ html
     title Kubercade Home
     style
       include style.css
+    script
+      include js/navigation.js
   body
     #nav_bar
-      .navtab
-        a(href='javascript:void(0);') Nav Link 1
-      .navtab
-        a(href='javascript:void(0);') Nav Link 2
+      a.navtab(onClick='changeActivePage("/nexus")') Nexus
+      .navtab.dropdown Games
+        .dropdown-content
+          a.navtab(onClick='changeActivePage("/games/pacman")') Pac-Man
+      .navtab.dropdown High Scores
+        .dropdown-content
+          a.navtab(onClick='changeActivePage("/scores/pacman")') Pac-Man
     #page_content
       #content_window
         iframe#kubercade_iframe(
