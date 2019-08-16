@@ -10,10 +10,10 @@ const pool = new pg.Pool(config);
 pool.connect();
 
 export const chatController = {
-  getChat(req: express.Request, res: express.Response) {
+  async getChat(req: express.Request, res: express.Response) {
     const internalGameName: string = req.params['game_name'];
     const gameIndex: number = util.gameToIndex(internalGameName);
-    res.send(getChatFromDB(gameIndex));
+    res.send(await getChatFromDB(gameIndex));
   },
 };
 
@@ -23,10 +23,10 @@ async function getChatFromDB(gameIndex: number) {
       `SELECT * 
       FROM kubercade.chat_table
       WHERE game_index=$1
-      ORDER BY datetime ASC`,
+      ORDER BY datetime DESC`,
       [gameIndex]
     );
-    return { scores: res.rows };
+    return res.rows;
   } catch (err) {
     console.log('Query error');
     console.log(err.stack);
