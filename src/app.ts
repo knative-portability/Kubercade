@@ -1,6 +1,7 @@
 import express from 'express';
 const app: express.Application = express();
 import { index } from './routes/index';
+import { nexus } from './routes/nexus';
 import { scores } from './routes/scores';
 import { games } from './routes/games';
 
@@ -8,6 +9,7 @@ app.set('view engine', 'pug');
 app.use('/static', express.static('public'));
 
 app.use('/', index);
+app.use('/nexus', nexus);
 app.use('/scores', scores);
 app.use('/games', games);
 
