@@ -1,4 +1,4 @@
-CREATE SCHEMA kubercade AUTHORIZATION nrhwqomw
+CREATE SCHEMA IF NOT EXIST kubercade AUTHORIZATION jxzxrgmv
 
   CREATE TABLE IF NOT EXISTS kubercade.high_score_table (
     game_index  integer,
@@ -13,3 +13,6 @@ CREATE SCHEMA kubercade AUTHORIZATION nrhwqomw
     message     varchar(400) NOT NULL,
     datetime    varchar(40) NOT NULL
   );
+
+jxzxrgmv
+nrhwqomw
