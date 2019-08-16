@@ -39,14 +39,13 @@ h4 {
 
 #nav_bar {
   width: 100%;
-  background-color: #333;
+  background: linear-gradient(to right, #333, #284b83);
   display: flex;
 }
 
 .navtab {
   text-align: center;
   padding: 18px 14px;
-  background-color: #333;
   color: white;
 }
 
@@ -68,6 +67,7 @@ a.navtab {
 .dropdown-content {
   display: none;
   position: absolute;
+  background-color: #333;
   left: 0;
   right: 0;
   top: 100%;
@@ -108,7 +108,7 @@ a.navtab {
   flex-direction: column;
   text-align: center;
   color: white;
-  background: linear-gradient(#430577, #a3ffa0)
+  background: linear-gradient(to right, #8360c3, #2ebf91)
 }
 
 #kubercade_nexus h1 {
@@ -122,4 +122,11 @@ a.navtab {
 #kubercade_nexus a {
   font-size: 18pt;
   color: white;
+}
+
+/*** chat ***/
+
+#chat_window {
+  width: 25%;
+  background: linear-gradient(to top, rgb(255, 163, 185), rgb(206, 180, 175))
 }
