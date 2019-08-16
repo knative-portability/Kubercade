@@ -6,7 +6,13 @@
 
 body {
   margin: 0px;
-  font-family: Helvetica, sans-serif, Arial;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Press Start 2P', sans-serif;
 }
 
 /*** navigation ***/
