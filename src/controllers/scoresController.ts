@@ -44,10 +44,7 @@ async function getScoresFromDB(gameIndex: number) {
 }
 
 function getCurrentTime(): string {
-  const today = new Date();
-  const date = `${today.getMonth()}-${today.getDate()}-${today.getFullYear()}`;
-  const time = `${today.getHours()}:${today.getMinutes()}:${today.getSeconds()}`;
-  return `${date} ${time}`;
+  return new Date().toISOString().replace(/T/, ' ').replace(/\..+/, '')
 }
 
 async function postScoreToDB(gameIndex: number, score: number, name: string) {
