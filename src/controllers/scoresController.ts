@@ -25,7 +25,7 @@ async function getScoresFromDB(gameIndex: number) {
       `SELECT * 
       FROM kubercade.high_score_table
       WHERE game_index=$1
-      ORDER BY datetime DESC, score DESC;`,
+      ORDER BY score DESC, datetime DESC;`,
       [gameIndex]
     );
     return res.rows;
