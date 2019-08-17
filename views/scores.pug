@@ -4,6 +4,8 @@ html
     style
       include style.css
     link(href="https://fonts.googleapis.com/css?family=Lexend+Deca|Press+Start+2P&display=swap" rel="stylesheet")
+    script(defer)
+      include js/randomColorsForScores.js
   body
     #high_scores_container
       h1 High Scores - #{prettyGameName}
@@ -11,6 +13,6 @@ html
         each score, index in scores
           .individual_score
             span= index + 1 
-            span.name= score.name
+            span= score.name
             span= score.score
             span= score.datetime
