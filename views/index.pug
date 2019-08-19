@@ -6,6 +6,8 @@ html
     link(href="https://fonts.googleapis.com/css?family=Lexend+Deca|Press+Start+2P&display=swap" rel="stylesheet")
     script
       include js/navigation.js
+    script
+      include js/chatControl.js
   body
     #wrapper_grid
       #nav_bar
@@ -33,10 +35,6 @@ html
                 a(onClick="#").clickable General
                 a(onClick="#").clickable Pac-Man
         #chat_messages
-          each _ in Array(30)
-            .individual_chat_message
-              p.author Bill Gates
-              p.text This is what a chat message will look like.
         #chat_form
           .input_row
             a(onClick="#").refresh_button.clickable &#x1F504
