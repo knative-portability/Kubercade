@@ -1,7 +1,6 @@
-chatRefreshTimeMs = 30000;
+var chatRefreshTimeMs = 30000;
 
 var refreshChat = function () {
-  console.log("Refreshing chat");
   document.getElementById("chat_messages").innerHTML = fetchChatHTML();
   setChatScrollToBottom();
 }
@@ -17,16 +16,15 @@ var setChatScrollToBottom = function () {
 }
 
 var fetchChatHTML = function () {
-  var chatList = Array(3).fill({
+  var chatList = Array(30).fill({
     "author": "Bill Gates",
-    "text": "This is what a chat message will look like."
+    "text": "This is an example of what a chat message will look like."
   });
   var html = "";
   chatList.forEach(function (element) {
     html += `<div class="
-    individual_chat_message"><p class="
-    author">${element.author}</p><p class="
-    text ">${element.text}</p></div>`;
+    individual_chat_message"><p><span class="
+    author">${element.author}</span>${element.text}</p></div>`;
   })
   return html;
 }

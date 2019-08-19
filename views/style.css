@@ -216,10 +216,14 @@ a.navtab {
 
 #chat_window #chat_messages {
   overflow-y: scroll;
+  display: flex;
+  flex-direction: column-reverse;
 }
 
 #chat_window #chat_messages .individual_chat_message {
   padding: 4px 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
 }
 
 #chat_window #chat_messages .individual_chat_message p {
