@@ -29,8 +29,18 @@ var fetchChatHTML = function () {
   return html;
 }
 
+var countMessageCharLength = function () {
+  var charCounter = document.getElementById("chat_char_counter");
+  var messageInput = document.getElementById("message_input");
+  messageInput.onkeyup = function () {
+    charCounter.innerHTML = messageInput.value.length + "/400";
+  }
+}
+
 if (window.addEventListener) {
   window.addEventListener('load', periodicallyRefreshChat);
+  window.addEventListener('load', countMessageCharLength);
 } else {
   window.attachEvent('onload', periodicallyRefreshChat);
+  window.attachEvent('onload', countMessageCharLength);
 }

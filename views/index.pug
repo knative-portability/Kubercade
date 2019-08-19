@@ -38,8 +38,8 @@ html
         #chat_form
           .input_row
             a(onClick="#").refresh_button.clickable &#x1F504
-            input(type="text" placeholder="Name (optional)").text_input.name_input
+            input(type="text" placeholder="Name (optional)").text_input#name_input
             a(onClick="#").submit_button.clickable Send
           .input_row
-            textarea(placeholder="Say something...").text_input.message_input
+            textarea(placeholder="Say something..." maxlength="400").text_input#message_input
             p#chat_char_counter 0/400

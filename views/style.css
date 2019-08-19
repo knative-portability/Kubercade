@@ -277,13 +277,19 @@ a.navtab {
   color: white;
 }
 
-#chat_window #chat_form .input_row .text_input.name_input {
+#chat_window #chat_form .input_row .text_input#name_input {
   margin: 0 4px;
 }
 
-#chat_window #chat_form .input_row .text_input.message_input {
+#chat_window #chat_form .input_row .text_input#message_input {
   min-height: 60px;
+  margin-right: 4px;
   overflow-wrap: break-word;
   word-wrap: break-word;
   hyphens: auto;
+}
+
+#chat_window #chat_form .input_row #chat_char_counter {
+  min-width: 70px;
+  text-align: right;
 }
