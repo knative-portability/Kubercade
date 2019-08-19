@@ -27,15 +27,20 @@ html
         )
       #chat_window
         #chat_top_bar
-          a.dropdown Chat - #{game} &#x25BE
+          a.dropdown.clickable Chat - #{game} &#x25BE
+            .dropdown-content
+              a.clickable Pac-Man
+              a.clickable Some other game
         #chat_messages
           each _ in Array(30)
             .individual_chat_message
               p.author Bill Gates
               p.text This is what a chat message will look like.
         #chat_form
-          a.refresh_button &#x1F504
-          input(type="text" placeholder="Name (optional)").name_input
-          a.submit_button Send
-          input(type="text" placeholder="Say something...").message_input
-          p#chat_char_counter 0/200
+          .input_row
+            a(onClick="#").refresh_button.clickable &#x1F504
+            input(type="text" placeholder="Name (optional)").text_input.name_input
+            a(onClick="#").submit_button.clickable Send
+          .input_row
+            textarea(placeholder="Say something...").text_input.message_input
+            p#chat_char_counter 0/400

@@ -2,6 +2,8 @@
 
 * {
   font-family: 'Lexend Deca', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -33,6 +35,15 @@ h3 {
 
 h4 {
   font-size: 24pt;
+}
+
+.clickable {
+  cursor: pointer;
+  transition: all 200ms;
+}
+
+.clickable:hover {
+  background-color: rgba(255, 255, 255, 0.2);
 }
 
 /*** layout ***/
@@ -147,6 +158,10 @@ a.navtab {
   background: linear-gradient(to right, #8360c3, #2ebf91);
 }
 
+#kubercade_nexus>*:not(:last-child) {
+  margin-bottom: 16px;
+}
+
 #kubercade_nexus h1 {
   text-shadow: 4px 4px 2px rgb(22, 22, 22);
 }
@@ -181,13 +196,18 @@ a.navtab {
 }
 
 #chat_window>div {
-  padding: 24px 16px;
+  padding: 0 16px;
+}
+
+#chat_window a {
+  padding: 4px 8px;
 }
 
 /** chat top bar **/
 
 #chat_window #chat_top_bar {
   background-color: #282828;
+  padding: 16px;
 }
 
 /** chat messages **/
@@ -210,7 +230,6 @@ a.navtab {
   margin-right: 8px;
 }
 
-/* width */
 ::-webkit-scrollbar {
   width: initial;
 }
@@ -228,4 +247,32 @@ a.navtab {
 
 #chat_window #chat_form {
   background-color: #282828;
+  color: #b7b7b7;
+}
+
+#chat_window #chat_form>.input_row {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: 16px 0;
+  font-size: 12pt;
+}
+
+#chat_window #chat_form .input_row .text_input {
+  flex-grow: 1;
+  background-color: inherit;
+  border: none;
+  border-bottom: 1px solid #666666;
+  color: white;
+}
+
+#chat_window #chat_form .input_row .text_input.name_input {
+  margin: 0 4px;
+}
+
+#chat_window #chat_form .input_row .text_input.message_input {
+  min-height: 60px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
 }
