@@ -1,5 +1,9 @@
 var scorePopUp = function () {
   var name = prompt("Please enter your name:", "anonymous");
+  // don't post if person cancels prompt or doesn't enter name value
+  if (name == null || name == "") {
+    return None;
+  }
   var score = getScore();
   console.log(score);
   const xhr = new XMLHttpRequest();
