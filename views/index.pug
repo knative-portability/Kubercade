@@ -3,18 +3,24 @@ html
     title Kubercade Home
     style
       include style.css
+    link(href="https://fonts.googleapis.com/css?family=Lexend+Deca|Press+Start+2P&display=swap" rel="stylesheet")
     script
       include js/navigation.js
   body
-    #nav_bar
-      a.navtab(onClick='changeActivePage("/nexus")') Nexus
-      .navtab.dropdown Games
-        .dropdown-content
-          a.navtab(onClick='changeActivePage("/games/pacman")') Pac-Man
-      .navtab.dropdown High Scores
-        .dropdown-content
-          a.navtab(onClick='changeActivePage("/scores/pacman")') Pac-Man
-    #page_content
+    #wrapper_grid
+      #nav_bar
+        a.logo(onClick='changeActivePage("/nexus")')
+          img(src='images/kubercade logo.png' alt='Kubercade logo')
+        a.navtab(onClick='changeActivePage("/nexus")')
+          div Nexus
+        .navtab.dropdown
+          div Games
+          .dropdown-content
+            a.navtab(onClick='changeActivePage("/games/pacman")') Pac-Man
+        .navtab.dropdown
+          div High Scores
+          .dropdown-content
+            a.navtab(onClick='changeActivePage("/scores/pacman")') Pac-Man
       #content_window
         iframe#kubercade_iframe(
           src='/nexus'
