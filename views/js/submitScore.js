@@ -11,12 +11,7 @@ var scorePopUp = function () {
     return;
   }
   var score = getScore();
-  fetch("/scores/pacman/", {
-    method: 'POST',
-    body: JSON.stringify({name, score}),
-    headers:{
-      'Content-Type': 'application/json',
-  }});
+  sendScore("/scores/pacman/", {name, score});
 }
 
 var getScore = function () {
@@ -24,4 +19,14 @@ var getScore = function () {
   var scoreDiv = iframe.contentDocument.getElementById("score");
   var score = scoreDiv.getElementsByTagName("span")[0].innerText;
   return parseInt(score);
+}
+
+var sendScore = function(url, data) {
+  fetch(url, {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers:{
+      'Content-Type': 'application/json',
+    },
+  });
 }
