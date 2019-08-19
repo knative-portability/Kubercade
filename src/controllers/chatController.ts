@@ -21,6 +21,20 @@ export const chatController = {
     const gameIndex: number = util.gameToIndex(internalGameName);
     res.send(await getChatFromDB(gameIndex));
   },
+  /**
+   * Get all chat messages for the game_name specified.
+   * Sends the results as JSON.
+   * @param req Request object
+   * @param res Response object
+   */
+  async postToChat(req: express.Request, res: express.Response) {
+    const internalGameName: string = req.params['game_name'];
+    const gameIndex: number = util.gameToIndex(internalGameName);
+    const name: string = req.body.name;
+    const message: string = req.body.message;
+    postChatMessageToDB(gameIndex, name, message);
+    res.status(201).send('Successfully posted to chat.');
+  },
 };
 
 /**
@@ -41,6 +55,41 @@ async function getChatFromDB(gameIndex: number): Promise<object[]> {
     return res.rows;
   } catch (err) {
     console.log('Query error');
+    console.log(err.stack);
+    throw err;
+  }
+}
+
+/**
+ * Returns the current UTC time as a readable string.
+ * E.g. "2019-08-19 23:53:49"
+ */
+function getCurrentTime(): string {
+  return new Date()
+    .toISOString()
+    .replace(/T/, ' ')
+    .replace(/\..+/, '');
+}
+
+/**
+ * Posts a chat message to the chat database.
+ * @param gameIndex Index of game from ../config/gameInfo.json
+ * @param name Name of message poster
+ * @param message Message text
+ */
+async function postChatMessageToDB(
+  gameIndex: number,
+  name: string,
+  message: string
+) {
+  try {
+    await pool.query(
+      `INSERT INTO kubercade.chat_table (game_index, name, message, datetime)
+      VALUES ($1, $2, $3, $4)`,
+      [gameIndex, name, message, getCurrentTime()]
+    );
+  } catch (err) {
+    console.log('Query error: ' + err.message);
     console.log(err.stack);
     throw err;
   }
