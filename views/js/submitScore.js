@@ -11,12 +11,12 @@ var scorePopUp = function () {
     return;
   }
   var score = getScore();
-  console.log(score);
-  const xhr = new XMLHttpRequest();
-  const data = `name=${name}&score=${score}`
-  xhr.open("POST", "/scores/pacman/")
-  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-  xhr.send(data);
+  fetch("/scores/pacman/", {
+    method: 'POST',
+    body: JSON.stringify({name, score}),
+    headers:{
+      'Content-Type': 'application/json',
+  }});
 }
 
 var getScore = function () {
