@@ -1,27 +1,98 @@
+/*** general ***/
+
+* {
+  font-family: 'Lexend Deca', sans-serif;
+}
+
 body {
   margin: 0px;
-  font-family: Helvetica, sans-serif, Arial;
+}
+
+div {
+  font-size: 16pt;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: 'Press Start 2P', sans-serif;
+}
+
+h1 {
+  font-size: 48pt;
+}
+
+h2 {
+  font-size: 36pt;
+}
+
+h3 {
+  font-size: 32pt;
+}
+
+h4 {
+  font-size: 24pt;
+}
+
+/*** layout ***/
+
+#wrapper_grid {
+  height: 100%;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 80% auto;
+  grid-template-rows: 72px auto;
+  grid-template-areas:
+    'nav_bar nav_bar'
+    'content chat';
+}
+
+#nav_bar {
+  grid-area: nav_bar;
+}
+
+#content_window {
+  grid-area: content;
+}
+
+#chat_window {
+  grid-area: chat;
 }
 
 /*** navigation ***/
 
 #nav_bar {
   width: 100%;
-  background-color: #333;
+  background: linear-gradient(to right, #333, #284b83);
   display: flex;
+}
+#nav_bar .logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 16px;
+}
+
+#nav_bar img {
+  width: auto;
+  height: 64px;
+  display: block;
 }
 
 .navtab {
   text-align: center;
   padding: 18px 14px;
-  background-color: #333;
   color: white;
+  min-width: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 a.navtab {
   text-decoration: none;
   cursor: pointer;
-  display: block;
 }
 
 .navtab:hover {
@@ -30,12 +101,12 @@ a.navtab {
 
 .dropdown {
   position: relative;
-  display: inline-block;
 }
 
 .dropdown-content {
   display: none;
   position: absolute;
+  background-color: #333;
   left: 0;
   right: 0;
   top: 100%;
@@ -48,11 +119,6 @@ a.navtab {
 }
 
 /*** content ***/
-
-#page_content {
-  display: flex;
-  height: 100%;
-}
 
 #content_window {
   display: flex;
@@ -76,18 +142,31 @@ a.navtab {
   flex-direction: column;
   text-align: center;
   color: white;
-  background: linear-gradient(#430577, #a3ffa0)
+  background: linear-gradient(to right, #8360c3, #2ebf91);
 }
 
 #kubercade_nexus h1 {
-  font-size: 32pt;
+  text-shadow: 4px 4px 2px rgb(22, 22, 22);
 }
 
 #kubercade_nexus h4 {
-  font-size: 24pt;
+  text-shadow: 2px 2px 2px rgb(22, 22, 22);
 }
 
 #kubercade_nexus a {
   font-size: 18pt;
+  color: white;
+}
+
+/*** chat ***/
+
+/* yt colors for when chat has a UI
+  background dark: #191919
+  background mid: #282828
+  ui dark: #333333
+  ui buttons/hints: #686868 */
+
+#chat_window {
+  background-color: #191919;
   color: white;
 }

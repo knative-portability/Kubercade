@@ -3,10 +3,11 @@ html
     title Kubercade Nexus
     style
       include style.css
+    link(href="https://fonts.googleapis.com/css?family=Lexend+Deca|Press+Start+2P&display=swap" rel="stylesheet")
   body
     #kubercade_nexus
-      h1 Kubercade Nexus
-      h4 Browse Games
+      h1 Kubercade
+      h4 Nexus - Browse Games
       each gameInfo in gamesList
         div
           a(href='/games/' + gameInfo.game)= gameInfo.name
