@@ -14,6 +14,8 @@ app.use(
   })
 );
 
+app.use(express.static('public'));
+
 app.use('/', index);
 app.use('/nexus', nexus);
 app.use('/scores', scores);
