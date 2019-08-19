@@ -197,7 +197,7 @@ a.navtab {
   display: grid;
   grid-template-columns: 2fr 4fr 2fr 5fr;
   margin-bottom: 6px;
-  text-shadow: 0px 1px 1px white;
+  /* text-shadow: 0px 1px 1px white; */
 }
 
 #high_scores_container .individual_score span {
