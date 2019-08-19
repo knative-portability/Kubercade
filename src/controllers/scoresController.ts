@@ -2,6 +2,7 @@ import express from 'express';
 import { util } from '../config/gameInfoUtil';
 import pg from 'pg';
 import { parse } from 'pg-connection-string';
+require('dotenv').config();
 
 const dbUrl: string = process.env.DB_URL || '';
 const config: object = parse(dbUrl);
@@ -37,7 +38,7 @@ async function getScoresFromDB(gameIndex: number) {
     );
     return { scores: res.rows };
   } catch (err) {
-    console.log('Query error');
+    console.log('Query error: ' + err.message);
     console.log(err.stack);
     throw err;
   }
@@ -58,7 +59,7 @@ async function postScoreToDB(gameIndex: number, score: number, name: string) {
       [gameIndex, name, score, getCurrentTime()]
     );
   } catch (err) {
-    console.log('Query error');
+    console.log('Query error: ' + err.message);
     console.log(err.stack);
     throw err;
   }
