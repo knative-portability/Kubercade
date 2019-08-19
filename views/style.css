@@ -196,7 +196,7 @@ a.navtab {
 #high_scores_container .individual_score {
   display: grid;
   grid-template-columns: 2fr 4fr 2fr 5fr;
-  margin-bottom: 6px;
+  margin-bottom: 12px;
 }
 
 #high_scores_container .individual_score span {
