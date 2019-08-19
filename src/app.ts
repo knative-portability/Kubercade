@@ -8,6 +8,11 @@ import { chat } from './routes/chat';
 
 app.set('view engine', 'pug');
 app.use('/vendor', express.static('vendor'));
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 
 app.use('/', index);
 app.use('/nexus', nexus);
