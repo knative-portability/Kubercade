@@ -1,6 +1,6 @@
 var scorePopUp = function () {
   var name = prompt("Please enter your name:", "anonymous");
-  var score = getScore();   //TODO: get actual score
+  var score = getScore();
   console.log(score);
   const xhr = new XMLHttpRequest();
   const data = `name=${name}&score=${score}`
