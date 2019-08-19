@@ -199,15 +199,17 @@ a.navtab {
   padding: 0 16px;
 }
 
-#chat_window a {
-  padding: 4px 8px;
-}
 
 /** chat top bar **/
 
 #chat_window #chat_top_bar {
   background-color: #282828;
-  padding: 16px;
+  padding: 0;
+}
+
+#chat_window #chat_top_bar .clickable {
+  padding: 24px;
+  display: block;
 }
 
 /** chat messages **/
@@ -250,12 +252,17 @@ a.navtab {
   color: #b7b7b7;
 }
 
-#chat_window #chat_form>.input_row {
+#chat_window #chat_form .input_row {
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
   margin: 16px 0;
   font-size: 12pt;
+}
+
+#chat_window #chat_form .input_row a {
+  padding: 4px 8px;
+  display: block;
 }
 
 #chat_window #chat_form .input_row .text_input {

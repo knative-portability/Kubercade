@@ -27,10 +27,11 @@ html
         )
       #chat_window
         #chat_top_bar
-          a.dropdown.clickable Chat - #{game} &#x25BE
-            .dropdown-content
-              a.clickable Pac-Man
-              a.clickable Some other game
+          .dropdown.clickable.button
+            p Chat - General &#x25BE
+              .dropdown-content
+                a(onClick="#").clickable General
+                a(onClick="#").clickable Pac-Man
         #chat_messages
           each _ in Array(30)
             .individual_chat_message
