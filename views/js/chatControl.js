@@ -1,3 +1,4 @@
+var chatActiveRoom = "general";
 var chatRefreshTimeMs = 30000;
 
 var refreshChat = function () {
