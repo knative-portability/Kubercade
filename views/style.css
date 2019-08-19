@@ -46,6 +46,7 @@ h4 {
   grid-template-areas:
     'nav_bar nav_bar'
     'content chat';
+  position: relative;
 }
 
 #nav_bar {
@@ -67,6 +68,7 @@ h4 {
   background: linear-gradient(to right, #333, #284b83);
   display: flex;
 }
+
 #nav_bar .logo {
   display: flex;
   justify-content: center;
@@ -169,4 +171,61 @@ a.navtab {
 #chat_window {
   background-color: #191919;
   color: white;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#chat_window>div {
+  padding: 24px 16px;
+}
+
+/** chat top bar **/
+
+#chat_window #chat_top_bar {
+  background-color: #282828;
+}
+
+/** chat messages **/
+
+#chat_window #chat_messages {
+  overflow-y: scroll;
+}
+
+#chat_window #chat_messages .individual_chat_message {
+  padding: 4px 0;
+}
+
+#chat_window #chat_messages .individual_chat_message p {
+  display: inline;
+  font-size: 12pt;
+}
+
+#chat_window #chat_messages .individual_chat_message .author {
+  color: rgba(255, 255, 255, 0.7);
+  margin-right: 8px;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: initial;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #333;
+  border: 2px solid #000;
+}
+
+/** chat form **/
+
+#chat_window #chat_form {
+  background-color: #282828;
 }

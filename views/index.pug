@@ -26,4 +26,16 @@ html
           src='/nexus'
         )
       #chat_window
-        p Chat about #{game} here!
+        #chat_top_bar
+          a.dropdown Chat - #{game} &#x25BE
+        #chat_messages
+          each _ in Array(30)
+            .individual_chat_message
+              p.author Bill Gates
+              p.text This is what a chat message will look like.
+        #chat_form
+          a.refresh_button &#x1F504
+          input(type="text" placeholder="Name (optional)").name_input
+          a.submit_button Send
+          input(type="text" placeholder="Say something...").message_input
+          p#chat_char_counter 0/200
