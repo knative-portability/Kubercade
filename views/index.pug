@@ -5,6 +5,8 @@ html
       include style.css
     script
       include js/navigation.js
+    script
+      include js/submitScore.js
   body
     #nav_bar
       a.navtab(onClick='changeActivePage("/nexus")') Nexus
@@ -14,6 +16,7 @@ html
       .navtab.dropdown High Scores
         .dropdown-content
           a.navtab(onClick='changeActivePage("/scores/pacman")') Pac-Man
+      a.navtab(onClick='scorePopUp()') Submit Score
     #page_content
       #content_window
         iframe#kubercade_iframe(
