@@ -23,6 +23,14 @@ export const scoresController = {
     const prettyGameName: string = util.gameToName(internalGameName);
     res.render('scores.pug', { scores, prettyGameName });
   },
+  postScore(req: express.Request, res: express.Response) {
+    const internalGameName: string = req.params['game_name'];
+    const gameIndex: number = util.gameToIndex(internalGameName);
+    const name: string = req.body.name;
+    const score: number = req.body.score;
+    postScoreToDB(gameIndex, score, name);
+    res.send('Successfully added score.');
+  },
 };
 
 /**
@@ -34,7 +42,7 @@ export const scoresController = {
 async function getScoresFromDB(gameIndex: number): Promise<object[]> {
   try {
     const res = await pool.query(
-      `SELECT * 
+      `SELECT *
       FROM kubercade.high_score_table
       WHERE game_index=$1
       ORDER BY score DESC, datetime DESC;`,
@@ -42,7 +50,28 @@ async function getScoresFromDB(gameIndex: number): Promise<object[]> {
     );
     return res.rows;
   } catch (err) {
-    console.log('Query error');
+    console.log('Query error: ' + err.message);
+    console.log(err.stack);
+    throw err;
+  }
+}
+
+function getCurrentTime(): string {
+  return new Date()
+    .toISOString()
+    .replace(/T/, ' ')
+    .replace(/\..+/, '');
+}
+
+async function postScoreToDB(gameIndex: number, score: number, name: string) {
+  try {
+    await pool.query(
+      `INSERT INTO kubercade.high_score_table (game_index, name, score, datetime)
+      VALUES ($1, $2, $3, $4)`,
+      [gameIndex, name, score, getCurrentTime()]
+    );
+  } catch (err) {
+    console.log('Query error: ' + err.message);
     console.log(err.stack);
     throw err;
   }

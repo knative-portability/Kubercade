@@ -6,6 +6,11 @@ import { scores } from './routes/scores';
 import { chat } from './routes/chat';
 
 app.set('view engine', 'pug');
+app.use(
+  express.urlencoded({
+    extended: true,
+  })
+);
 
 app.use('/', index);
 app.use('/nexus', nexus);
