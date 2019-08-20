@@ -53,7 +53,7 @@ h4 {
   height: 100%;
   width: 100%;
   display: grid;
-  grid-template-columns: 80% auto;
+  grid-template-columns: 75% auto;
   grid-template-rows: 72px auto;
   grid-template-areas:
     'nav_bar nav_bar'
