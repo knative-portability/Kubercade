@@ -8,6 +8,7 @@ html
       include js/navigation.js
     script
       include js/chatControl.js
+      include js/submitScore.js
   body
     #wrapper_grid
       #nav_bar
@@ -23,6 +24,8 @@ html
           div High Scores
           .dropdown-content
             a.navtab(onClick='changeActivePage("/scores/pacman")') Pac-Man
+        // TODO: remove button when popup is triggered directly on game end
+        a.navtab(onClick='scorePopUp()') Submit Score
       #content_window
         iframe#kubercade_iframe(
           src='/nexus'
