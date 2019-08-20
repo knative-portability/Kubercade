@@ -7,7 +7,7 @@ var refreshChat = function () {
       return response.json();
     })
     .then(function (chatList) {
-      console.log(JSON.stringify(chatList));
+      console.log(JSON.stringify(chatList)); // TODO remove
       var chatHTML = "";
       chatList.forEach(function (element) {
         chatHTML += `<div class="
@@ -29,13 +29,18 @@ var setChatScrollToBottom = function () {
   element.scrollTop = element.scrollHeight;
 }
 
-
 var countMessageCharLength = function () {
   var charCounter = document.getElementById("chat_char_counter");
   var messageInput = document.getElementById("message_input");
   messageInput.onkeyup = function () {
     charCounter.innerHTML = messageInput.value.length + "/400";
   }
+}
+
+var changeChatRoom = function (newRoomGame, newRoomName) {
+  chatActiveRoom = newRoomGame;
+  document.getElementById("chat_room_label").innerHTML = `Chat - ${newRoomName} &#x25BE`;
+  refreshChat();
 }
 
 if (window.addEventListener) {

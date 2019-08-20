@@ -33,10 +33,10 @@ html
       #chat_window
         #chat_top_bar
           .dropdown.clickable.button
-            p Chat - General &#x25BE
+            p#chat_room_label Chat - General &#x25BE
               .dropdown-content
-                a(onClick="#").clickable General
-                a(onClick="#").clickable Pac-Man
+                a(onClick='changeChatRoom("general", "General")').clickable General
+                a(onClick='changeChatRoom("pacman", "Pac-Man")').clickable Pac-Man
         #chat_messages
         #chat_form
           .input_row
