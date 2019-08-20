@@ -2,6 +2,8 @@
 
 * {
   font-family: 'Lexend Deca', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 body {
@@ -21,6 +23,7 @@ h4 {
 
 h1 {
   font-size: 48pt;
+  margin: 36px 24px;
 }
 
 h2 {
@@ -35,6 +38,15 @@ h4 {
   font-size: 24pt;
 }
 
+.clickable {
+  cursor: pointer;
+  transition: all 200ms;
+}
+
+.clickable:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
 /*** layout ***/
 
 #wrapper_grid {
@@ -46,6 +58,7 @@ h4 {
   grid-template-areas:
     'nav_bar nav_bar'
     'content chat';
+  position: relative;
 }
 
 #nav_bar {
@@ -123,8 +136,6 @@ a.navtab {
 
 #content_window {
   display: flex;
-  flex-basis: 75%;
-  /* have game window take up most of horizontal space */
 }
 
 #kubercade_iframe {
@@ -146,6 +157,10 @@ a.navtab {
   background: linear-gradient(to right, #8360c3, #2ebf91);
 }
 
+#kubercade_nexus>*:not(:last-child) {
+  margin-bottom: 16px;
+}
+
 #kubercade_nexus h1 {
   text-shadow: 4px 4px 2px rgb(22, 22, 22);
 }
@@ -161,18 +176,119 @@ a.navtab {
 
 /*** chat ***/
 
-/* yt colors for when chat has a UI
-  background dark: #191919
-  background mid: #282828
-  ui dark: #333333
-  ui buttons/hints: #686868 */
-
 #chat_window {
   background-color: #191919;
   color: white;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+#chat_window>div {
+  padding: 0 16px;
+}
+
+
+/** chat top bar **/
+
+#chat_window #chat_top_bar {
+  background-color: #282828;
+  padding: 0;
+}
+
+#chat_window #chat_top_bar .clickable {
+  padding: 24px;
+  display: block;
+}
+
+/** chat messages **/
+
+#chat_window #chat_messages {
+  overflow-y: scroll;
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+#chat_window #chat_messages .individual_chat_message {
+  padding: 4px 0;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+}
+
+#chat_window #chat_messages .individual_chat_message p {
+  display: inline;
+  font-size: 12pt;
+}
+
+#chat_window #chat_messages .individual_chat_message .author {
+  color: rgba(255, 255, 255, 0.7);
+  margin-right: 8px;
+}
+
+::-webkit-scrollbar {
+  width: initial;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #333;
+  border: 2px solid #000;
+}
+
+/** chat form **/
+
+#chat_window #chat_form {
+  background-color: #282828;
+  color: #b7b7b7;
+}
+
+#chat_window #chat_form .input_row {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-between;
+  margin: 16px 0;
+  font-size: 12pt;
+}
+
+#chat_window #chat_form .input_row a {
+  padding: 4px 8px;
+  display: block;
+}
+
+#chat_window #chat_form .input_row .text_input {
+  flex-grow: 1;
+  background-color: inherit;
+  border: none;
+  border-bottom: 1px solid #666666;
+  color: white;
+}
+
+#chat_window #chat_form .input_row .text_input#name_input {
+  margin: 0 4px;
+}
+
+#chat_window #chat_form .input_row .text_input#message_input {
+  min-height: 60px;
+  margin-right: 4px;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+#chat_window #chat_form .input_row #chat_char_counter {
+  min-width: 70px;
+  text-align: right;
 }
 
 /*** scores ***/
+
 #high_scores_container {
   background-color: #282828;
   height: 100%;
