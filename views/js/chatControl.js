@@ -7,20 +7,20 @@ var refreshChat = function () {
       return response.json();
     })
     .then(function (chatList) {
+      console.log("chatList:");
       console.log(JSON.stringify(chatList)); // TODO remove
       var chatHTML = "";
       chatList.forEach(function (element) {
-        console.dir(element);
         chatHTML += `<div class="
     individual_chat_message"><p><span class="
     author">${element.name}</span>${element.message}</p></div>`;
-      })
+      });
       document.getElementById("chat_messages").innerHTML = chatHTML;
       setChatScrollToBottom();
     });
 }
 
-var chatPostHandler = function () {
+var postMessageToChat = function () {
   var name = document.getElementById("name_input").value;
   var message = document.getElementById("message_input").value;
   document.getElementById("message_input").value = "";
@@ -36,8 +36,10 @@ var chatPostHandler = function () {
     })
     .then((response) => response.text())
     .then((responseText) => {
+      console.log("reponseText:");
       console.log(responseText);
-      refreshChat();
+      // wait for db to update before chat refresh
+      setTimeout(refreshChat, 200);
     })
     .catch((error) => {
       console.error(error);
@@ -54,12 +56,16 @@ var setChatScrollToBottom = function () {
   element.scrollTop = element.scrollHeight;
 }
 
-var countMessageCharLength = function () {
+var chatMessageKeyHandler = function () {
   var charCounter = document.getElementById("chat_char_counter");
   var messageInput = document.getElementById("message_input");
-  messageInput.onkeyup = function () {
-    charCounter.innerHTML = messageInput.value.length + "/400";
-  }
+  messageInput.addEventListener("keyup", function (event) {
+    if (event.ctrlKey && event.keyCode === 13) { // Ctrl+Enter
+      postMessageToChat();
+    } else {
+      charCounter.innerHTML = messageInput.value.length + "/400";
+    }
+  });
 }
 
 var changeChatRoom = function (newRoomGame, newRoomName) {
@@ -71,8 +77,8 @@ var changeChatRoom = function (newRoomGame, newRoomName) {
 
 if (window.addEventListener) {
   window.addEventListener('load', periodicallyRefreshChat);
-  window.addEventListener('load', countMessageCharLength);
+  window.addEventListener('load', chatMessageKeyHandler);
 } else {
   window.attachEvent('onload', periodicallyRefreshChat);
-  window.attachEvent('onload', countMessageCharLength);
+  window.attachEvent('onload', chatMessageKeyHandler);
 }
