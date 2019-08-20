@@ -7,14 +7,12 @@ var refreshChat = function () {
       return response.json();
     })
     .then(function (chatList) {
-      var chatMessages = document.getElementById("chat_messages");
-      chatMessages.innerHTML = "";
-      chatList.forEach(function (element) {
-        var individualMessageDiv = document.createElement('div');
-        individualMessageDiv.className = 'individual_chat_message';
-        individualMessageDiv.innerHTML = `<p><span class="author">${element.name}</span>${element.message}</p>`;
-        chatMessages.appendChild(individualMessageDiv);
+      let messages = chatList.map((element) => {
+        return `<div class="individual_chat_message">
+          <p><span class="author">${element.name}</span>${element.message}</p>
+          </div>`;
       });
+      document.getElementById("chat_messages").innerHTML = messages.join('\n');
       setChatScrollToBottom();
     });
 }
