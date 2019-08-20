@@ -56,19 +56,12 @@ async function getScoresFromDB(gameIndex: number): Promise<object[]> {
   }
 }
 
-function getCurrentTime(): string {
-  return new Date()
-    .toISOString()
-    .replace(/T/, ' ')
-    .replace(/\..+/, '');
-}
-
 async function postScoreToDB(gameIndex: number, score: number, name: string) {
   try {
     await pool.query(
       `INSERT INTO kubercade.high_score_table (game_index, name, score, datetime)
-      VALUES ($1, $2, $3, $4)`,
-      [gameIndex, name, score, getCurrentTime()]
+      VALUES ($1, $2, $3, NOW())`,
+      [gameIndex, name, score]
     );
   } catch (err) {
     console.log('Query error: ' + err.message);

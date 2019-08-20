@@ -61,17 +61,6 @@ async function getChatFromDB(gameIndex: number): Promise<object[]> {
 }
 
 /**
- * Returns the current UTC time as a readable string.
- * E.g. "2019-08-19 23:53:49"
- */
-function getCurrentTime(): string {
-  return new Date()
-    .toISOString()
-    .replace(/T/, ' ')
-    .replace(/\..+/, '');
-}
-
-/**
  * Posts a chat message to the chat database.
  * @param gameIndex Index of game from ../config/gameInfo.json
  * @param name Name of message poster
@@ -85,8 +74,8 @@ async function postChatMessageToDB(
   try {
     await pool.query(
       `INSERT INTO kubercade.chat_table (game_index, name, message, datetime)
-      VALUES ($1, $2, $3, $4)`,
-      [gameIndex, name, message, getCurrentTime()]
+      VALUES ($1, $2, $3, NOW())`,
+      [gameIndex, name, message]
     );
   } catch (err) {
     console.log('Query error: ' + err.message);
