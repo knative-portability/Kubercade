@@ -2,7 +2,7 @@ var chatActiveRoom = "general";
 var chatRefreshTimeMs = 30000;
 
 var refreshChat = function () {
-  fetch('/chat/' + chatActiveRoom)
+  fetch('./chat/' + chatActiveRoom)
     .then(function (response) {
       return response.json();
     })
@@ -10,12 +10,36 @@ var refreshChat = function () {
       console.log(JSON.stringify(chatList)); // TODO remove
       var chatHTML = "";
       chatList.forEach(function (element) {
+        console.dir(element);
         chatHTML += `<div class="
     individual_chat_message"><p><span class="
-    author">${element.author}</span>${element.text}</p></div>`;
+    author">${element.name}</span>${element.message}</p></div>`;
       })
       document.getElementById("chat_messages").innerHTML = chatHTML;
       setChatScrollToBottom();
+    });
+}
+
+var chatPostHandler = function () {
+  var name = document.getElementById("name_input").value;
+  var message = document.getElementById("message_input").value;
+  fetch('/chat/' + chatActiveRoom, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        "name": name,
+        "message": message
+      })
+    })
+    .then((response) => response.text())
+    .then((responseText) => {
+      console.log(responseText);
+      refreshChat();
+    })
+    .catch((error) => {
+      console.error(error);
     });
 }
 
@@ -39,7 +63,8 @@ var countMessageCharLength = function () {
 
 var changeChatRoom = function (newRoomGame, newRoomName) {
   chatActiveRoom = newRoomGame;
-  document.getElementById("chat_room_label").innerHTML = `Chat - ${newRoomName} &#x25BE`;
+  document.getElementById("chat_room_label").innerHTML = `
+          Chat - ${newRoomName} &#x25BE `;
   refreshChat();
 }
 

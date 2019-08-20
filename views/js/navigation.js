@@ -1,13 +1,8 @@
-var changeActivePage = function (url) {
+var changeActivePage = function (url, chatRoom, gameName) {
   changeIframePage(url);
-  changeChatRoom(url);
+  changeChatRoom(chatRoom, gameName);
 }
 
 var changeIframePage = function (url) {
   document.getElementById('kubercade_iframe').src = url;
-}
-
-var changeChatRoom = function (url) {
-  // TODO simultaneously change the active chat room once chat is implemented
-  var chatWindow = document.getElementById('chat_window');
 }
