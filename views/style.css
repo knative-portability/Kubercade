@@ -177,12 +177,6 @@ a.navtab {
 
 /*** chat ***/
 
-/* yt colors for when chat has a UI
-  background dark: #191919
-  background mid: #282828
-  ui dark: #333333
-  ui buttons/hints: #686868 */
-
 #chat_window {
   background-color: #191919;
   color: white;
@@ -292,4 +286,36 @@ a.navtab {
 #chat_window #chat_form .input_row #chat_char_counter {
   min-width: 70px;
   text-align: right;
+}
+
+/*** scores ***/
+
+#high_scores_container {
+  background-color: #282828;
+  height: 100%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+#high_scores_container h1 {
+  text-shadow: 2px 2px 1px black;
+}
+
+#high_scores_container .scores_list {
+  width: 100%;
+  max-width: 1200px;
+  overflow-y: auto;
+}
+
+#high_scores_container .individual_score {
+  display: grid;
+  grid-template-columns: 2fr 4fr 2fr 5fr;
+  margin-bottom: 12px;
+}
+
+#high_scores_container .individual_score span {
+  font-family: 'Press Start 2P', sans-serif;
 }
