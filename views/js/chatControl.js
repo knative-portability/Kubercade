@@ -7,8 +7,6 @@ var refreshChat = function () {
       return response.json();
     })
     .then(function (chatList) {
-      console.log("chatList:");
-      console.log(JSON.stringify(chatList)); // TODO remove
       var chatHTML = "";
       chatList.forEach(function (element) {
         chatHTML += `<div class="
@@ -36,8 +34,6 @@ var postMessageToChat = function () {
     })
     .then((response) => response.text())
     .then((responseText) => {
-      console.log("reponseText:");
-      console.log(responseText);
       // wait for db to update before chat refresh
       setTimeout(refreshChat, 200);
     })
