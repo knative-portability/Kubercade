@@ -2,6 +2,7 @@ import express from 'express';
 import { util } from '../config/gameInfoUtil';
 import pg from 'pg';
 import { parse } from 'pg-connection-string';
+import moment from 'moment';
 require('dotenv').config();
 
 const dbUrl: string = process.env.DB_URL || '';
@@ -52,6 +53,10 @@ async function getChatFromDB(gameIndex: number): Promise<object[]> {
       ORDER BY datetime DESC`,
       [gameIndex]
     );
+    res.rows.forEach(row => {
+      row.fromNow = moment(row.datetime).fromNow(); // e.g. 5 minutes ago
+      row.ISOTime = row.datetime.toISOString(); // e.g. 2019-08-20T21:16:11.182Z
+    });
     return res.rows;
   } catch (err) {
     console.log('Query error');
