@@ -1,28 +1,28 @@
 let chatActiveRoom = "general";
 const chatRefreshTimeMs = 30000;
 
-const refreshChat = function () {
+const refreshChat = () => {
   document.getElementById("chat_messages").innerHTML = fetchChatHTML();
   setChatScrollToBottom();
 }
 
-const periodicallyRefreshChat = function () {
+const periodicallyRefreshChat = () => {
   refreshChat();
   setInterval(refreshChat, chatRefreshTimeMs);
 }
 
-const setChatScrollToBottom = function () {
+const setChatScrollToBottom = () => {
   const element = document.getElementById("chat_messages");
   element.scrollTop = element.scrollHeight;
 }
 
-const fetchChatHTML = function () {
+const fetchChatHTML = () => {
   const chatList = Array(30).fill({
     "author": "Bill Gates",
     "text": "This is an example of what a chat message will look like."
   });
   let html = "";
-  chatList.forEach(function (element) {
+  chatList.forEach((element) => {
     html += `<div class="
     individual_chat_message"><p><span class="
     author">${element.author}</span>${element.text}</p></div>`;
@@ -30,10 +30,10 @@ const fetchChatHTML = function () {
   return html;
 }
 
-const countMessageCharLength = function () {
+const countMessageCharLength = () => {
   const charCounter = document.getElementById("chat_char_counter");
   const messageInput = document.getElementById("message_input");
-  messageInput.onkeyup = function () {
+  messageInput.onkeyup = () => {
     charCounter.innerHTML = messageInput.value.length + "/400";
   }
 }

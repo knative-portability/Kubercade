@@ -1,4 +1,4 @@
-const scorePopUp = function () {
+const scorePopUp = () => {
   const iframeLoc = document.getElementById(
     "kubercade_iframe").contentWindow.location.href;
   if (!iframeLoc.endsWith("games/pacman/")) {
@@ -17,14 +17,14 @@ const scorePopUp = function () {
   });
 }
 
-const getScore = function () {
+const getScore = () => {
   const iframe = document.getElementById("kubercade_iframe");
   const scoreDiv = iframe.contentDocument.getElementById("score");
   const score = scoreDiv.getElementsByTagName("span")[0].innerText;
   return parseInt(score);
 }
 
-const sendScore = function (url, data) {
+const sendScore = (url, data) => {
   fetch(url, {
     method: 'POST',
     body: JSON.stringify(data),
