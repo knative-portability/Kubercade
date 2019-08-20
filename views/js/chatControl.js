@@ -32,11 +32,7 @@ var postMessageToChat = function () {
         "message": message
       })
     })
-    .then((response) => response.text())
-    .then((responseText) => {
-      // wait for db to update before chat refresh
-      setTimeout(refreshChat, 200);
-    })
+    .then(setTimeout(refreshChat, 200))
     .catch((error) => {
       console.error(error);
     });
