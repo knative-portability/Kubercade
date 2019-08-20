@@ -23,52 +23,52 @@ var TIME_FRUITS = 0;
 
 var HELP_DELAY = 1500;
 var HELP_TIMER = -1;
-			
-function blinkHelp() { 
-	if ( $('.help-button').attr("class").indexOf("yo") > -1 ) { 
+
+function blinkHelp() {
+	if ( $('.help-button').attr("class").indexOf("yo") > -1 ) {
 		$('.help-button').removeClass("yo");
-	} else { 
+	} else {
 		$('.help-button').addClass("yo");
 	}
 }
 
-function initGame(newgame) { 
+function initGame(newgame) {
 
-	if (newgame) { 
+	if (newgame) {
 		stopPresentation();
 		stopTrailer();
-	
+
 		HOME = false;
 		GAMEOVER = false;
 
 		$('#help').fadeOut("slow");
-		
+
 		score(0);
 		clearMessage();
 		$("#home").hide();
 		$("#panel").show();
-		
+
 		var ctx = null;
 		var canvas = document.getElementById('canvas-panel-title-pacman');
 		canvas.setAttribute('width', '38');
 		canvas.setAttribute('height', '32');
-		if (canvas.getContext) { 
+		if (canvas.getContext) {
 			ctx = canvas.getContext('2d');
 		}
-		
+
 		var x = 15;
 		var y = 16;
-		
+
 		ctx.fillStyle = "#fff200";
 		ctx.beginPath();
 		ctx.arc(x, y, 14, (0.35 - (3 * 0.05)) * Math.PI, (1.65 + (3 * 0.05)) * Math.PI, false);
 		ctx.lineTo(x - 5, y);
 		ctx.fill();
 		ctx.closePath();
-		
+
 		x = 32;
 		y = 16;
-		
+
 		ctx.fillStyle = "#dca5be";
 		ctx.beginPath();
 		ctx.arc(x, y, 4, 0, 2 * Math.PI, false);
@@ -79,27 +79,27 @@ function initGame(newgame) {
 	initBoard();
 	drawBoard();
 	drawBoardDoor();
-	
+
 	initPaths();
 	drawPaths();
-	
+
 	initBubbles();
 	drawBubbles();
-	
+
 	initFruits();
-	
+
 	initPacman();
 	drawPacman();
-	
+
 	initGhosts();
 	drawGhosts();
-	
+
 	lifes();
-	
+
 	ready();
 }
 
-function win() { 
+function win() {
 	stopAllSound();
 
 	LOCK = true;
@@ -107,21 +107,21 @@ function win() {
 	stopGhosts();
 	stopBlinkSuperBubbles();
 	stopTimes();
-	
+
 	eraseGhosts();
 
 	setTimeout("prepareNextLevel()", 1000);
 
 }
-function prepareNextLevel(i) { 
-	if ( LEVEL_NEXT_TIMER === -1 ) { 
+function prepareNextLevel(i) {
+	if ( LEVEL_NEXT_TIMER === -1 ) {
 		eraseBoardDoor();
 		LEVEL_NEXT_TIMER = setInterval("prepareNextLevel()", 250);
-	} else { 
+	} else {
 		LEVEL_NEXT_STATE ++;
 		drawBoard( ((LEVEL_NEXT_STATE % 2) === 0) );
-		
-		if ( LEVEL_NEXT_STATE > 6) { 
+
+		if ( LEVEL_NEXT_STATE > 6) {
 			LEVEL_NEXT_STATE = 0;
 			clearInterval(LEVEL_NEXT_TIMER);
 			LEVEL_NEXT_TIMER = -1;
@@ -129,57 +129,57 @@ function prepareNextLevel(i) {
 		}
 	}
 }
-function nextLevel() { 
+function nextLevel() {
 	LOCK = false;
-	
+
 	LEVEL ++;
-	
+
 	erasePacman();
 	eraseGhosts();
-	
+
 	resetPacman();
 	resetGhosts();
 
 	initGame();
-	
+
 	TIME_LEVEL = 0;
 	TIME_LIFE = 0;
 	TIME_FRUITS = 0;
 }
 
 
-function retry() { 
+function retry() {
 	stopTimes();
 
 	erasePacman();
 	eraseGhosts();
-	
+
 	resetPacman();
 	resetGhosts();
-	
+
 	drawPacman();
 	drawGhosts();
-	
+
 	TIME_LIFE = 0;
 	TIME_FRUITS = 0;
-	
+
 	ready();
 }
 
-function ready() { 
+function ready() {
 	LOCK = true;
 	message("ready!");
-	
+
 	playReadySound();
 	setTimeout("go()", "4100");
 }
-function go() { 
+function go() {
 	playSirenSound();
 
 	LOCK = false;
-	
+
 	startTimes();
-	
+
 	clearMessage();
 	blinkSuperBubbles();
 
@@ -187,64 +187,64 @@ function go() {
 
 	moveGhosts();
 }
-function startTimes() { 
-	if (TIME_GENERAL_TIMER === -1) { 
+function startTimes() {
+	if (TIME_GENERAL_TIMER === -1) {
 		TIME_GENERAL_TIMER = setInterval("times()", 1000);
 	}
 }
-function times() { 
+function times() {
 	TIME_GAME ++;
 	TIME_LEVEL ++;
 	TIME_LIFE ++;
 	TIME_FRUITS ++;
-	
+
 	fruit();
 }
-function pauseTimes() { 
-	if (TIME_GENERAL_TIMER != -1) { 
+function pauseTimes() {
+	if (TIME_GENERAL_TIMER != -1) {
 		clearInterval(TIME_GENERAL_TIMER);
 		TIME_GENERAL_TIMER = -1;
 	}
 	if (FRUIT_CANCEL_TIMER != null) FRUIT_CANCEL_TIMER.pause();
 }
-function resumeTimes() { 
+function resumeTimes() {
 	startTimes();
 	if (FRUIT_CANCEL_TIMER != null) FRUIT_CANCEL_TIMER.resume();
 }
-function stopTimes() { 
-	if (TIME_GENERAL_TIMER != -1) { 
+function stopTimes() {
+	if (TIME_GENERAL_TIMER != -1) {
 		clearInterval(TIME_GENERAL_TIMER);
 		TIME_GENERAL_TIMER = -1;
 	}
-	if (FRUIT_CANCEL_TIMER != null) { 
+	if (FRUIT_CANCEL_TIMER != null) {
 		FRUIT_CANCEL_TIMER.cancel();
 		FRUIT_CANCEL_TIMER = null;
 		eraseFruit();
 	}
 }
 
-function pauseGame() { 
+function pauseGame() {
 
-	if (!PAUSE) { 
+	if (!PAUSE) {
 		stopAllSound();
 		PAUSE = true;
-		
+
 		message("pause");
-		
+
 		pauseTimes();
 		pausePacman();
 		pauseGhosts();
 		stopBlinkSuperBubbles();
 	}
 }
-function resumeGame() { 
-	if (PAUSE) { 
+function resumeGame() {
+	if (PAUSE) {
 		testStateGhosts();
 
 		PAUSE = false;
-		
+
 		clearMessage();
-		
+
 		resumeTimes();
 		resumePacman();
 		resumeGhosts();
@@ -252,28 +252,28 @@ function resumeGame() {
 	}
 }
 
-function lifes(l) { 
-	if (l) { 
-		if ( l > 0 ) { 
+function lifes(l) {
+	if (l) {
+		if ( l > 0 ) {
 			playExtraLifeSound();
 		}
 		LIFES += l;
 	}
-	
+
 	var canvas = document.getElementById('canvas-lifes');
 	canvas.setAttribute('width', '120');
 	canvas.setAttribute('height', '30');
-	if (canvas.getContext) { 
+	if (canvas.getContext) {
 		var ctx = canvas.getContext('2d');
-		
+
 		ctx.clearRect(0, 0, 120, 30);
 		ctx.fillStyle = "#fff200";
-		for (var i = 0, imax = LIFES; (i < imax && i < 4); i ++) { 
+		for (var i = 0, imax = LIFES; (i < imax && i < 4); i ++) {
 			ctx.beginPath();
-			
+
 			var lineToX = 13;
 			var lineToY = 15;
-			
+
 			ctx.arc(lineToX + (i * 30), lineToY, 13, (1.35 - (3 * 0.05)) * Math.PI, (0.65 + (3 * 0.05)) * Math.PI, false);
 			ctx.lineTo(lineToX + (i * 30) + 4, lineToY);
 			ctx.fill();
@@ -282,17 +282,17 @@ function lifes(l) {
 	}
 }
 
-function gameover() { 
+function gameover() {
 	GAMEOVER = true;
 	message("game over");
 	stopTimes();
 
 	erasePacman();
 	eraseGhosts();
-	
+
 	resetPacman();
 	resetGhosts();
-	
+
 	TIME_GAME = 0;
 	TIME_LEVEL = 0;
 	TIME_LIFE = 0;
@@ -303,49 +303,49 @@ function gameover() {
 	SCORE = 0;
 }
 
-function message(m) { 
+function message(m) {
 	$("#message").html(m);
 	if (m === "game over") $("#message").addClass("red");
 }
-function clearMessage() { 
+function clearMessage() {
 	$("#message").html("");
 	$("#message").removeClass("red");
 }
 
-function score(s, type) { 
+function score(s, type) {
 
 	var scoreBefore = (SCORE / 10000) | 0;
-	
+
 	SCORE += s;
-	if (SCORE === 0) { 
+	if (SCORE === 0) {
 		$('#score span').html("00");
-	} else { 
+	} else {
 		$('#score span').html(SCORE);
 	}
-	
+
 	var scoreAfter = (SCORE / 10000) | 0;
-	if (scoreAfter > scoreBefore) { 
+	if (scoreAfter > scoreBefore) {
 		lifes( +1 );
 	}
 
-	
-	if (SCORE > HIGHSCORE) { 
+
+	if (SCORE > HIGHSCORE) {
 		HIGHSCORE = SCORE;
-		if (HIGHSCORE === 0) { 
+		if (HIGHSCORE === 0) {
 			$('#highscore span').html("00");
-		} else { 
+		} else {
 			$('#highscore span').html(HIGHSCORE);
 		}
 	}
-	
-	if (type && (type === "clyde" || type === "pinky" || type === "inky" || type === "blinky") ) { 
-		erasePacman(); 
-		eraseGhost(type); 
+
+	if (type && (type === "clyde" || type === "pinky" || type === "inky" || type === "blinky") ) {
+		erasePacman();
+		eraseGhost(type);
 		$("#board").append('<span class="combo">' + SCORE_GHOST_COMBO + '</span>');
 		$("#board span.combo").css('top', eval('GHOST_' + type.toUpperCase() + '_POSITION_Y - 10') + 'px');
 		$("#board span.combo").css('left', eval('GHOST_' + type.toUpperCase() + '_POSITION_X - 10') + 'px');
 		SCORE_GHOST_COMBO = SCORE_GHOST_COMBO * 2;
-	} else if (type && type === "fruit") { 
+	} else if (type && type === "fruit") {
 		$("#board").append('<span class="fruits">' + s + '</span>');
 		$("#board span.fruits").css('top', (FRUITS_POSITION_Y - 14) + 'px');
 		$("#board span.fruits").css('left', (FRUITS_POSITION_X - 14) + 'px');
