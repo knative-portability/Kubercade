@@ -23,6 +23,7 @@ var refreshChat = function () {
 var chatPostHandler = function () {
   var name = document.getElementById("name_input").value;
   var message = document.getElementById("message_input").value;
+  document.getElementById("message_input").value = "";
   fetch('/chat/' + chatActiveRoom, {
       method: 'POST',
       headers: {
