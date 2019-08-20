@@ -1,7 +1,7 @@
 var chatActiveRoom = "general";
 var chatRefreshTimeMs = 30000;
 
-var refreshChat = function () {
+const refreshChat = () => {
   fetch('./chat/' + chatActiveRoom)
     .then(function (response) {
       return response.json();
@@ -17,9 +17,9 @@ var refreshChat = function () {
     });
 }
 
-var postMessageToChat = function () {
-  var name = document.getElementById("name_input").value;
-  var message = document.getElementById("message_input").value;
+const postMessageToChat = () => {
+  const name = document.getElementById("name_input").value;
+  const message = document.getElementById("message_input").value;
   document.getElementById("message_input").value = "";
   fetch('/chat/' + chatActiveRoom, {
       method: 'POST',
@@ -47,9 +47,9 @@ var setChatScrollToBottom = function () {
   element.scrollTop = element.scrollHeight;
 }
 
-var chatMessageKeyHandler = function () {
-  var charCounter = document.getElementById("chat_char_counter");
-  var messageInput = document.getElementById("message_input");
+const chatMessageKeyHandler = () => {
+  const charCounter = document.getElementById("chat_char_counter");
+  const messageInput = document.getElementById("message_input");
   messageInput.addEventListener("keyup", function (event) {
     if (event.ctrlKey && event.keyCode === 13) { // Ctrl+Enter
       postMessageToChat();
@@ -58,8 +58,7 @@ var chatMessageKeyHandler = function () {
     }
   });
 }
-
-var changeChatRoom = function (newRoomGame, newRoomName) {
+const changeChatRoom = (newRoomGame, newRoomName) => {
   chatActiveRoom = newRoomGame;
   document.getElementById("chat_room_label").innerHTML = `
           Chat - ${newRoomName} &#x25BE `;
