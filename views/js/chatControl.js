@@ -2,8 +2,21 @@ var chatActiveRoom = "general";
 var chatRefreshTimeMs = 30000;
 
 var refreshChat = function () {
-  document.getElementById("chat_messages").innerHTML = fetchChatHTML();
-  setChatScrollToBottom();
+  fetch('/chat/' + chatActiveRoom)
+    .then(function (response) {
+      return response.json();
+    })
+    .then(function (chatList) {
+      console.log(JSON.stringify(chatList));
+      var chatHTML = "";
+      chatList.forEach(function (element) {
+        chatHTML += `<div class="
+    individual_chat_message"><p><span class="
+    author">${element.author}</span>${element.text}</p></div>`;
+      })
+      document.getElementById("chat_messages").innerHTML = chatHTML;
+      setChatScrollToBottom();
+    });
 }
 
 var periodicallyRefreshChat = function () {
@@ -16,19 +29,6 @@ var setChatScrollToBottom = function () {
   element.scrollTop = element.scrollHeight;
 }
 
-var fetchChatHTML = function () {
-  var chatList = Array(30).fill({
-    "author": "Bill Gates",
-    "text": "This is an example of what a chat message will look like."
-  });
-  var html = "";
-  chatList.forEach(function (element) {
-    html += `<div class="
-    individual_chat_message"><p><span class="
-    author">${element.author}</span>${element.text}</p></div>`;
-  })
-  return html;
-}
 
 var countMessageCharLength = function () {
   var charCounter = document.getElementById("chat_char_counter");
