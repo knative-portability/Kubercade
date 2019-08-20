@@ -30,7 +30,7 @@ export const chatController = {
   async postToChat(req: express.Request, res: express.Response) {
     const internalGameName: string = req.params['game_name'];
     const gameIndex: number = util.gameToIndex(internalGameName);
-    const name: string = req.body.name;
+    const name: string = req.body.name || 'anonymous';
     const message: string = req.body.message;
     postChatMessageToDB(gameIndex, name, message);
     res.status(201).send('Successfully posted to chat.');
