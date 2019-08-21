@@ -1,5 +1,5 @@
-var chatActiveRoom = "general";
-var chatRefreshTimeMs = 30000;
+let chatActiveRoom = "general";
+const chatRefreshTimeMs = 30000;
 
 const refreshChat = () => {
   fetch('./chat/' + chatActiveRoom)
@@ -37,13 +37,13 @@ const postMessageToChat = () => {
     });
 }
 
-var periodicallyRefreshChat = function () {
+const periodicallyRefreshChat = () => {
   refreshChat();
   setInterval(refreshChat, chatRefreshTimeMs);
 }
 
-var setChatScrollToBottom = function () {
-  var element = document.getElementById("chat_messages");
+const setChatScrollToBottom = () => {
+  const element = document.getElementById("chat_messages");
   element.scrollTop = element.scrollHeight;
 }
 

@@ -1,8 +1,8 @@
-var changeActivePage = function (url, chatRoom, gameName) {
+const changeActivePage = (url, chatRoom, gameName) => {
   changeIframePage(url);
   changeChatRoom(chatRoom, gameName);
 }
 
-var changeIframePage = function (url) {
+const changeIframePage = (url) => {
   document.getElementById('kubercade_iframe').src = url;
 }

@@ -8,7 +8,15 @@ html
     #kubercade_nexus
       h1 Kubercade
       h4 Nexus - Browse Games
-      each gameInfo in gamesList
-        div
-          a(href='/games/' + gameInfo.game)= gameInfo.name
-
+      #gameGrid
+        each gameInfo in gamesList
+          a.gameTile(href='/games/' + gameInfo.game)
+            img(src='/images/pacman_thumbnail.png')
+            .gameInfo
+              .gameName Pac-Man
+              .description Play the classic arcade game here!
+        .gameTile
+          img(src='/images/kubercade logo.png')
+          .gameInfo
+            .gameName More games to be added!
+            .description Coming soon!
