@@ -177,7 +177,7 @@ a.navtab {
 #gameGrid {
   width: 75%;
   display: grid;
-  grid-template-columns: repeat(auto-fill,  minmax(200px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
   grid-gap: 25px;
 }
 
@@ -341,7 +341,7 @@ a.gameTile:hover {
   text-shadow: 2px 2px 1px black;
 }
 
-#high_scores_container .scores_list {
+#high_scores_container #scores_list {
   width: 100%;
   max-width: 1200px;
   overflow-y: auto;
