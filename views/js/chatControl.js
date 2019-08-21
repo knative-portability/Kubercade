@@ -61,7 +61,7 @@ const chatMessageKeyHandler = () => {
 const changeChatRoom = (newRoomGame, newRoomName) => {
   chatActiveRoom = newRoomGame;
   document.getElementById("chat_room_label").innerHTML = `
-          Chat - ${newRoomName} &#x25BE `;
+          Chat - ${newRoomName} &#x25BE;`;
   refreshChat();
 }
 
