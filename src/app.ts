@@ -1,15 +1,11 @@
 import express from 'express';
 const app: express.Application = express();
-const favicon = require('serve-favicon');
 import { index } from './routes/index';
 import { nexus } from './routes/nexus';
 import { scores } from './routes/scores';
 import { games } from './routes/games';
 import { chat } from './routes/chat';
 
-console.log(__dirname);
-
-app.use(favicon(__dirname + '/../../public/images/favicon.ico'));
 app.set('view engine', 'pug');
 app.use('/vendor', express.static('vendor'));
 app.use(express.json());
