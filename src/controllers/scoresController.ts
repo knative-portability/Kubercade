@@ -1,8 +1,8 @@
 import express from 'express';
-import { util } from '../config/gameInfoUtil';
+import { gameInfoUtil } from '../config/gameInfoUtil';
+import { timeUtil } from '../config/timeUtil';
 import pg from 'pg';
 import { parse } from 'pg-connection-string';
-import moment from 'moment';
 require('dotenv').config();
 
 const dbUrl: string = process.env.DB_URL || '';
@@ -19,14 +19,14 @@ export const scoresController = {
    */
   async getScores(req: express.Request, res: express.Response) {
     const internalGameName: string = req.params['game_name'];
-    const gameIndex: number = util.gameToIndex(internalGameName);
+    const gameIndex: number = gameInfoUtil.gameToIndex(internalGameName);
     const scores = await getScoresFromDB(gameIndex);
-    const prettyGameName: string = util.gameToName(internalGameName);
+    const prettyGameName: string = gameInfoUtil.gameToName(internalGameName);
     res.render('scores.pug', { scores, prettyGameName });
   },
   postScore(req: express.Request, res: express.Response) {
     const internalGameName: string = req.params['game_name'];
-    const gameIndex: number = util.gameToIndex(internalGameName);
+    const gameIndex: number = gameInfoUtil.gameToIndex(internalGameName);
     const name: string = req.body.name;
     const score: number = req.body.score;
     postScoreToDB(gameIndex, score, name);
@@ -49,11 +49,7 @@ async function getScoresFromDB(gameIndex: number): Promise<object[]> {
       ORDER BY score DESC, datetime DESC;`,
       [gameIndex]
     );
-    res.rows.forEach(row => {
-      row.fromNow = moment(row.datetime).fromNow(); // e.g. 5 minutes ago
-      row.ISOTime = row.datetime.toISOString(); // e.g. 2019-08-20T21:16:11.182Z
-    });
-    return res.rows;
+    return timeUtil.formatTimes(res.rows);
   } catch (err) {
     console.log('Query error: ' + err.message);
     console.log(err.stack);

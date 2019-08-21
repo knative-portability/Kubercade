@@ -3,10 +3,10 @@ const chatRefreshTimeMs = 30000;
 
 const refreshChat = () => {
   fetch('./chat/' + chatActiveRoom)
-    .then(function (response) {
+    .then((response) => {
       return response.json();
     })
-    .then(function (chatList) {
+    .then((chatList) => {
       let messages = chatList.map((element) => {
         return `<div class="individual_chat_message">
           <p><span class="author">${element.name}</span>${element.message}</p>
@@ -50,7 +50,7 @@ const setChatScrollToBottom = () => {
 const chatMessageKeyHandler = () => {
   const charCounter = document.getElementById("chat_char_counter");
   const messageInput = document.getElementById("message_input");
-  messageInput.addEventListener("keyup", function (event) {
+  messageInput.addEventListener("keyup", (event) => {
     if (event.ctrlKey && event.keyCode === 13) { // Ctrl+Enter
       postMessageToChat();
     } else {

@@ -1,8 +1,8 @@
 import express from 'express';
-import { util } from '../config/gameInfoUtil';
+import { gameInfoUtil } from '../config/gameInfoUtil';
+import { timeUtil } from '../config/timeUtil';
 import pg from 'pg';
 import { parse } from 'pg-connection-string';
-import moment from 'moment';
 require('dotenv').config();
 
 const dbUrl: string = process.env.DB_URL || '';
@@ -19,7 +19,7 @@ export const chatController = {
    */
   async getChat(req: express.Request, res: express.Response) {
     const internalGameName: string = req.params['game_name'];
-    const gameIndex: number = util.gameToIndex(internalGameName);
+    const gameIndex: number = gameInfoUtil.gameToIndex(internalGameName);
     res.send(await getChatFromDB(gameIndex));
   },
   /**
@@ -30,7 +30,7 @@ export const chatController = {
    */
   async postToChat(req: express.Request, res: express.Response) {
     const internalGameName: string = req.params['game_name'];
-    const gameIndex: number = util.gameToIndex(internalGameName);
+    const gameIndex: number = gameInfoUtil.gameToIndex(internalGameName);
     const name: string = req.body.name || 'anonymous';
     const message: string = req.body.message;
     postChatMessageToDB(gameIndex, name, message);
@@ -53,11 +53,7 @@ async function getChatFromDB(gameIndex: number): Promise<object[]> {
       ORDER BY datetime DESC`,
       [gameIndex]
     );
-    res.rows.forEach(row => {
-      row.fromNow = moment(row.datetime).fromNow(); // e.g. 5 minutes ago
-      row.ISOTime = row.datetime.toISOString(); // e.g. 2019-08-20T21:16:11.182Z
-    });
-    return res.rows;
+    return timeUtil.formatTimes(res.rows);
   } catch (err) {
     console.log('Query error');
     console.log(err.stack);
