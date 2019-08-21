@@ -149,7 +149,7 @@ a.navtab {
   width: 100%;
   height: 100%;
   display: flex;
-  align-content: center;
+  align-items: center;
   justify-content: center;
   flex-direction: column;
   text-align: center;
@@ -172,6 +172,44 @@ a.navtab {
 #kubercade_nexus a {
   font-size: 18pt;
   color: white;
+}
+
+#gameGrid {
+  width: 75%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill,  minmax(200px, 1fr));
+  grid-gap: 25px;
+}
+
+.gameTile {
+  background-color: rgba(255, 255, 255, 0.15);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  text-decoration: none;
+}
+
+a.gameTile:hover {
+  box-shadow: 0 0 10px rgba(0, 0, 0, .6);
+}
+
+.gameTile img {
+  width: 100%;
+}
+
+.gameInfo {
+  padding: 20px;
+  text-align: left;
+}
+
+.gameName {
+  font-size: 28px;
+}
+
+.description {
+  padding-top: 5px;
+  font-size: 16px;
 }
 
 /*** chat ***/
