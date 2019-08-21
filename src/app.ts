@@ -7,6 +7,8 @@ import { scores } from './routes/scores';
 import { games } from './routes/games';
 import { chat } from './routes/chat';
 
+console.log(__dirname);
+
 app.use(favicon(__dirname + '/../../public/images/favicon.ico'));
 app.set('view engine', 'pug');
 app.use('/vendor', express.static('vendor'));
