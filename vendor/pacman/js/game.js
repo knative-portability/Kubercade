@@ -23,35 +23,6 @@ var TIME_FRUITS = 0;
 
 var HELP_DELAY = 1500;
 var HELP_TIMER = -1;
-
-let gameOver = new Event("gameOver");
-
-window.onload = function() {
-   document.getElementById("panel").addEventListener("gameOver", scorePopUp);
-}
-
-function scorePopUp() {
-	var name = prompt("Please enter your name:", "anonymous");
-	// don't post if person cancels prompt or doesn't enter name value
-	if (name == null || name == "") {
-		SCORE = 0;
-		return;
-	}
-	var score = SCORE;
-	console.log(score);
-	sendScore("/scores/pacman/", {name, score});
-	window.location.href = "/scores/pacman";
-}
-
-function sendScore(url, data) {
-	fetch(url, {
-		method: 'POST',
-		body: JSON.stringify(data),
-		headers: {
-			'Content-Type': 'application/json',
-		},
-	});
-}
 			
 function blinkHelp() { 
 	if ( $('.help-button').attr("class").indexOf("yo") > -1 ) { 
@@ -329,9 +300,7 @@ function gameover() {
 
 	LIFES = 2;
 	LEVEL = 1;
-	// SCORE = 0;
-	console.log('game over');
-	document.getElementById("panel").dispatchEvent(gameOver);
+	SCORE = 0;
 }
 
 function message(m) { 
