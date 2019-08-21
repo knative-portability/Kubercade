@@ -31,6 +31,7 @@ html
         iframe#kubercade_iframe(
           src='/nexus'
         )
+        #show_chat_button.clickable Chat
       #chat_window
         #chat_top_bar
           .dropdown.clickable.button
@@ -38,6 +39,7 @@ html
               .dropdown-content
                 a(onClick="#").clickable General
                 a(onClick="#").clickable Pac-Man
+          #hide_chat_button.clickable Hide
         #chat_messages
         #chat_form
           .input_row
