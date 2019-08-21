@@ -18,8 +18,8 @@ export const chatController = {
    * @param res Response object
    */
   async getChat(req: express.Request, res: express.Response) {
-    const internalGameName: string = req.params['game_name'];
-    const gameIndex: number = gameInfoUtil.gameToIndex(internalGameName);
+    const gameName: string = req.params['game_name'];
+    const gameIndex: number = gameInfoUtil.gameToIndex(gameName);
     res.send(await getChatFromDB(gameIndex));
   },
   /**
@@ -29,8 +29,8 @@ export const chatController = {
    * @param res Response object
    */
   async postToChat(req: express.Request, res: express.Response) {
-    const internalGameName: string = req.params['game_name'];
-    const gameIndex: number = gameInfoUtil.gameToIndex(internalGameName);
+    const gameName: string = req.params['game_name'];
+    const gameIndex: number = gameInfoUtil.gameToIndex(gameName);
     const name: string = req.body.name || 'anonymous';
     const message: string = req.body.message;
     postChatMessageToDB(gameIndex, name, message);
