@@ -320,3 +320,29 @@ a.navtab {
 #high_scores_container .individual_score span {
   font-family: 'Press Start 2P', sans-serif;
 }
+
+/*** mobile layout ***/
+@media screen and (max-width: 1337px) {
+  #wrapper_grid {
+    display: block;
+  }
+
+  #nav_bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 72px;
+  }
+
+  #content_window {
+    margin-top: 72px;
+    height: calc(100vh - 72px);
+    min-height: 400px;
+  }
+
+  #chat_window {
+    position: static;
+    max-height: 400px;
+  }
+}
