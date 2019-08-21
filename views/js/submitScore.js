@@ -1,16 +1,25 @@
-var scorePopUp = function () {
-  var iframeLoc = document.getElementById(
-    "kubercade_iframe").contentWindow.location.href;
-  if (! iframeLoc.endsWith("games/pacman/")) {
-    alert("You can't submit a score if you aren't playing a game!");
-    return;
-  }
+document.addEventListener('pacmanLoad', () => {
+  console.log('pacman loaded');
+  let iframe = document.getElementById("kubercade_iframe");
+  iframe.addEventListener("load", () => {
+    console.log('iframe loaded');
+    let iframeWindow = iframe.contentWindow;
+    let origGameover = iframeWindow.gameover;
+    iframeWindow.gameover = () => {
+      score = getScore()
+      origGameover();
+      scorePopUp(score);
+      console.log('game over');
+    }
+  });
+});
+
+var scorePopUp = function (score) {
   var name = prompt("Please enter your name:", "anonymous");
   // don't post if person cancels prompt or doesn't enter name value
   if (name == null || name == "") {
     return;
   }
-  var score = getScore();
   sendScore("/scores/pacman/", {name, score});
 }
 

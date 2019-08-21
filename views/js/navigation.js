@@ -1,3 +1,5 @@
+let pacmanLoadEvent = new Event("pacmanLoad");
+
 var changeActivePage = function (url) {
   changeIframePage(url);
   changeChatRoom(url);
@@ -5,6 +7,9 @@ var changeActivePage = function (url) {
 
 var changeIframePage = function (url) {
   document.getElementById('kubercade_iframe').src = url;
+  if (url == '/games/pacman') {
+    document.dispatchEvent(pacmanLoadEvent);
+  }
 }
 
 var changeChatRoom = function (url) {
