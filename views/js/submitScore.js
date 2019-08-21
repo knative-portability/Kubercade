@@ -1,15 +1,12 @@
 document.addEventListener('pacmanLoad', () => {
-  console.log('pacman loaded');
-  let iframe = document.getElementById("kubercade_iframe");
+  const iframe = document.getElementById("kubercade_iframe");
   iframe.addEventListener("load", () => {
-    console.log('iframe loaded');
-    let iframeWindow = iframe.contentWindow;
-    let origGameover = iframeWindow.gameover;
+    const iframeWindow = iframe.contentWindow;
+    const origGameover = iframeWindow.gameover;
     iframeWindow.gameover = () => {
       score = getScore()
       origGameover();
       scorePopUp(score);
-      console.log('game over');
     }
   });
 });
@@ -17,7 +14,7 @@ document.addEventListener('pacmanLoad', () => {
 var scorePopUp = function (score) {
   var name = prompt("Please enter your name:", "anonymous");
   // don't post if person cancels prompt or doesn't enter name value
-  if (name == null || name == "") {
+  if (!name) {
     return;
   }
   sendScore("/scores/pacman/", {name, score});
