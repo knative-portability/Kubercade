@@ -1,6 +1,18 @@
 let chatActiveRoom = "general";
 const chatRefreshTimeMs = 30000;
 
+const hideChat = () => {
+  document.getElementById("wrapper_grid").style.gridTemplateColumns = "100% 0";
+  document.getElementById("hide_chat_button").style.display = "none";
+  document.getElementById("show_chat_button").style.display = "block";
+}
+
+const showChat = () => {
+  document.getElementById("wrapper_grid").style.gridTemplateColumns = "80% auto";
+  document.getElementById("hide_chat_button").style.display = "block";
+  document.getElementById("show_chat_button").style.display = "none";
+}
+
 const refreshChat = () => {
   document.getElementById("chat_messages").innerHTML = fetchChatHTML();
   setChatScrollToBottom();
