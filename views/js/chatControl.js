@@ -27,8 +27,8 @@ const postMessageToChat = () => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        "name": name,
-        "message": message
+        name,
+        message
       })
     })
     .then(setTimeout(refreshChat, 200))
