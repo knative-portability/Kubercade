@@ -1,3 +1,4 @@
+/* Note: this schema is PostgreSQL-specific and uses `timestamptz`. */
 CREATE SCHEMA IF NOT EXISTS kubercade;
 
 CREATE TABLE IF NOT EXISTS kubercade.high_score_table (

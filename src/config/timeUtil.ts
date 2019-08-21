@@ -6,7 +6,7 @@ interface DBRow {
   ISOTime?: string;
 }
 
-/* Format times in from now and ISO notations. */
+/* Enrich database rows with timestamp to also include time ago (fromNow) and ISO (ISOTime) formats. */
 export const timeUtil = {
   formatTimes(array: DBRow[]): DBRow[] {
     array.forEach(row => {
