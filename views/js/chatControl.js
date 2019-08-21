@@ -3,12 +3,14 @@ const chatRefreshTimeMs = 30000;
 
 const hideChat = () => {
   document.getElementById("wrapper_grid").style.gridTemplateColumns = "100% 0";
+  document.getElementById("chat_window").style.display = "none";
   document.getElementById("hide_chat_button").style.display = "none";
   document.getElementById("show_chat_button").style.display = "block";
 }
 
 const showChat = () => {
   document.getElementById("wrapper_grid").style.gridTemplateColumns = "80% auto";
+  document.getElementById("chat_window").style.display = "grid";
   document.getElementById("hide_chat_button").style.display = "block";
   document.getElementById("show_chat_button").style.display = "none";
 }
