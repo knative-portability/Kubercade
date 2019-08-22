@@ -8,7 +8,8 @@ document.addEventListener('pacmanLoad', () => {
       origGameover();
       scorePopUp(score);
     }
-  });
+  },
+  { once: true });
 });
 
 var scorePopUp = function (score) {
@@ -17,7 +18,9 @@ var scorePopUp = function (score) {
   if (!name) {
     return;
   }
-  sendScore("/scores/pacman/", {name, score});
+  sendScore("/scores/pacman/", {name, score}).then(() => {
+    changeIframePage("/scores/pacman");
+  });
 }
 
 var getScore = function () {
@@ -28,7 +31,7 @@ var getScore = function () {
 }
 
 var sendScore = function(url, data) {
-  fetch(url, {
+  return fetch(url, {
     method: 'POST',
     body: JSON.stringify(data),
     headers:{
