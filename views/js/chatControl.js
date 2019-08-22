@@ -27,6 +27,10 @@ const sanitizeHTML = (html) => {
 const postMessageToChat = () => {
   const name = document.getElementById("name_input").value;
   const message = document.getElementById("message_input").value;
+  if (!message) {
+    alert('Please enter a message.');
+    return;
+  }
   document.getElementById("message_input").value = "";
   fetch('/chat/' + chatActiveRoom, {
       method: 'POST',
