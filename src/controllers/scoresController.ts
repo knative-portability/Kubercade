@@ -18,10 +18,11 @@ export const scoresController = {
    */
   async getScores(req: express.Request, res: express.Response) {
     const internalGameName: string = req.params['game_name'];
+    const userScore: number = req.query['user_score'];
     const gameIndex: number = util.gameToIndex(internalGameName);
     const scores = await getScoresFromDB(gameIndex);
     const prettyGameName: string = util.gameToName(internalGameName);
-    res.render('scores.pug', { scores, prettyGameName });
+    res.render('scores.pug', { scores, prettyGameName, userScore });
   },
   postScore(req: express.Request, res: express.Response) {
     const internalGameName: string = req.params['game_name'];

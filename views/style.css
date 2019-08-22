@@ -327,6 +327,20 @@ a.gameTile:hover {
 
 /*** scores ***/
 
+#user_score_div {
+  width: 75%;
+  padding: 20px;
+  margin: 30px;
+  border: 2px solid #696969;
+  border-radius: 4px;
+  font-size: 40px;
+}
+
+.shareBtn {
+  margin: 20px 10px 0;
+  display: inline-flex;
+}
+
 #high_scores_container {
   background-color: #282828;
   height: 100%;
