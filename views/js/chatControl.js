@@ -9,12 +9,19 @@ const refreshChat = () => {
     .then((chatList) => {
       let messages = chatList.map((element) => {
         return `<div class="individual_chat_message">
-          <p><span class="author">${element.name}</span>${element.message}</p>
+          <p><span class="author">${sanitizeHTML(element.name)}</span>${sanitizeHTML(element.message)}</p>
           </div>`;
       });
       document.getElementById("chat_messages").innerHTML = messages.join('\n');
       setChatScrollToBottom();
     });
+}
+
+/* Encode HTML to sanitize it and prevent injections. */
+const sanitizeHTML = (html) => {
+  const div = document.createElement('div');
+  div.textContent = html;
+  return div.innerHTML;
 }
 
 const postMessageToChat = () => {
