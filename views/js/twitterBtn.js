@@ -1,6 +1,3 @@
-// share the main Kubercade site instead of ust the scores page
-const siteUrl = window.location.hostname;
-
 // twitter widgets.js script for Tweet button
 window.twttr = (function(d, s, id) {
   var js, fjs = d.getElementsByTagName(s)[0],
