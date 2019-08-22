@@ -1,5 +1,6 @@
 import express from 'express';
-import { util } from '../config/gameInfoUtil';
+import { gameInfoUtil } from '../config/gameInfoUtil';
+import { timeUtil } from '../config/timeUtil';
 import pg from 'pg';
 import { parse } from 'pg-connection-string';
 require('dotenv').config();
@@ -17,9 +18,23 @@ export const chatController = {
    * @param res Response object
    */
   async getChat(req: express.Request, res: express.Response) {
-    const internalGameName: string = req.params['game_name'];
-    const gameIndex: number = util.gameToIndex(internalGameName);
+    const gameName: string = req.params['game_name'];
+    const gameIndex: number = gameInfoUtil.gameToIndex(gameName);
     res.send(await getChatFromDB(gameIndex));
+  },
+  /**
+   * Get all chat messages for the game_name specified.
+   * Sends the results as JSON.
+   * @param req Request object
+   * @param res Response object
+   */
+  async postToChat(req: express.Request, res: express.Response) {
+    const gameName: string = req.params['game_name'];
+    const gameIndex: number = gameInfoUtil.gameToIndex(gameName);
+    const name: string = req.body.name || 'anonymous';
+    const message: string = req.body.message;
+    postChatMessageToDB(gameIndex, name, message);
+    res.status(201).send('Successfully posted to chat.');
   },
 };
 
@@ -38,9 +53,33 @@ async function getChatFromDB(gameIndex: number): Promise<object[]> {
       ORDER BY datetime DESC`,
       [gameIndex]
     );
-    return res.rows;
+    return timeUtil.formatTimes(res.rows);
   } catch (err) {
     console.log('Query error');
+    console.log(err.stack);
+    throw err;
+  }
+}
+
+/**
+ * Posts a chat message to the chat database.
+ * @param gameIndex Index of game from ../config/gameInfo.json
+ * @param name Name of message poster
+ * @param message Message text
+ */
+async function postChatMessageToDB(
+  gameIndex: number,
+  name: string,
+  message: string
+) {
+  try {
+    await pool.query(
+      `INSERT INTO kubercade.chat_table (game_index, name, message, datetime)
+      VALUES ($1, $2, $3, NOW())`,
+      [gameIndex, name, message]
+    );
+  } catch (err) {
+    console.log('Query error: ' + err.message);
     console.log(err.stack);
     throw err;
   }

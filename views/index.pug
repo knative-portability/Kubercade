@@ -13,18 +13,18 @@ html
   body
     #wrapper_grid
       #nav_bar
-        a.logo(onClick='changeActivePage("/nexus")')
+        a.logo(onClick='changeActivePage("/nexus", "general", "General")')
           img(src='images/kubercade logo.png' alt='Kubercade logo')
-        a.navtab(onClick='changeActivePage("/nexus")')
+        a.navtab(onClick='changeActivePage("/nexus", "general", "General")')
           div Nexus
         .navtab.dropdown
           div Games
           .dropdown-content
-            a.navtab(onClick='changeActivePage("/games/pacman")') Pac-Man
+            a.navtab(onClick='changeActivePage("/games/pacman", "pacman", "Pac-Man")') Pac-Man
         .navtab.dropdown
           div High Scores
           .dropdown-content
-            a.navtab(onClick='changeActivePage("/scores/pacman")') Pac-Man
+            a.navtab(onClick='changeActivePage("/scores/pacman", "pacman", "Pac-Man")') Pac-Man
         // TODO: remove button when popup is triggered directly on game end
         a.navtab(onClick='scorePopUp()') Submit Score
       #content_window
@@ -34,16 +34,16 @@ html
       #chat_window
         #chat_top_bar
           .dropdown.clickable.button
-            p Chat - General &#x25BE
+            p#chat_room_label Chat - General &#x25BE;
               .dropdown-content
-                a(onClick="#").clickable General
-                a(onClick="#").clickable Pac-Man
+                a(onClick='changeChatRoom("general", "General")').clickable General
+                a(onClick='changeChatRoom("pacman", "Pac-Man")').clickable Pac-Man
         #chat_messages
         #chat_form
           .input_row
-            a(onClick="refreshChat()").refresh_button.clickable &#x1F504
+            a(onClick="refreshChat()").refresh_button.clickable &#x1F504;
             input(type="text" placeholder="Name (optional)" maxlength="80").text_input#name_input
-            a(onClick="#").submit_button.clickable Send
+            a(onClick="postMessageToChat()").submit_button.clickable Send
           .input_row
             textarea(placeholder="Say something..." maxlength="400").text_input#message_input
             p#chat_char_counter 0/400
