@@ -7,6 +7,10 @@ const refreshChat = () => {
       return response.json();
     })
     .then((chatList) => {
+      chatList = chatList.length ? chatList : [{
+        name: "",
+        message: "No messages yet."
+      }];
       let messages = chatList.map((element) => {
         return `<div class="individual_chat_message">
           <p><span class="author">${element.name}</span>${element.message}</p>
