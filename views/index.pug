@@ -22,11 +22,13 @@ html
         .navtab.dropdown
           div Games
           .dropdown-content
-            a.navtab(onClick='changeActivePage("/games/pacman", "pacman", "Pac-Man")') Pac-Man
+            each gameInfo in gamesList
+              a.navtab(onClick=`changeActivePage("/games/${gameInfo.game}", "${gameInfo.game}", "${gameInfo.name}")`)= gameInfo.name
         .navtab.dropdown
           div High Scores
           .dropdown-content
-            a.navtab(onClick='changeActivePage("/scores/pacman", "pacman", "Pac-Man")') Pac-Man
+            each gameInfo in gamesList
+              a.navtab(onClick=`changeActivePage("/scores/'${gameInfo.game}", "${gameInfo.game}", "${gameInfo.name}")`)= gameInfo.name 
         // TODO: remove button when popup is triggered directly on game end
         a.navtab(onClick='scorePopUp()') Submit Score
       #content_window
@@ -39,7 +41,8 @@ html
             p#chat_room_label Chat - General &#x25BE;
               .dropdown-content
                 a(onClick='changeChatRoom("general", "General")').clickable General
-                a(onClick='changeChatRoom("pacman", "Pac-Man")').clickable Pac-Man
+                each gameInfo in gamesList
+                  a(onClick=`changeChatRoom("${gameInfo.game}", "${gameInfo.name}")`).clickable= gameInfo.name
         #chat_messages
         #chat_form
           .input_row
