@@ -2,7 +2,7 @@ import { gameIndexConfigs } from './gameInfo.json';
 
 /* Functions for converting between game index, code-safe game name,
 and human-readable game name using gameIndex.json. */
-export const util = {
+export const gameInfoUtil = {
   indexToGame(index: number): string {
     const found = gameIndexConfigs.find(element => {
       return element.index === index;

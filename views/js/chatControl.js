@@ -16,8 +16,39 @@ const showChat = () => {
 }
 
 const refreshChat = () => {
-  document.getElementById("chat_messages").innerHTML = fetchChatHTML();
-  setChatScrollToBottom();
+  fetch('./chat/' + chatActiveRoom)
+    .then((response) => {
+      return response.json();
+    })
+    .then((chatList) => {
+      let messages = chatList.map((element) => {
+        return `<div class="individual_chat_message">
+          <p><span class="author">${element.name}</span>${element.message}</p>
+          </div>`;
+      });
+      document.getElementById("chat_messages").innerHTML = messages.join('\n');
+      setChatScrollToBottom();
+    });
+}
+
+const postMessageToChat = () => {
+  const name = document.getElementById("name_input").value;
+  const message = document.getElementById("message_input").value;
+  document.getElementById("message_input").value = "";
+  fetch('/chat/' + chatActiveRoom, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        name,
+        message
+      })
+    })
+    .then(setTimeout(refreshChat, 200))
+    .catch((error) => {
+      console.error(error);
+    });
 }
 
 const periodicallyRefreshChat = () => {
@@ -30,32 +61,28 @@ const setChatScrollToBottom = () => {
   element.scrollTop = element.scrollHeight;
 }
 
-const fetchChatHTML = () => {
-  const chatList = Array(30).fill({
-    "author": "Bill Gates",
-    "text": "This is an example of what a chat message will look like."
-  });
-  let html = "";
-  chatList.forEach((element) => {
-    html += `<div class="
-    individual_chat_message"><p><span class="
-    author">${element.author}</span>${element.text}</p></div>`;
-  })
-  return html;
-}
-
-const countMessageCharLength = () => {
+const chatMessageKeyHandler = () => {
   const charCounter = document.getElementById("chat_char_counter");
   const messageInput = document.getElementById("message_input");
-  messageInput.onkeyup = () => {
-    charCounter.innerHTML = messageInput.value.length + "/400";
-  }
+  messageInput.addEventListener("keyup", (event) => {
+    if (event.ctrlKey && event.keyCode === 13) { // Ctrl+Enter
+      postMessageToChat();
+    } else {
+      charCounter.innerHTML = messageInput.value.length + "/400";
+    }
+  });
+}
+const changeChatRoom = (newRoomGame, newRoomName) => {
+  chatActiveRoom = newRoomGame;
+  document.getElementById("chat_room_label").innerHTML = `
+          Chat - ${newRoomName} &#x25BE;`;
+  refreshChat();
 }
 
 if (window.addEventListener) {
   window.addEventListener('load', periodicallyRefreshChat);
-  window.addEventListener('load', countMessageCharLength);
+  window.addEventListener('load', chatMessageKeyHandler);
 } else {
   window.attachEvent('onload', periodicallyRefreshChat);
-  window.attachEvent('onload', countMessageCharLength);
+  window.attachEvent('onload', chatMessageKeyHandler);
 }
