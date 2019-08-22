@@ -4,7 +4,7 @@ document.addEventListener('pacmanLoad', () => {
     const iframeWindow = iframe.contentWindow;
     const origGameover = iframeWindow.gameover;
     iframeWindow.gameover = () => {
-      score = getPacmanScore()
+      score = getPacmanScore(iframe)
       origGameover();
       scorePopUp(score, "/scores/pacman/");
     }
@@ -12,8 +12,7 @@ document.addEventListener('pacmanLoad', () => {
   { once: true });
 });
 
-const getPacmanScore = () => {
-  const iframe = document.getElementById("kubercade_iframe");
+const getPacmanScore = (iframe) => {
   const scoreDiv = iframe.contentDocument.getElementById("score");
   const score = scoreDiv.getElementsByTagName("span")[0].innerText;
   return parseInt(score);
