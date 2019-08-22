@@ -1,13 +1,13 @@
-var changeActivePage = function (url) {
+let pacmanLoadEvent = new Event("pacmanLoad");
+
+const changeActivePage = (url, chatRoom, gameName) => {
   changeIframePage(url);
-  changeChatRoom(url);
+  changeChatRoom(chatRoom, gameName);
 }
 
-var changeIframePage = function (url) {
+const changeIframePage = (url) => {
   document.getElementById('kubercade_iframe').src = url;
-}
-
-var changeChatRoom = function (url) {
-  // TODO simultaneously change the active chat room once chat is implemented
-  var chatWindow = document.getElementById('chat_window');
+  if (url === '/games/pacman') {
+    document.dispatchEvent(pacmanLoadEvent);
+  }
 }
