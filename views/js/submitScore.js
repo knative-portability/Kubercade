@@ -1,31 +1,38 @@
-const scorePopUp = () => {
-  const iframeLoc = document.getElementById(
-    "kubercade_iframe").contentWindow.location.href;
-  if (!iframeLoc.endsWith("games/pacman/")) {
-    alert("You can't submit a score if you aren't playing a game!");
-    return;
-  }
-  const name = prompt("Please enter your name:", "anonymous");
-  // don't post if person cancels prompt or doesn't enter name value
-  if (name == null || name == "") {
-    return;
-  }
-  const score = getScore();
-  sendScore("/scores/pacman/", {
-    name,
-    score
-  });
-}
-
-const getScore = () => {
+document.addEventListener('pacmanLoad', () => {
   const iframe = document.getElementById("kubercade_iframe");
+  iframe.addEventListener("load", () => {
+    const iframeWindow = iframe.contentWindow;
+    const origGameover = iframeWindow.gameover;
+    iframeWindow.gameover = () => {
+      score = getPacmanScore(iframe)
+      origGameover();
+      scorePopUp(score, "/scores/pacman/");
+    }
+  },
+  { once: true });
+});
+
+const getPacmanScore = (iframe) => {
   const scoreDiv = iframe.contentDocument.getElementById("score");
   const score = scoreDiv.getElementsByTagName("span")[0].innerText;
   return parseInt(score);
 }
 
+const scorePopUp = (score, scoreUrl) => {
+  const name = prompt("Please enter your name:", "anonymous");
+  // don't post if person cancels prompt or doesn't enter name value
+  if (!name) {
+    return;
+  }
+  sendScore(scoreUrl, {
+    name,
+    score
+  }).then(() =>
+    {changeIframePage(scoreUrl) });
+}
+
 const sendScore = (url, data) => {
-  fetch(url, {
+  return fetch(url, {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
