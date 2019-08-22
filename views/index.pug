@@ -41,6 +41,8 @@ html
                 a(onClick='changeChatRoom("general", "General")').clickable General
                 a(onClick='changeChatRoom("pacman", "Pac-Man")').clickable Pac-Man
         #chat_messages
+          .individual_chat_message.center
+            p Loading chat...
         #chat_form
           .input_row
             a(onClick="refreshChat()").refresh_button.clickable &#x1F504;
