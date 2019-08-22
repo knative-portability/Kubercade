@@ -7,8 +7,11 @@ router.get('/:game_name', chatController.getChat);
 router.post(
   '/:game_name',
   [
-    check('name').isLength({ max: 80 }),
+    check('name')
+      .isString()
+      .isLength({ max: 80 }),
     check('message')
+      .isString()
       .not()
       .isEmpty()
       .isLength({ max: 400 }),
