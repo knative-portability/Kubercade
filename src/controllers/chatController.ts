@@ -3,6 +3,7 @@ import { gameInfoUtil } from '../config/gameInfoUtil';
 import { timeUtil } from '../config/timeUtil';
 import pg from 'pg';
 import { parse } from 'pg-connection-string';
+import { validationResult } from 'express-validator';
 require('dotenv').config();
 
 const dbUrl: string = process.env.DB_URL || '';
@@ -29,6 +30,11 @@ export const chatController = {
    * @param res Response object
    */
   async postToChat(req: express.Request, res: express.Response) {
+    // validate checks from src/routes/chat
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(422).json({ errors: errors.array() });
+    }
     const gameName: string = req.params['game_name'];
     const gameIndex: number = gameInfoUtil.gameToIndex(gameName);
     const name: string = req.body.name || 'anonymous';
