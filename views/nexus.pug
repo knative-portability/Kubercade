@@ -11,9 +11,9 @@ html
       #gameGrid
         each gameInfo in gamesList
           a.gameTile(href='/games/' + gameInfo.game)
-            img(src='/images/pacman_thumbnail.png')
+            img(src='/images/' + gameInfo.game + '_thumbnail.png')
             .gameInfo
-              .gameName Pac-Man
+              .gameName= gameInfo.name
               .description Play the classic arcade game here!
         .gameTile
           img(src='/images/kubercade logo.png')
