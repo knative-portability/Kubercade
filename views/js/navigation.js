@@ -7,7 +7,7 @@ const changeActivePage = (url, chatRoom, gameName) => {
 
 const changeIframePage = (url) => {
   document.getElementById('kubercade_iframe').src = url;
-  if (url == '/games/pacman') {
+  if (url === '/games/pacman') {
     document.dispatchEvent(pacmanLoadEvent);
   }
 }

@@ -6,23 +6,23 @@ document.addEventListener('pacmanLoad', () => {
     iframeWindow.gameover = () => {
       score = getScore()
       origGameover();
-      scorePopUp(score);
+      scorePopUp(score, "/scores/pacman/");
     }
   },
   { once: true });
 });
 
-const scorePopUp = () => {
+const scorePopUp = (score, scoreUrl) => {
   const name = prompt("Please enter your name:", "anonymous");
   // don't post if person cancels prompt or doesn't enter name value
   if (!name) {
     return;
   }
-  sendScore("/scores/pacman/", {
+  sendScore(scoreUrl, {
     name,
     score
-  }).then(() => 
-    {changeIframePage("/scores/pacman") });
+  }).then(() =>
+    {changeIframePage(scoreUrl) });
 }
 
 const getScore = () => {
