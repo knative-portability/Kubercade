@@ -11,27 +11,30 @@ document.addEventListener('pacmanLoad', () => {
   });
 });
 
-var scorePopUp = function (score) {
-  var name = prompt("Please enter your name:", "anonymous");
+const scorePopUp = () => {
+  const name = prompt("Please enter your name:", "anonymous");
   // don't post if person cancels prompt or doesn't enter name value
   if (!name) {
     return;
   }
-  sendScore("/scores/pacman/", {name, score});
+  sendScore("/scores/pacman/", {
+    name,
+    score
+  });
 }
 
-var getScore = function () {
-  var iframe = document.getElementById("kubercade_iframe");
-  var scoreDiv = iframe.contentDocument.getElementById("score");
-  var score = scoreDiv.getElementsByTagName("span")[0].innerText;
+const getScore = () => {
+  const iframe = document.getElementById("kubercade_iframe");
+  const scoreDiv = iframe.contentDocument.getElementById("score");
+  const score = scoreDiv.getElementsByTagName("span")[0].innerText;
   return parseInt(score);
 }
 
-var sendScore = function(url, data) {
+const sendScore = (url, data) => {
   fetch(url, {
     method: 'POST',
     body: JSON.stringify(data),
-    headers:{
+    headers: {
       'Content-Type': 'application/json',
     },
   });
