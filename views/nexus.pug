@@ -10,8 +10,8 @@ html
       h4 Nexus - Browse Games
       #gameGrid
         each gameInfo in gamesList
-          a.gameTile(href='/games/' + gameInfo.game)
-            img(src='/images/' + gameInfo.game + '_thumbnail.png')
+          a.gameTile(href=`/games/${gameInfo.game}`)
+            img(src=`/images/${gameInfo.game}_thumbnail.png`)
             .gameInfo
               .gameName= gameInfo.name
               .description Play the classic arcade game here!
