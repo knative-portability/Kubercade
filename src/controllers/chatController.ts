@@ -34,6 +34,7 @@ export const chatController = {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.status(422).json({ errors: errors.array() });
+      return;
     }
     const gameName: string = req.params['game_name'];
     const gameIndex: number = gameInfoUtil.gameToIndex(gameName);
