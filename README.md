@@ -13,3 +13,4 @@ This app is set up to easily deploy to any platform built on [Knative](https://k
 [![Run on Google Cloud](https://storage.googleapis.com/cloudrun/button.svg)](https://console.cloud.google.com/cloudshell/editor?shellonly=true&cloudshell_image=gcr.io/cloudrun/button&cloudshell_git_repo=https://github.com/knative-portability/Kubercade.git)
 
 You also need to setup a PostgreSQL database and enter its connection string when prompted by Google Cloud Shell.
+I.e. `postgres://{username}:{password}@{host}/{database}`
