@@ -47,6 +47,10 @@ h4 {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
+.center {
+  text-align: center;
+}
+
 /*** layout ***/
 
 #wrapper_grid {
@@ -344,7 +348,31 @@ a.gameTile:hover {
   text-shadow: 2px 2px 1px black;
 }
 
-#high_scores_container .scores_list {
+#high_scores_container #score_filter {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-bottom: 48px;
+  width: 100%;
+  max-width: 400px;
+}
+
+#high_scores_container #score_filter .icon {
+  margin-right: 16px;
+  font-size: 24pt;
+}
+
+#high_scores_container #score_filter input {
+  border: none;
+  background: white;
+  color: black;
+  flex-grow: 1;
+  font-size: 24pt;
+  padding: 4px 8px;
+  font-family: 'Press Start 2P',
+    sans-serif;
+}
+
+#high_scores_container #scores_list {
   width: 100%;
   max-width: 1200px;
   overflow-y: auto;

@@ -45,6 +45,8 @@ html
                 each gameInfo in gamesList
                   a(onClick=`changeChatRoom("${gameInfo.game}", "${gameInfo.name}")`).clickable= gameInfo.name
         #chat_messages
+          .individual_chat_message.center
+            p Loading chat...
         #chat_form
           .input_row
             a(onClick="refreshChat()").refresh_button.clickable &#x1F504;
