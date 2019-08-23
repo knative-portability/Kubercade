@@ -12,6 +12,11 @@ const refreshChat = () => {
           <p><span class="author">${element.name}</span>${element.message}</p>
           </div>`;
       });
+      messages = chatList.length ? messages : [
+        `<div class="individual_chat_message center">
+        <p>No messages yet.</p>
+        </div>`
+      ];
       document.getElementById("chat_messages").innerHTML = messages.join('\n');
       setChatScrollToBottom();
     });
