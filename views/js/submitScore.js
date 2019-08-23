@@ -6,7 +6,10 @@ document.addEventListener('pacmanLoad', () => {
   iframeWindow.gameover = () => {
     score = getPacmanScore(iframe)
     origGameover();
-    scorePopUp(score, "/scores/pacman/");
+    // Wait for 'Game Over' to display in game
+    setTimeout(() => {
+        scorePopUp(score, "/scores/pacman/");
+      }, 500);
   }
 });
 
@@ -25,8 +28,11 @@ const scorePopUp = (score, scoreUrl) => {
   sendScore(scoreUrl, {
     name,
     score
-  }).then(() =>
-    {changeIframePage(scoreUrl) });
+  }).then(() => {
+    setTimeout(() => {
+      changeIframePage(scoreUrl);
+    }, 100);
+  });
 }
 
 const sendScore = (url, data) => {
