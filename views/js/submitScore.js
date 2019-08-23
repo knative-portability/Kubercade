@@ -8,8 +8,25 @@ document.addEventListener('pacmanLoad', () => {
       origGameover();
       scorePopUp(score, "/scores/pacman/");
     }
-  },
-  { once: true });
+  }, {
+    once: true
+  });
+});
+
+document.addEventListener('2048Load', () => {
+  const iframe = document.getElementById("kubercade_iframe");
+  iframe.addEventListener("load", () => {
+    const iframeWindow = iframe.contentWindow;
+    const origGameTerminated = iframeWindow.GameManager.prototype.isGameTerminated;
+    console.log(iframeWindow.GameManager.prototype);
+    console.log(origGameTerminated);
+    iframeWindow.GameManager.prototype.isGameTerminated = () => {
+      console.log(this);
+      return origGameTerminated();
+    }
+  }, {
+    once: true
+  });
 });
 
 const getPacmanScore = (iframe) => {
@@ -17,6 +34,11 @@ const getPacmanScore = (iframe) => {
   const score = scoreDiv.getElementsByTagName("span")[0].innerText;
   return parseInt(score);
 }
+
+const get2048Score = (iframe) => {
+  return parseInt(iframe.contentDocument.getElementsByClassName('score-container')[0].innerText.split('\n')[0]);
+}
+
 
 const scorePopUp = (score, scoreUrl) => {
   const name = prompt("Please enter your name:", "anonymous");
@@ -27,8 +49,9 @@ const scorePopUp = (score, scoreUrl) => {
   sendScore(scoreUrl, {
     name,
     score
-  }).then(() =>
-    {changeIframePage(scoreUrl) });
+  }).then(() => {
+    changeIframePage(scoreUrl)
+  });
 }
 
 const sendScore = (url, data) => {
