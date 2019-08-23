@@ -352,8 +352,8 @@ a.gameTile:hover {
   display: flex;
   flex-wrap: nowrap;
   margin-bottom: 48px;
-  width: 100%;
-  max-width: 400px;
+  width: 90%;
+  max-width: 600px;
 }
 
 #high_scores_container #score_filter .icon {
@@ -366,10 +366,12 @@ a.gameTile:hover {
   background: white;
   color: black;
   flex-grow: 1;
-  font-size: 24pt;
+  font-size: 16pt;
   padding: 4px 8px;
   font-family: 'Press Start 2P',
     sans-serif;
+  width: 0;
+  /* Allow input to shrink with flexbox */
 }
 
 #high_scores_container #scores_list {
