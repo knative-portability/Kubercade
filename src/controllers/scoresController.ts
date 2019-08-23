@@ -3,6 +3,7 @@ import { gameInfoUtil } from '../config/gameInfoUtil';
 import { timeUtil } from '../config/timeUtil';
 import pg from 'pg';
 import { parse } from 'pg-connection-string';
+import { validationResult } from 'express-validator';
 require('dotenv').config();
 
 const dbUrl: string = process.env.DB_URL || '';
@@ -25,6 +26,12 @@ export const scoresController = {
     res.render('scores.pug', { scores, prettyGameName });
   },
   postScore(req: express.Request, res: express.Response) {
+    // validate checks from src/routes/scores
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.status(422).json({ errors: errors.array() });
+      return;
+    }
     const internalGameName: string = req.params['game_name'];
     const gameIndex: number = gameInfoUtil.gameToIndex(internalGameName);
     const name: string = req.body.name;
