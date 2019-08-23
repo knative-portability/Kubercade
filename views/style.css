@@ -376,7 +376,7 @@ a.gameTile:hover {
 
 #high_scores_container #scores_list {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1600px;
   overflow-y: auto;
 }
 
