@@ -6,10 +6,15 @@ html
     link(href="https://fonts.googleapis.com/css?family=Lexend+Deca|Press+Start+2P&display=swap" rel="stylesheet")
     script(defer)
       include js/randomColorsForScores.js
+    script(defer)
+      include js/filterScores.js
   body
     #high_scores_container
       h1 High Scores - #{prettyGameName}
-      .scores_list
+      #score_filter
+        .icon &#128269;
+        input(type="text" placeholder="Filter scores")#score_filter_input
+      #scores_list
         each score, index in scores
           .individual_score
             span= index + 1 
