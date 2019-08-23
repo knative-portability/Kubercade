@@ -21,7 +21,10 @@ document.addEventListener('2048Load', () => {
     iframeWindow.gameOverSignal = () => {
       origgameOverSignal();
       const score = get2048Score(iframe);
-      setTimeout(scorePopUp, score, '/scores/2048', 1000);
+      // Wait for 'Game Over' to display in game 
+      setTimeout(() => {
+        scorePopUp(score, '/scores/2048');
+      }, 1000);
     }
   }, {
     once: true
