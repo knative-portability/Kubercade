@@ -23,7 +23,7 @@ const refreshChat = () => {
     .then((chatList) => {
       let messages = chatList.map((element) => {
         return `<div class="individual_chat_message">
-          <p><span class="author">${element.name}</span>${element.message}</p>
+          <p><span class="author">${sanitizeHTML(element.name)}</span>${sanitizeHTML(element.message)}</p>
           </div>`;
       });
       messages = chatList.length ? messages : [
@@ -36,9 +36,20 @@ const refreshChat = () => {
     });
 }
 
+/* Encode HTML to sanitize it and prevent injections. */
+const sanitizeHTML = (html) => {
+  const div = document.createElement('div');
+  div.textContent = html;
+  return div.innerHTML;
+}
+
 const postMessageToChat = () => {
   const name = document.getElementById("name_input").value;
   const message = document.getElementById("message_input").value;
+  if (!message) {
+    alert('Please enter a message.');
+    return;
+  }
   document.getElementById("message_input").value = "";
   fetch('/chat/' + chatActiveRoom, {
       method: 'POST',
