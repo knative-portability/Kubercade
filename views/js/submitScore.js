@@ -15,20 +15,23 @@ document.addEventListener('pacmanLoad', () => {
 
 document.addEventListener('tetrisLoad', () => {
   const iframe = document.getElementById('kubercade_iframe');
-  console.log('tetrisLoad');
-  document.getElementById('content_window').onclick = () => {
-    // Fix iframe not being focused, blocking keyboard input.
-    console.log('iframe click');
-    iframe.focus();
-  };
+  setTimeout(() => {
+    document.getElementById('kubercade_iframe').contentWindow.document.onclick = () => {
+      // Fix iframe not being focused, blocking keyboard input
+      iframe.focus();
+    };
+  }, 200);
+
   iframe.addEventListener("load", () => {
     const iframeWindow = iframe.contentWindow;
     const origgameOverSignal = iframeWindow.gameOverSignal;
     iframeWindow.gameOverSignal = () => {
       origgameOverSignal();
       const score = iframeWindow.points;
-      console.log(score);
-      setTimeout(scorePopUp, score, '/scores/tetris', 1000);
+      // Wait for game over screen 
+      setTimeout(() => {
+        scorePopUp(score, '/scores/tetris');
+      }, 800);
     }
   }, {
     once: true
