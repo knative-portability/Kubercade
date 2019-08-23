@@ -28,13 +28,14 @@ html
           div High Scores
           .dropdown-content
             each gameInfo in gamesList
-              a.navtab(onClick=`changeActivePage("/scores/'${gameInfo.game}", "${gameInfo.game}", "${gameInfo.name}")`)= gameInfo.name 
+              a.navtab(onClick=`changeActivePage("/scores/${gameInfo.game}", "${gameInfo.game}", "${gameInfo.name}")`)= gameInfo.name 
         // TODO: remove button when popup is triggered directly on game end
         a.navtab(onClick='scorePopUp()') Submit Score
       #content_window
         iframe#kubercade_iframe(
           src='/nexus'
         )
+        div(onClick="showChat()")#show_chat_button.clickable Chat
       #chat_window
         #chat_top_bar
           .dropdown.clickable.button
@@ -43,6 +44,7 @@ html
                 a(onClick='changeChatRoom("general", "General")').clickable General
                 each gameInfo in gamesList
                   a(onClick=`changeChatRoom("${gameInfo.game}", "${gameInfo.name}")`).clickable= gameInfo.name
+          div(onClick="hideChat()")#hide_chat_button.clickable Hide
         #chat_messages
           .individual_chat_message.center
             p Loading chat...
