@@ -14,15 +14,14 @@ document.addEventListener('pacmanLoad', () => {
 });
 
 document.addEventListener('2048Load', () => {
-  const iframe = document.getElementById("kubercade_iframe");
-  iframe.addEventListener("load", () => {
+  const iframe = document.getElementById('kubercade_iframe');
+  iframe.addEventListener('load', () => {
     const iframeWindow = iframe.contentWindow;
-    const origGameTerminated = iframeWindow.GameManager.prototype.isGameTerminated;
-    console.log(iframeWindow.GameManager.prototype);
-    console.log(origGameTerminated);
-    iframeWindow.GameManager.prototype.isGameTerminated = () => {
-      console.log(this);
-      return origGameTerminated();
+    const origgameOverSignal = iframeWindow.gameOverSignal;
+    iframeWindow.gameOverSignal = () => {
+      origgameOverSignal();
+      const score = get2048Score(iframe);
+      setTimeout(scorePopUp, score, '/scores/2048', 1000);
     }
   }, {
     once: true
