@@ -1,5 +1,6 @@
 import express from 'express';
-import { util } from '../config/gameInfoUtil';
+import { gameInfoUtil } from '../config/gameInfoUtil';
+import { timeUtil } from '../config/timeUtil';
 import pg from 'pg';
 import { parse } from 'pg-connection-string';
 require('dotenv').config();
@@ -18,14 +19,14 @@ export const scoresController = {
    */
   async getScores(req: express.Request, res: express.Response) {
     const internalGameName: string = req.params['game_name'];
-    const gameIndex: number = util.gameToIndex(internalGameName);
+    const gameIndex: number = gameInfoUtil.gameToIndex(internalGameName);
     const scores = await getScoresFromDB(gameIndex);
-    const prettyGameName: string = util.gameToName(internalGameName);
+    const prettyGameName: string = gameInfoUtil.gameToName(internalGameName);
     res.render('scores.pug', { scores, prettyGameName });
   },
   postScore(req: express.Request, res: express.Response) {
     const internalGameName: string = req.params['game_name'];
-    const gameIndex: number = util.gameToIndex(internalGameName);
+    const gameIndex: number = gameInfoUtil.gameToIndex(internalGameName);
     const name: string = req.body.name;
     const score: number = req.body.score;
     postScoreToDB(gameIndex, score, name);
@@ -48,7 +49,7 @@ async function getScoresFromDB(gameIndex: number): Promise<object[]> {
       ORDER BY score DESC, datetime DESC;`,
       [gameIndex]
     );
-    return res.rows;
+    return timeUtil.formatTimes(res.rows);
   } catch (err) {
     console.log('Query error: ' + err.message);
     console.log(err.stack);
@@ -56,19 +57,12 @@ async function getScoresFromDB(gameIndex: number): Promise<object[]> {
   }
 }
 
-function getCurrentTime(): string {
-  return new Date()
-    .toISOString()
-    .replace(/T/, ' ')
-    .replace(/\..+/, '');
-}
-
 async function postScoreToDB(gameIndex: number, score: number, name: string) {
   try {
     await pool.query(
       `INSERT INTO kubercade.high_score_table (game_index, name, score, datetime)
-      VALUES ($1, $2, $3, $4)`,
-      [gameIndex, name, score, getCurrentTime()]
+      VALUES ($1, $2, $3, NOW())`,
+      [gameIndex, name, score]
     );
   } catch (err) {
     console.log('Query error: ' + err.message);
