@@ -9,7 +9,7 @@ const hideChat = () => {
 }
 
 const showChat = () => {
-  document.getElementById("wrapper_grid").style.gridTemplateColumns = "80% auto";
+  document.getElementById("wrapper_grid").style.gridTemplateColumns = null;
   document.getElementById("chat_window").style.display = "grid";
   document.getElementById("hide_chat_button").style.display = "block";
   document.getElementById("show_chat_button").style.display = "none";
