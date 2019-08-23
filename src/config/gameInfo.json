@@ -1,11 +1,17 @@
 {
   "gameIndexConfigs": [{
-    "index": 0,
-    "game": "general",
-    "name": "General"
-  }, {
-    "index": 1,
-    "game": "pacman",
-    "name": "Pac-Man"
-  }]
+      "index": 0,
+      "game": "general",
+      "name": "General"
+    }, {
+      "index": 1,
+      "game": "pacman",
+      "name": "Pac-Man"
+    },
+    {
+      "index": 3,
+      "game": "tetris",
+      "name": "Tetris"
+    }
+  ]
 }
