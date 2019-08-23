@@ -1,6 +1,20 @@
 let chatActiveRoom = "general";
 const chatRefreshTimeMs = 30000;
 
+const hideChat = () => {
+  document.getElementById("wrapper_grid").style.gridTemplateColumns = "100% 0";
+  document.getElementById("chat_window").style.display = "none";
+  document.getElementById("hide_chat_button").style.display = "none";
+  document.getElementById("show_chat_button").style.display = "block";
+}
+
+const showChat = () => {
+  document.getElementById("wrapper_grid").style.gridTemplateColumns = null;
+  document.getElementById("chat_window").style.display = "grid";
+  document.getElementById("hide_chat_button").style.display = "block";
+  document.getElementById("show_chat_button").style.display = "none";
+}
+
 const refreshChat = () => {
   fetch('./chat/' + chatActiveRoom)
     .then((response) => {
@@ -9,7 +23,7 @@ const refreshChat = () => {
     .then((chatList) => {
       let messages = chatList.map((element) => {
         return `<div class="individual_chat_message">
-          <p><span class="author">${element.name}</span>${element.message}</p>
+          <p><span class="author">${sanitizeHTML(element.name)}</span>${sanitizeHTML(element.message)}</p>
           </div>`;
       });
       messages = chatList.length ? messages : [
@@ -22,9 +36,20 @@ const refreshChat = () => {
     });
 }
 
+/* Encode HTML to sanitize it and prevent injections. */
+const sanitizeHTML = (html) => {
+  const div = document.createElement('div');
+  div.textContent = html;
+  return div.innerHTML;
+}
+
 const postMessageToChat = () => {
   const name = document.getElementById("name_input").value;
   const message = document.getElementById("message_input").value;
+  if (!message) {
+    alert('Please enter a message.');
+    return;
+  }
   document.getElementById("message_input").value = "";
   fetch('/chat/' + chatActiveRoom, {
       method: 'POST',
