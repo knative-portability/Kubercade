@@ -13,5 +13,7 @@ const changeIframePage = (url) => {
 const iframeChange = (url) => {
   if (String(url).endsWith('/games/pacman') || String(url).endsWith('/games/pacman/')) {
     document.dispatchEvent(pacmanLoadEvent);
+    // makes sures chat room changes when coming from nexus
+    changeChatRoom('pacman', 'Pac-Man');
   }
 }
