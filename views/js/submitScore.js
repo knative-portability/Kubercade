@@ -31,7 +31,7 @@ document.addEventListener('tetrisLoad', () => {
       // Wait for game over screen 
       setTimeout(() => {
         scorePopUp(score, '/scores/tetris');
-      }, 800);
+      }, 1250);
     }
   }, {
     once: true
