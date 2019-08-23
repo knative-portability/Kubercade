@@ -43,7 +43,6 @@ export const scoresController = {
 async function getScoresFromDB(gameIndex: number): Promise<object[]> {
   try {
     const res = await pool.query(
-      // "DELETE FROM kubercade.high_score_table"  take this out! for debugging
       `SELECT *
       FROM kubercade.high_score_table
       WHERE game_index=$1
