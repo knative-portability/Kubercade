@@ -24,9 +24,9 @@ document.addEventListener('tetrisLoad', () => {
 
   iframe.addEventListener("load", () => {
     const iframeWindow = iframe.contentWindow;
-    const origgameOverSignal = iframeWindow.gameOverSignal;
+    const origGameOverSignal = iframeWindow.gameOverSignal;
     iframeWindow.gameOverSignal = () => {
-      origgameOverSignal();
+      origGameOverSignal();
       const score = iframeWindow.points;
       // Wait for game over screen 
       setTimeout(() => {
