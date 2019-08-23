@@ -17,9 +17,9 @@ document.addEventListener('2048Load', () => {
   const iframe = document.getElementById('kubercade_iframe');
   iframe.addEventListener('load', () => {
     const iframeWindow = iframe.contentWindow;
-    const origgameOverSignal = iframeWindow.gameOverSignal;
+    const origGameOverSignal = iframeWindow.gameOverSignal;
     iframeWindow.gameOverSignal = () => {
-      origgameOverSignal();
+      origGameOverSignal();
       const score = get2048Score(iframe);
       // Wait for 'Game Over' to display in game 
       setTimeout(() => {
