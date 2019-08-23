@@ -1,4 +1,5 @@
 let pacmanLoadEvent = new Event("pacmanLoad");
+let tetrisLoadEvent = new Event('tetrisLoad');
 
 const changeActivePage = (url, chatRoom, gameName) => {
   changeIframePage(url);
@@ -10,4 +11,5 @@ const changeIframePage = (url) => {
   if (url === '/games/pacman') {
     document.dispatchEvent(pacmanLoadEvent);
   }
+  if (url === '/games/tetris') document.dispatchEvent(tetrisLoadEvent);
 }
