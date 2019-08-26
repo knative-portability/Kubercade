@@ -385,6 +385,12 @@ a.gameTile:hover {
   text-shadow: 2px 2px 1px black;
 }
 
+#high_scores_container h1 a {
+  font-family: inherit;
+  color: inherit;
+  padding: 16px 8px;
+}
+
 #high_scores_container #score_filter {
   display: flex;
   flex-wrap: nowrap;
