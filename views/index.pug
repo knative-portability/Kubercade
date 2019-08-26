@@ -31,7 +31,8 @@ html
               a.navtab(onClick=`changeActivePage("/scores/${gameInfo.game}", "${gameInfo.game}", "${gameInfo.name}")`)= gameInfo.name 
       #content_window
         iframe#kubercade_iframe(
-          src='/nexus'
+          src='/nexus',
+          onLoad='iframeChange(this.contentWindow.location)'
         )
         div(onClick="showChat()")#show_chat_button.clickable Chat
       #chat_window
