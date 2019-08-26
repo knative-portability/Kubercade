@@ -29,8 +29,6 @@ html
           .dropdown-content
             each gameInfo in gamesList
               a.navtab(onClick=`changeActivePage("/scores/${gameInfo.game}", "${gameInfo.game}", "${gameInfo.name}")`)= gameInfo.name 
-        // TODO: remove button when popup is triggered directly on game end
-        a.navtab(onClick='scorePopUp()') Submit Score
       #content_window
         iframe#kubercade_iframe(
           src='/nexus'
