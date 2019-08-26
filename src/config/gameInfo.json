@@ -9,7 +9,7 @@
     "name": "Pac-Man"
   }, {
     "index": 4,
-    "game": "ball-and-wall",
+    "game": "arkanoid",
     "name": "Arkanoid"
   }]
 }
