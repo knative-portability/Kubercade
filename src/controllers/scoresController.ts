@@ -24,7 +24,7 @@ export const scoresController = {
     const gameIndex: number = gameInfoUtil.gameToIndex(internalGameName);
     const scores = await getScoresFromDB(gameIndex);
     const prettyGameName: string = gameInfoUtil.gameToName(internalGameName);
-    res.render('scores.pug', { scores, prettyGameName, userScore });
+    res.render('scores.pug', { scores, internalGameName, prettyGameName, userScore });
   },
   postScore(req: express.Request, res: express.Response) {
     // validate checks from src/routes/scores
