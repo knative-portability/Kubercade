@@ -4,12 +4,32 @@ html
     style
       include style.css
     link(href="https://fonts.googleapis.com/css?family=Lexend+Deca|Press+Start+2P&display=swap" rel="stylesheet")
+    if userScore
+      script(defer)
+        include js/twitterBtn.js
+      script(async defer crossorigin="anonymous" 
+        src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v4.0")
     script(defer)
       include js/randomColorsForScores.js
     script(defer)
       include js/filterScores.js
   body
+    #fb-root
     #high_scores_container
+      if userScore
+        #user_score_div
+          - var shareString = encodeURI(`I scored ${userScore} on ${prettyGameName}!`);
+          p Congrats, you scored #{userScore} on #{prettyGameName}!
+          p Share your score: 
+          .shareBtn
+            a.twitter-share-button(href=`https://twitter.com/intent/tweet?text=${shareString}`
+                data-size="large")
+              Tweet
+          .shareBtn
+            .fb-share-button(data-layout="button" data-size="large")
+              a.fb-xfbml-parse-ignore(target="_blank" 
+                href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse")
+                Share
       h1 High Scores - #{prettyGameName}
       #score_filter
         .icon &#128269;
