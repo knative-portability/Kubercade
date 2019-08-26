@@ -19,11 +19,9 @@ const getPacmanScore = (iframe) => {
 }
 
 const scorePopUp = (score, scoreUrl) => {
-  const name = prompt("Please enter your name:", "anonymous");
+  const name = prompt(`Congratulations, you scored ${score}! Please enter your name:`, 'anonymous');
   // don't post if person cancels prompt or doesn't enter name value
-  if (!name) {
-    return;
-  }
+  if (!name) return;
   sendScore(scoreUrl, {
     name,
     score
