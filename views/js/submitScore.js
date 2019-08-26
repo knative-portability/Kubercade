@@ -15,15 +15,12 @@ document.addEventListener('pacmanLoad', () => {
 
 document.addEventListener('tetrisLoad', () => {
   const iframe = document.getElementById('kubercade_iframe');
-  setTimeout(() => {
-    document.getElementById('kubercade_iframe').contentWindow.document.onclick = () => {
+  iframe.addEventListener("load", () => {
+    const iframeWindow = iframe.contentWindow;
+    iframeWindow.document.onclick = () => {
       // Fix iframe not being focused, blocking keyboard input
       iframe.focus();
     };
-  }, 200);
-
-  iframe.addEventListener("load", () => {
-    const iframeWindow = iframe.contentWindow;
     const origGameOverSignal = iframeWindow.gameOverSignal;
     iframeWindow.gameOverSignal = () => {
       origGameOverSignal();
