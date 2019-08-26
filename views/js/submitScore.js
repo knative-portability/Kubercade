@@ -17,10 +17,12 @@ document.addEventListener('2048Load', () => {
   const iframe = document.getElementById('kubercade_iframe');
   iframe.addEventListener('load', () => {
     const iframeWindow = iframe.contentWindow;
-    const origGameOverSignal = iframeWindow.gameOverSignal;
-    iframeWindow.gameOverSignal = () => {
-      origGameOverSignal();
-      const score = get2048Score(iframe);
+    const actuator = iframeWindow.gameManagerInstance.actuator;
+    console.log(actuator);
+    actuator.origMessage = actuator.message;
+    actuator.message = () => {
+      actuator.origMessage();
+      const score = iframeWindow.gameManagerInstance.score;
       // Wait for 'Game Over' to display in game 
       setTimeout(() => {
         scorePopUp(score, '/scores/2048');
@@ -36,11 +38,6 @@ const getPacmanScore = (iframe) => {
   const score = scoreDiv.getElementsByTagName("span")[0].innerText;
   return parseInt(score);
 }
-
-const get2048Score = (iframe) => {
-  return parseInt(iframe.contentDocument.getElementsByClassName('score-container')[0].innerText.split('\n')[0]);
-}
-
 
 const scorePopUp = (score, scoreUrl) => {
   const name = prompt("Please enter your name:", "anonymous");
