@@ -1,7 +1,7 @@
 function HTMLActuator() {
-  this.tileContainer = document.querySelector(".tile-container");
-  this.scoreContainer = document.querySelector(".score-container");
-  this.bestContainer = document.querySelector(".best-container");
+  this.tileContainer    = document.querySelector(".tile-container");
+  this.scoreContainer   = document.querySelector(".score-container");
+  this.bestContainer    = document.querySelector(".best-container");
   this.messageContainer = document.querySelector(".game-message");
 
   this.score = 0;
@@ -49,12 +49,9 @@ HTMLActuator.prototype.clearContainer = function (container) {
 HTMLActuator.prototype.addTile = function (tile) {
   var self = this;
 
-  var wrapper = document.createElement("div");
-  var inner = document.createElement("div");
-  var position = tile.previousPosition || {
-    x: tile.x,
-    y: tile.y
-  };
+  var wrapper   = document.createElement("div");
+  var inner     = document.createElement("div");
+  var position  = tile.previousPosition || { x: tile.x, y: tile.y };
   var positionClass = this.positionClass(position);
 
   // We can't use classlist because it somehow glitches when replacing classes
@@ -70,10 +67,7 @@ HTMLActuator.prototype.addTile = function (tile) {
   if (tile.previousPosition) {
     // Make sure that the tile gets rendered in the previous position first
     window.requestAnimationFrame(function () {
-      classes[2] = self.positionClass({
-        x: tile.x,
-        y: tile.y
-      });
+      classes[2] = self.positionClass({ x: tile.x, y: tile.y });
       self.applyClasses(wrapper, classes); // Update the position
     });
   } else if (tile.mergedFrom) {
@@ -101,10 +95,7 @@ HTMLActuator.prototype.applyClasses = function (element, classes) {
 };
 
 HTMLActuator.prototype.normalizePosition = function (position) {
-  return {
-    x: position.x + 1,
-    y: position.y + 1
-  };
+  return { x: position.x + 1, y: position.y + 1 };
 };
 
 HTMLActuator.prototype.positionClass = function (position) {
@@ -134,23 +125,12 @@ HTMLActuator.prototype.updateBestScore = function (bestScore) {
 };
 
 HTMLActuator.prototype.message = function (won) {
-  var type = won ? "game-won" : "game-over";
+  var type    = won ? "game-won" : "game-over";
   var message = won ? "You win!" : "Game over!";
 
   this.messageContainer.classList.add(type);
   this.messageContainer.getElementsByTagName("p")[0].textContent = message;
-  gameOverSignal(); // Added for Kubercade high score functionality.
 };
-
-/** 
- * Added for Kubercade high score functionality.
- * Allows views/js/submitScore.js to find out when the game is over
- * without dealing with the classes, prototypes, and this in the
- * original 2048 code.
- */
-window.gameOverSignal = function () {
-  console.log("Game over.");
-}
 
 HTMLActuator.prototype.clearMessage = function () {
   // IE only takes one value to remove at a time.
