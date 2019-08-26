@@ -198,6 +198,8 @@ define('app/game',
                 autohide: false
             });
             sound.playMusic();
+            // Added for Kubercade high score functionality.
+            window.gameOverSignal();
         };
 
         /**

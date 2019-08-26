@@ -87,6 +87,8 @@ function(Base, episode) {
      */
     DashboardScore.prototype._updateScore = function() {
         this.update(this.score);
+        // Added for Kubercade high score functionality.
+        window.score = this.score;
     };
 
     return DashboardScore;

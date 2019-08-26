@@ -4,12 +4,36 @@ document.addEventListener('pacmanLoad', () => {
     const iframeWindow = iframe.contentWindow;
     const origGameover = iframeWindow.gameover;
     iframeWindow.gameover = () => {
-      score = getPacmanScore(iframe)
+      score = getPacmanScore(iframe);
       origGameover();
       scorePopUp(score, "/scores/pacman/");
     }
-  },
-  { once: true });
+  }, {
+    once: true
+  });
+});
+
+document.addEventListener('arkanoidLoad', () => {
+  const iframe = document.getElementById('kubercade_iframe');
+  console.log('arkanoidLoad');
+  iframe.addEventListener('load', () => {
+    console.log('iframe Load');
+    const iframeWindow = iframe.contentWindow;
+    const origGameOverSignal = iframeWindow.gameOverSignal;
+    console.log(iframeWindow.gameOverSignal);
+    iframeWindow.gameOverSignal = () => {
+      origGameOverSignal();
+      console.log('patched;');
+      const score = iframeWindow.points;
+      // Wait for game over screen 
+      setTimeout(() => {
+        scorePopUp(score, '/scores/arkanoid');
+      }, 1000);
+    }
+    console.log(iframeWindow.gameOverSignal);
+  }, {
+    once: true
+  });
 });
 
 const getPacmanScore = (iframe) => {
@@ -27,8 +51,9 @@ const scorePopUp = (score, scoreUrl) => {
   sendScore(scoreUrl, {
     name,
     score
-  }).then(() =>
-    {changeIframePage(scoreUrl) });
+  }).then(() => {
+    changeIframePage(scoreUrl)
+  });
 }
 
 const sendScore = (url, data) => {

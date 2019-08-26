@@ -1,3 +1,10 @@
+/** 
+ * Added for Kubercade high score functionality.
+ * Allows views/js/submitScore.js to find out when the game is over.
+ */
+window.gameOverSignal = () => {
+    console.log('Game Over!');
+}
 
 (function() {
     var getBrowserLang;
