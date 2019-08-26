@@ -1,15 +1,13 @@
+// pacmanLoad is fired whenver iframe loads /games/pacman
 document.addEventListener('pacmanLoad', () => {
   const iframe = document.getElementById("kubercade_iframe");
-  iframe.addEventListener("load", () => {
-    const iframeWindow = iframe.contentWindow;
-    const origGameover = iframeWindow.gameover;
-    iframeWindow.gameover = () => {
-      score = getPacmanScore(iframe)
-      origGameover();
-      scorePopUp(score, "/scores/pacman");
-    }
-  },
-  { once: true });
+  const iframeWindow = iframe.contentWindow;
+  const origGameover = iframeWindow.gameover;
+  iframeWindow.gameover = () => {
+    score = getPacmanScore(iframe)
+    origGameover();
+    scorePopUp(score, "/scores/pacman");
+  }
 });
 
 const getPacmanScore = (iframe) => {

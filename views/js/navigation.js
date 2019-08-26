@@ -7,7 +7,14 @@ const changeActivePage = (url, chatRoom, gameName) => {
 
 const changeIframePage = (url) => {
   document.getElementById('kubercade_iframe').src = url;
-  if (url === '/games/pacman') {
+}
+
+// fires appropriate events on iframe location change
+const iframeChange = (url) => {
+  const path = url.pathname;
+  if (path === '/games/pacman' || path === '/games/pacman/') {
     document.dispatchEvent(pacmanLoadEvent);
+    // makes sures chat room changes when coming from nexus
+    changeChatRoom('pacman', 'Pac-Man');
   }
 }
