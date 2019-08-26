@@ -28,7 +28,7 @@ document.addEventListener('tetrisLoad', () => {
       // Wait for game over screen 
       setTimeout(() => {
         scorePopUp(score, '/scores/tetris');
-      }, 1250);
+      }, 2500);
     }
   }, {
     once: true
