@@ -6,7 +6,7 @@ document.addEventListener('pacmanLoad', () => {
     iframeWindow.gameover = () => {
       score = getPacmanScore(iframe)
       origGameover();
-      scorePopUp(score, "/scores/pacman/");
+      scorePopUp(score, "/scores/pacman");
     }
   }, {
     once: true
@@ -55,7 +55,7 @@ const scorePopUp = (score, scoreUrl) => {
     name,
     score
   }).then(() => {
-    changeIframePage(scoreUrl)
+    changeIframePage(scoreUrl + `?user_score=${score}`)
   });
 }
 
