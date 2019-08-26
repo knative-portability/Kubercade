@@ -272,6 +272,10 @@ define('app/game',
                 });
                 sound.play('win');
             }, this), 2000);
+            console.log('injection');
+            // Added for Kubercade high score functionality.
+            // Wait for win stats to appear.
+            setTimeout(window.gameOverSignal, 4000)
         };
 
         /**
