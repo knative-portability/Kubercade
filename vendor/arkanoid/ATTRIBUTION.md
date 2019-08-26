@@ -8,7 +8,7 @@ https://github.com/budnix
 
 ## Summary of use
 
-The ball-and-wall repository is used in Kubercade as an Arkanoid-type game. The original repository with it's dependencies installed using `bower install` is including in this directory.
+The ball-and-wall repository is used in Kubercade as an Arkanoid-type game. The original repository with its dependencies installed using `bower install` is including in this directory.
 
 Some modifications were made to the original source code in order to facilitate integration with the Kubercade high-score system:
 
