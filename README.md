@@ -6,7 +6,7 @@
 
 Serverless containerized social arcade built on [Knative](https://knative.dev/).
 
-Try it at https://kubercade-l3zyoxchqa-uc.a.run.app/!
+Try it [on Google Cloud Run](https://kubercade-l3zyoxchqa-uc.a.run.app/)!
 
 ## Introduction
 
@@ -18,7 +18,7 @@ An app built as proof of portability for [Knative](https://knative.dev) that ext
 - High-score leaderboards.
 - Social media sharing.
 
-This app is built as part of a proof of portability project for [Knative](https://knative.dev). It is meant to show the key features of Knative, to test the conformance across various cloud product implementations of Knative, and to document with functioning sample code how one might develop, build, and deploy with Knative. Key features of Knative this app demonstrates include:
+This app is built as part of a proof of portability project for [Knative](https://knative.dev). It is meant to show the key features of Knative, test the conformance across various cloud product implementations of Knative, and document with functioning sample code how one might develop, build, and deploy with Knative. Key features of Knative this app demonstrates include:
 
 - Develop services independently that can be individually deployed, updated, and auto-scaled
 - Deploy containerized code with minimal configuration, allowing the developer to focus on features rather than infrastructure
@@ -26,7 +26,7 @@ This app is built as part of a proof of portability project for [Knative](https:
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to containerize and deploy the project on a live system.
+These instructions will get you a branch of the project code up and running on your local machine for development and testing purposes. See deployment for notes on how to containerize and deploy the project on a live system.
 
 ### Prerequisites
 
