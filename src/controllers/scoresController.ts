@@ -11,6 +11,8 @@ const config: object = parse(dbUrl);
 const pool = new pg.Pool(config);
 pool.connect();
 
+const ascScoreGames = ['minesweeper'];
+
 export const scoresController = {
   /**
    * Get all scores for the game_name specified.
@@ -22,7 +24,8 @@ export const scoresController = {
     const internalGameName: string = req.params['game_name'];
     const userScore: number = req.query['user_score'];
     const gameIndex: number = gameInfoUtil.gameToIndex(internalGameName);
-    const scores = await getScoresFromDB(gameIndex);
+    const asc = ascScoreGames.includes(internalGameName) ? true : false;
+    const scores = await getScoresFromDB(gameIndex, asc);
     const prettyGameName: string = gameInfoUtil.gameToName(internalGameName);
     res.render('scores.pug', {
       scores,
@@ -54,13 +57,17 @@ export const scoresController = {
  * @returns {Promise<object[]>} Returned rows
  * @throws Error from querying the database
  */
-async function getScoresFromDB(gameIndex: number): Promise<object[]> {
+async function getScoresFromDB(
+  gameIndex: number,
+  sortAsc: boolean
+): Promise<object[]> {
   try {
+    const sortOrder = sortAsc ? 'ASC' : 'DESC';
     const res = await pool.query(
       `SELECT *
       FROM kubercade.high_score_table
       WHERE game_index=$1
-      ORDER BY score DESC, datetime DESC;`,
+      ORDER BY score ${sortOrder}, datetime DESC;`,
       [gameIndex]
     );
     return timeUtil.formatTimes(res.rows);

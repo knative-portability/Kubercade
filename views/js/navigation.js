@@ -2,6 +2,7 @@ let pacmanLoadEvent = new Event("pacmanLoad");
 let arkanoidLoadEvent = new Event('arkanoidLoad');
 let twenty48LoadEvent = new Event("2048Load");
 let tetrisLoadEvent = new Event('tetrisLoad');
+let minesweeperLoadEvent = new Event('minesweeperLoad');
 
 const changeActivePage = (url, chatRoom, gameName) => {
   changeIframePage(url);
@@ -31,5 +32,9 @@ const iframeChange = (url) => {
     document.dispatchEvent(arkanoidLoadEvent);
     // makes sures chat room changes when coming from nexus
     changeChatRoom('arkanoid', 'Arkanoid');
+  } else if (path === '/games/minesweeper' || path === '/games/minesweeper/') {
+    document.dispatchEvent(minesweeperLoadEvent);
+    // makes sures chat room changes when coming from nexus
+    changeChatRoom('minesweeper', 'Minesweeper');
   }
-}
+};

@@ -83,6 +83,7 @@ h4 {
   width: 100%;
   background: linear-gradient(to right, #333, #284b83);
   display: flex;
+  z-index: 3;
 }
 
 #nav_bar .logo {
@@ -141,6 +142,7 @@ a.navtab {
 #content_window {
   display: flex;
   position: relative;
+  z-index: 2;
 }
 
 #kubercade_iframe {
@@ -230,6 +232,7 @@ a.gameTile:hover {
   left: 0;
   right: 0;
   bottom: 0;
+  z-index: 1;
 }
 
 #chat_window>div {

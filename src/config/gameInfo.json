@@ -19,5 +19,9 @@
     "index": 4,
     "game": "arkanoid",
     "name": "Arkanoid"
+  }, {
+    "index": 6,
+    "game": "minesweeper",
+    "name": "Minesweeper" 
   }]
 }
