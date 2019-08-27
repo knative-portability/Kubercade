@@ -39,7 +39,9 @@ document.addEventListener('minesweeperLoad', () => {
   iframeWindow.winGame = () => {
     score = getMinesweeperScore(iframe)
     origGameover();
-    scorePopUp(score, "/scores/minesweeper");
+    setTimeout(() => {
+      scorePopUp(score, "/scores/minesweeper");
+    }, 500);
   }
 });
 
