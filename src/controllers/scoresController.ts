@@ -24,7 +24,7 @@ export const scoresController = {
     const internalGameName: string = req.params['game_name'];
     const userScore: number = req.query['user_score'];
     const gameIndex: number = gameInfoUtil.gameToIndex(internalGameName);
-    const asc = (ascScoreGames.includes(internalGameName)) ? true : false;
+    const asc = ascScoreGames.includes(internalGameName) ? true : false;
     const scores = await getScoresFromDB(gameIndex, asc);
     const prettyGameName: string = gameInfoUtil.gameToName(internalGameName);
     res.render('scores.pug', {
@@ -56,7 +56,10 @@ export const scoresController = {
  * @returns {Promise<object[]>} Returned rows
  * @throws Error from querying the database
  */
-async function getScoresFromDB(gameIndex: number, sortAsc: boolean): Promise<object[]> {
+async function getScoresFromDB(
+  gameIndex: number,
+  sortAsc: boolean
+): Promise<object[]> {
   try {
     const sortOrder = sortAsc ? 'ASC' : 'DESC';
     const res = await pool.query(
