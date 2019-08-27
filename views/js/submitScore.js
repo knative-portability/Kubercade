@@ -62,7 +62,7 @@ document.addEventListener('tetrisLoad', () => {
     iframeWindow.gameOverSignal = () => {
       origGameOverSignal();
       const score = iframeWindow.points;
-      // Wait for game over screen 
+      // Wait for game over screen
       setTimeout(() => {
         scorePopUp(score, '/scores/tetris');
       }, 2500);
@@ -72,9 +72,27 @@ document.addEventListener('tetrisLoad', () => {
   });
 });
 
+document.addEventListener('minesweeperLoad', () => {
+  const iframe = document.getElementById("kubercade_iframe");
+  const iframeWindow = iframe.contentWindow;
+  const origGameover = iframeWindow.winGame;
+  iframeWindow.winGame = () => {
+    score = getMinesweeperScore(iframe)
+    origGameover();
+    setTimeout(() => {
+      scorePopUp(score, "/scores/minesweeper");
+    }, 500);
+  }
+});
+
 const getPacmanScore = (iframe) => {
   const scoreDiv = iframe.contentDocument.getElementById("score");
   const score = scoreDiv.getElementsByTagName("span")[0].innerText;
+  return parseInt(score);
+}
+
+const getMinesweeperScore = (iframe) => {
+  const score = iframe.contentDocument.getElementById("seconds").innerText;
   return parseInt(score);
 }
 
