@@ -30,17 +30,22 @@ document.addEventListener('arkanoidLoad', () => {
 document.addEventListener('2048Load', () => {
   const iframe = document.getElementById('kubercade_iframe');
   const iframeWindow = iframe.contentWindow;
-  const actuator = iframeWindow.gameManagerInstance.actuator;
-  console.log(actuator);
-  actuator.origMessage = actuator.message;
-  actuator.message = () => {
-    actuator.origMessage();
-    const score = iframeWindow.gameManagerInstance.score;
-    // Wait for 'Game Over' to display in game
-    setTimeout(() => {
-      scorePopUp(score, '/scores/2048');
-    }, 1000);
-  }
+  // wait until gameManagerInstance is created during page animation
+  iframeWindow.addEventListener('animationend', () => {
+    const actuator = iframeWindow.gameManagerInstance.actuator;
+    console.log(actuator);
+    actuator.origMessage = actuator.message;
+    actuator.message = () => {
+      actuator.origMessage();
+      const score = iframeWindow.gameManagerInstance.score;
+      // Wait for 'Game Over' to display in game
+      setTimeout(() => {
+        scorePopUp(score, '/scores/2048');
+      }, 1000);
+    }
+  }, {
+    once: true
+  });
 });
 
 document.addEventListener('tetrisLoad', () => {
