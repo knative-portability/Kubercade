@@ -7,5 +7,9 @@
     "index": 1,
     "game": "pacman",
     "name": "Pac-Man"
+  }, {
+    "index": 3,
+    "game": "tetris",
+    "name": "Tetris"
   }]
 }
