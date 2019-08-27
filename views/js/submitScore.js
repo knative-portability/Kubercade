@@ -33,7 +33,6 @@ document.addEventListener('tetrisLoad', () => {
 });
 
 document.addEventListener('minesweeperLoad', () => {
-  console.log('page loaded');
   const iframe = document.getElementById("kubercade_iframe");
   const iframeWindow = iframe.contentWindow;
   const origGameover = iframeWindow.gameOver;
@@ -41,7 +40,6 @@ document.addEventListener('minesweeperLoad', () => {
     score = getMinesweeperScore(iframe)
     origGameover();
     scorePopUp(score, "/scores/minesweeper");
-    console.log("function patched");
   }
 });
 
@@ -53,7 +51,6 @@ const getPacmanScore = (iframe) => {
 
 const getMinesweeperScore = (iframe) => {
   const score = iframe.contentDocument.getElementById("seconds").innerText;
-  console.log(score);
   return parseInt(score);
 }
 
