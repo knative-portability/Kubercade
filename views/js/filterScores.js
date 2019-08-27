@@ -1,6 +1,5 @@
 const attachScoreFilterListener = () => {
   const scoreFilterInput = document.getElementById('score_filter_input');
-  console.log(scoreFilterInput);
   const scoresList = document.getElementById('scores_list');
   scoreFilterInput.onkeyup = () => {
     const query = scoreFilterInput.value;
