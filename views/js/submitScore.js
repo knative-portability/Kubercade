@@ -15,32 +15,29 @@ document.addEventListener('pacmanLoad', () => {
 
 document.addEventListener('arkanoidLoad', () => {
   const iframe = document.getElementById('kubercade_iframe');
-  iframe.addEventListener('load', () => {
-    const iframeWindow = iframe.contentWindow;
-    const origGameOverSignal = iframeWindow.gameOverSignal;
-    iframeWindow.gameOverSignal = () => {
-      origGameOverSignal();
-      const score = iframeWindow.score;
-      // Wait for game over screen 
-      setTimeout(() => {
-        scorePopUp(score, '/scores/arkanoid');
-      }, 1000);
-    }
-  }, {
-    once: true
-  });
+  const iframeWindow = iframe.contentWindow;
+  const origGameOverSignal = iframeWindow.gameOverSignal;
+  iframeWindow.gameOverSignal = () => {
+    origGameOverSignal();
+    const score = iframeWindow.score;
+    // Wait for game over screen
+    setTimeout(() => {
+      scorePopUp(score, '/scores/arkanoid');
+    }, 1000);
+  }
 });
 
 document.addEventListener('2048Load', () => {
   const iframe = document.getElementById('kubercade_iframe');
-  iframe.addEventListener('load', () => {
-    const iframeWindow = iframe.contentWindow;
+  const iframeWindow = iframe.contentWindow;
+  // wait until gameManagerInstance is created during page animation
+  iframeWindow.addEventListener('animationend', () => {
     const actuator = iframeWindow.gameManagerInstance.actuator;
     actuator.origMessage = actuator.message;
     actuator.message = () => {
       actuator.origMessage();
       const score = iframeWindow.gameManagerInstance.score;
-      // Wait for 'Game Over' to display in game 
+      // Wait for 'Game Over' to display in game
       setTimeout(() => {
         scorePopUp(score, '/scores/2048');
       }, 1000);
@@ -52,24 +49,20 @@ document.addEventListener('2048Load', () => {
 
 document.addEventListener('tetrisLoad', () => {
   const iframe = document.getElementById('kubercade_iframe');
-  iframe.addEventListener("load", () => {
-    const iframeWindow = iframe.contentWindow;
-    iframeWindow.document.onclick = () => {
-      // Fix iframe not being focused, blocking keyboard input
-      iframe.focus();
-    };
-    const origGameOverSignal = iframeWindow.gameOverSignal;
-    iframeWindow.gameOverSignal = () => {
-      origGameOverSignal();
-      const score = iframeWindow.points;
-      // Wait for game over screen
-      setTimeout(() => {
-        scorePopUp(score, '/scores/tetris');
-      }, 2500);
-    }
-  }, {
-    once: true
-  });
+  const iframeWindow = iframe.contentWindow;
+  iframeWindow.document.onclick = () => {
+    // Fix iframe not being focused, blocking keyboard input
+    iframe.focus();
+  };
+  const origGameOverSignal = iframeWindow.gameOverSignal;
+  iframeWindow.gameOverSignal = () => {
+    origGameOverSignal();
+    const score = iframeWindow.points;
+    // Wait for game over screen
+    setTimeout(() => {
+      scorePopUp(score, '/scores/tetris');
+    }, 2500);
+  }
 });
 
 document.addEventListener('minesweeperLoad', () => {
