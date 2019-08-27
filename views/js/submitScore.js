@@ -8,9 +8,31 @@ document.addEventListener('pacmanLoad', () => {
     origGameover();
     // Wait for 'Game Over' to display in game
     setTimeout(() => {
-        scorePopUp(score, "/scores/pacman/");
+        scorePopUp(score, "/scores/pacman");
       }, 500);
   }
+});
+
+document.addEventListener('tetrisLoad', () => {
+  const iframe = document.getElementById('kubercade_iframe');
+  iframe.addEventListener("load", () => {
+    const iframeWindow = iframe.contentWindow;
+    iframeWindow.document.onclick = () => {
+      // Fix iframe not being focused, blocking keyboard input
+      iframe.focus();
+    };
+    const origGameOverSignal = iframeWindow.gameOverSignal;
+    iframeWindow.gameOverSignal = () => {
+      origGameOverSignal();
+      const score = iframeWindow.points;
+      // Wait for game over screen 
+      setTimeout(() => {
+        scorePopUp(score, '/scores/tetris');
+      }, 2500);
+    }
+  }, {
+    once: true
+  });
 });
 
 const getPacmanScore = (iframe) => {
@@ -19,17 +41,16 @@ const getPacmanScore = (iframe) => {
   return parseInt(score);
 }
 
+
 const scorePopUp = (score, scoreUrl) => {
-  const name = prompt("Please enter your name:", "anonymous");
+  const name = prompt(`Congratulations, you scored ${score}! Please enter your name to submit your score:`, 'anonymous');
   // don't post if person cancels prompt or doesn't enter name value
-  if (!name) {
-    return;
-  }
+  if (!name) return;
   sendScore(scoreUrl, {
     name,
     score
   }).then(() => {
-    changeIframePage(scoreUrl);
+    changeIframePage(scoreUrl + `?user_score=${score}`);
   });
 }
 
