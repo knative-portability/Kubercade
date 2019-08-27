@@ -6,7 +6,7 @@
 
 Serverless containerized social arcade built on [Knative](https://knative.dev/).
 
-Try it [on Google Cloud Run](https://kubercade-l3zyoxchqa-uc.a.run.app/)!
+Try a [deployed version here](https://kubercade-l3zyoxchqa-uc.a.run.app/)!
 
 ## Introduction
 
@@ -87,6 +87,12 @@ npm run fix
 
 ## Deployment
 
+### Where it can run
+
+This project is built for [Knative](https://knative.dev/) and should be able to be deployed on any cloud product built on Knative or on any Kubernetes cluster.
+
+It has been tested on [Google Cloud Run](https://cloud.google.com/run/) and is set up for automatic continuous deployment via [Cloud Build](https://cloud.google.com/run/docs/continuous-deployment) on pushes to the master branch of [this repository](https://github.com/knative-portability/Kubercade).
+
 ### Try it now
 
 You can try deploying it on [Google Cloud Run](https://cloud.google.com/run/) using the button below.
@@ -95,17 +101,6 @@ First, you need to setup a PostgreSQL database and initialize it by executing [s
 I.e. `postgres://{username}:{password}@{host}/{database}`
 
 [![Run on Google Cloud](https://storage.googleapis.com/cloudrun/button.svg)](https://console.cloud.google.com/cloudshell/editor?shellonly=true&cloudshell_image=gcr.io/cloudrun/button&cloudshell_git_repo=https://github.com/knative-portability/Kubercade.git)
-
-### Where it can run
-
-This project is built for [Knative](https://knative.dev/) and should be able to be deployed on any cloud product built on Knative or on any Kubernetes cluster.
-
-It has been tested on [Google Cloud Run](https://cloud.google.com/run/). The application is set up for continuous deployment to Google Cloud Run (managed) via [Cloud Build](https://cloud.google.com/run/docs/continuous-deployment), and it will automatically be built and deployed on pushes to the master branch of [this repository](https://github.com/knative-portability/Kubercade). You can also [manually deploy this project to a service like Cloud Run](https://cloud.google.com/run/docs/quickstarts/build-and-deploy). For example, to deploy to the service [SERVICE] in the GCP project with ID [PROJECT-ID] run:
-
-```sh
-gcloud builds submit --tag gcr.io/[PROJECT-ID]/[SERVICE]
-gcloud beta run deploy --image gcr.io/[PROJECT-ID]/[SERVICE] --platform managed
-```
 
 ## Built With
 
@@ -122,12 +117,6 @@ gcloud beta run deploy --image gcr.io/[PROJECT-ID]/[SERVICE] --platform managed
 - [Mocha](https://mochajs.org/) - Feature-rich JavaScript test framework running on Node.js and in the browser
 - [Chai.js](https://www.chaijs.com/) - BDD/TDD assertion library for node and the browser
 - [Circle CI](https://circleci.com/) - Automated CI/CD job running platform
-
-### Services
-
-- [Google Cloud SQL](https://cloud.google.com/sql/) - Fully managed relational database services
-- [Google Cloud Build](https://cloud.google.com/cloud-build/) - Continuous build, test, deploy in the cloud
-- [Google Cloud Run](https://cloud.google.com/run/) - On top of Knative, run fully managed stateless containers
 
 ## Contributing
 
