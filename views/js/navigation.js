@@ -18,5 +18,9 @@ const iframeChange = (url) => {
     // makes sures chat room changes when coming from nexus
     changeChatRoom('pacman', 'Pac-Man');
   }
-  if (url === '/games/arkanoid') document.dispatchEvent(arkanoidLoadEvent);
+  if (path === '/games/arkanoid' || path === '/games/arkanoid/') {
+    document.dispatchEvent(arkanoidLoadEvent);
+    // makes sures chat room changes when coming from nexus
+    changeChatRoom('arkanoid', 'Arkanoid');
+  }
 }
