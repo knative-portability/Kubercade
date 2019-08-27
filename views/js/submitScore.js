@@ -28,11 +28,34 @@ document.addEventListener('arkanoidLoad', () => {
   });
 });
 
+document.addEventListener('tetrisLoad', () => {
+  const iframe = document.getElementById('kubercade_iframe');
+  iframe.addEventListener("load", () => {
+    const iframeWindow = iframe.contentWindow;
+    iframeWindow.document.onclick = () => {
+      // Fix iframe not being focused, blocking keyboard input
+      iframe.focus();
+    };
+    const origGameOverSignal = iframeWindow.gameOverSignal;
+    iframeWindow.gameOverSignal = () => {
+      origGameOverSignal();
+      const score = iframeWindow.points;
+      // Wait for game over screen 
+      setTimeout(() => {
+        scorePopUp(score, '/scores/tetris');
+      }, 2500);
+    }
+  }, {
+    once: true
+  });
+});
+
 const getPacmanScore = (iframe) => {
   const scoreDiv = iframe.contentDocument.getElementById("score");
   const score = scoreDiv.getElementsByTagName("span")[0].innerText;
   return parseInt(score);
 }
+
 
 const scorePopUp = (score, scoreUrl) => {
   const name = prompt(`Congratulations, you scored ${score}! Please enter your name to submit your score:`, 'anonymous');
