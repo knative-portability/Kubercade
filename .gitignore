@@ -1,3 +1,4 @@
+
 # Logs
 logs
 *.log
@@ -24,7 +25,7 @@ coverage
 .grunt
 
 # Bower dependency directory (https://bower.io/)
-bower_components
+./bower_components
 
 # node-waf configuration
 .lock-wscript
@@ -65,3 +66,8 @@ build/*
 
 # Development environments
 .vscode
+
+# Keep all imported vendor files
+!.gitignore
+!vendor/
+!vendor/*

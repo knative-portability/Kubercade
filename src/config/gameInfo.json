@@ -8,12 +8,20 @@
     "game": "pacman",
     "name": "Pac-Man"
   }, {
+    "index": 2,
+    "game": "2048",
+    "name": "2048"
+  }, {
     "index": 3,
     "game": "tetris",
     "name": "Tetris"
   }, {
+    "index": 4,
+    "game": "arkanoid",
+    "name": "Arkanoid"
+  }, {
     "index": 6,
     "game": "minesweeper",
-    "name": "Minesweeper"
+    "name": "Minesweeper" 
   }]
 }
