@@ -6,22 +6,27 @@
   }, {
     "index": 1,
     "game": "pacman",
-    "name": "Pac-Man"
+    "name": "Pac-Man",
+    "description": "Play the classic arcade game here!"
   }, {
     "index": 2,
     "game": "2048",
-    "name": "2048"
+    "name": "2048",
+    "description": "Can you reach 2048? Play here!"
   }, {
     "index": 3,
     "game": "tetris",
-    "name": "Tetris"
+    "name": "Tetris",
+    "description": "Play the classic block game here!"
   }, {
     "index": 4,
     "game": "arkanoid",
-    "name": "Arkanoid"
+    "name": "Arkanoid",
+    "description": "Play the classic brick-breaking game here!"
   }, {
     "index": 6,
     "game": "minesweeper",
-    "name": "Minesweeper" 
+    "name": "Minesweeper",
+    "description": "An old desktop-feel Minesweeper! Play here!"
   }]
 }
