@@ -6,7 +6,10 @@ document.addEventListener('pacmanLoad', () => {
   iframeWindow.gameover = () => {
     score = getPacmanScore(iframe)
     origGameover();
-    scorePopUp(score, '/scores/pacman');
+    // Wait for 'Game Over' to display in game
+    setTimeout(() => {
+        scorePopUp(score, "/scores/pacman");
+      }, 500);
   }
 });
 
@@ -18,7 +21,7 @@ document.addEventListener('arkanoidLoad', () => {
     iframeWindow.gameOverSignal = () => {
       origGameOverSignal();
       const score = iframeWindow.score;
-      // Wait for game over screen 
+      // Wait for game over screen
       setTimeout(() => {
         scorePopUp(score, '/scores/arkanoid');
       }, 1000);
@@ -38,7 +41,7 @@ document.addEventListener('2048Load', () => {
     actuator.message = () => {
       actuator.origMessage();
       const score = iframeWindow.gameManagerInstance.score;
-      // Wait for 'Game Over' to display in game 
+      // Wait for 'Game Over' to display in game
       setTimeout(() => {
         scorePopUp(score, '/scores/2048');
       }, 1000);
@@ -60,7 +63,7 @@ document.addEventListener('tetrisLoad', () => {
     iframeWindow.gameOverSignal = () => {
       origGameOverSignal();
       const score = iframeWindow.points;
-      // Wait for game over screen 
+      // Wait for game over screen
       setTimeout(() => {
         scorePopUp(score, '/scores/tetris');
       }, 2500);

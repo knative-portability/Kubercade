@@ -42,8 +42,9 @@ export const scoresController = {
     const gameIndex: number = gameInfoUtil.gameToIndex(internalGameName);
     const name: string = req.body.name;
     const score: number = req.body.score;
-    postScoreToDB(gameIndex, score, name);
-    res.send('Successfully added score.');
+    postScoreToDB(gameIndex, score, name).then(() => {
+      res.send('Successfully added score.');
+    });
   },
 };
 
@@ -72,11 +73,12 @@ async function getScoresFromDB(gameIndex: number): Promise<object[]> {
 
 async function postScoreToDB(gameIndex: number, score: number, name: string) {
   try {
-    await pool.query(
+    const res = await pool.query(
       `INSERT INTO kubercade.high_score_table (game_index, name, score, datetime)
       VALUES ($1, $2, $3, NOW())`,
       [gameIndex, name, score]
     );
+    return res;
   } catch (err) {
     console.log('Query error: ' + err.message);
     console.log(err.stack);
