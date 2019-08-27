@@ -29,9 +29,7 @@ const scorePopUp = (score, scoreUrl) => {
     name,
     score
   }).then(() => {
-    setTimeout(() => {
-      changeIframePage(scoreUrl);
-    }, 100);
+    changeIframePage(scoreUrl);
   });
 }
 
