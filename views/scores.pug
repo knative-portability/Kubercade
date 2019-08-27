@@ -30,7 +30,7 @@ html
               a.fb-xfbml-parse-ignore(target="_blank" 
                 href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdevelopers.facebook.com%2Fdocs%2Fplugins%2F&amp;src=sdkpreparse")
                 Share
-      h1 High Scores - #{prettyGameName}
+      h1 High Scores - #[a.clickable(href=`../games/${internalGameName}`) #{prettyGameName}]
       #score_filter
         .icon &#128269;
         input(type="text" placeholder="Filter scores")#score_filter_input

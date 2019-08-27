@@ -1,16 +1,13 @@
+// pacmanLoad is fired whenver iframe loads /games/pacman
 document.addEventListener('pacmanLoad', () => {
   const iframe = document.getElementById("kubercade_iframe");
-  iframe.addEventListener("load", () => {
-    const iframeWindow = iframe.contentWindow;
-    const origGameover = iframeWindow.gameover;
-    iframeWindow.gameover = () => {
-      score = getPacmanScore(iframe)
-      origGameover();
-      scorePopUp(score, "/scores/pacman");
-    }
-  }, {
-    once: true
-  });
+  const iframeWindow = iframe.contentWindow;
+  const origGameover = iframeWindow.gameover;
+  iframeWindow.gameover = () => {
+    score = getPacmanScore(iframe)
+    origGameover();
+    scorePopUp(score, '/scores/pacman');
+  }
 });
 
 document.addEventListener('2048Load', () => {
@@ -40,11 +37,9 @@ const getPacmanScore = (iframe) => {
 }
 
 const scorePopUp = (score, scoreUrl) => {
-  const name = prompt("Please enter your name:", "anonymous");
+  const name = prompt(`Congratulations, you scored ${score}! Please enter your name to submit your score:`, 'anonymous');
   // don't post if person cancels prompt or doesn't enter name value
-  if (!name) {
-    return;
-  }
+  if (!name) return;
   sendScore(scoreUrl, {
     name,
     score
