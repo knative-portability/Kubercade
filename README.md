@@ -42,7 +42,7 @@ Install dependencies using npm.
 npm install --save-dev
 ```
 
-Provision a PostgreSQL instance (e.g. via [Google Cloud SQL](https://cloud.google.com/sql/)), initialize it by executing [src/.schema.sql](src/.schema.sql), then provide the app with its connection string via an environment variable.
+Provision a PostgreSQL instance, initialize it by executing [src/.schema.sql](src/.schema.sql), then provide the app with its connection string via an environment variable.
 
 ```sh
 export DB_URL="postgres://{username}:{password}@{host}/{database}"
