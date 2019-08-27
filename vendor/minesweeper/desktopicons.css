@@ -1,0 +1,209 @@
+/*********************************** folder icons *************************************/
+/* Folder Text */
+.folder span {
+	position: absolute;
+	top: 60px; /*location*/
+	left: -7px;
+	width:100px;
+	white-space: nowrap;
+	overflow:hidden;
+	text-overflow: ellipsis;
+	color: #fff;
+	text-shadow: 2px 2px 2px #333;
+	text-align: center;
+}
+/* Back Flap of Folder */
+.folder{
+	width: 85px;
+	height: 55px;
+	background: #ffd480;
+	position: absolute;
+	border-top-right-radius: 5px;
+	cursor: pointer;
+}
+/* Folder Top Tab */
+.folder::before{
+	width: 20px;
+	height: 15px;
+	content: '';
+	background: #ffd480;
+	position: absolute;
+	top: -5px;
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+}
+/* Folder Front Flap */
+.folder::after{
+	width: 85px;
+	height: 50px;
+	content: '';
+	background: #ffcb66;
+	position: absolute;
+	top: 5px;
+	box-shadow: 0 0 20px 2px rgba(64, 53, 32, 0.5); /*toned down colour of folder*/
+	border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	/*-webkit-transition: all 400ms ease;*/
+	transition: all 400ms ease;
+}
+
+/* Hover Effects */
+.folder:hover::after{
+	-webkit-transform:translate(4px, 7px) rotateX(-45deg) skew(-10deg, 0deg);
+	transform: translate(4px, 7px) rotateX(-45deg) skew(-10deg, 0deg);
+}
+
+/**************** Document Icons ********************/
+ .document span{
+	position: absolute;
+	top: 60px; /*location*/
+	left: -7px;
+	width:100px;
+	white-space: nowrap;
+	overflow:hidden;
+	text-overflow: ellipsis;
+	color: #fff;
+	text-shadow: 2px 2px 2px #333;
+	text-align: center;
+  	margin-left:-17.5px;
+  	margin-top:15px;
+}
+
+.document{
+	width: 55px;
+	height: 75px;
+	position: absolute;
+	margin-top: -15px;
+	background-color: #ddd;
+	margin-left:17.5px;
+	border-radius: 2px;
+	cursor: pointer;
+	background: repeating-linear-gradient(0deg, #fff, #fff 3px, rgba(100,100,100, 1) 1px, rgba(100,100,100,1) 4px);
+	box-shadow: -3px 3px 10px 2px rgba(64, 53, 32, 0.5); /*toned down colour of folder*/
+  	z-index:-1; /*hides corner animation*/
+}
+
+
+.document::before{
+	content:'';
+	width: 55px;
+	height: 75px;
+	position: absolute;
+	margin-top: -15px;
+	background-color: #ddd;
+	margin-left:17.5px;
+	border-radius: 2px;
+	left:-25px;
+	top:12px;
+	cursor: pointer;
+
+	background: repeating-linear-gradient(0deg, #fff, #fff 3px, rgba(100,100,100, 1) 1px, rgba(100,100,100,1) 4px);
+	box-shadow: -3px 3px 10px 2px rgba(64, 53, 32, 0.5); /*toned down colour of folder*/
+	filter: blur(0.1px);
+	transform: rotateZ(-15deg);
+	z-index: -1;
+
+}
+
+.document::after{
+	content: '';
+	position: absolute;
+
+	width: 0;
+	height: 0;
+	top:0;
+	right:0;
+
+	background-image: linear-gradient(30deg, #aaa 0%, #aaa 30%, #396DA6 31%, #396DA6 60%,transparent 75%, transparent 100%);
+	-webkit-transition: all 400ms ease;
+	transition: all 400ms ease;
+}
+
+.document:hover::after{
+	top: -14px;
+	right: -11px;
+	width:35px;
+	height: 35px;
+	box-shadow: -1px 10px 2px -5px rgba(0,0,0,0.25);
+	transform: translate(8px, 5px) rotateZ(30deg) skew(-10deg, 0deg);
+}
+
+/*************** POST IT *************************************/
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+
+.post-it-note {
+	font-family: 'Indie Flower', cursive;
+	/*padding: 2em;*/
+	background: #ffd707;
+	position: absolute;
+	height: 15em;
+	width:250px;
+}
+#highScores {
+	overflow: scroll;
+	padding:25px;
+	height: 210px;
+	width:250px;
+	overflow-x:hidden;
+	font-family: 'Indie Flower', cursive;
+	text-align: center;
+}
+
+.post-it-note:after {
+	content: "High Scores";
+	text-align: center;
+	font-size: 18px;
+	position: absolute;
+	padding-top: 1em;
+	top: -1.5em;
+	width: 223px;
+	/*min-height:4em;*/
+	left: 0;
+	right: 2em;
+	border-width: 0;
+	border-style: solid;
+	background-color: #ffd707;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.post-it-note:before {
+	content: "";
+	position: absolute;
+	top: -27px;
+	right: 0;
+	border-width: 0 2em 2em 0;
+	border-style: solid;
+	border-color: #d3b100 transparent;
+}
+
+/****************************************************/
+.notepad {
+	position: absolute;
+	height:500px;
+	width:500px;
+    padding: 15px;
+	top:350px;
+	left:800px;
+	background: #fff;
+	border: 8px solid #c3c3c3;
+}
+.notepad:before {
+    content: attr(data-title);
+    position: absolute;
+    font-style: italic;
+    top: -30px;
+    left: -8px;
+    width: 500px;
+    background: #c3c3c3;
+    padding: 5px 65px 5px 25px;
+}
+.notepad:after {
+    content: 'X';
+    position: absolute;
+    background: #99f;
+    text-align: center;
+    padding: 5px;
+    top: -30px;
+    right: 0;
+}
