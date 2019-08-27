@@ -17,6 +17,9 @@ const iframeChange = (url) => {
     document.dispatchEvent(pacmanLoadEvent);
     // makes sures chat room changes when coming from nexus
     changeChatRoom('pacman', 'Pac-Man');
+  } else if (path === '/games/tetris' || path === '/games/tetris/') {
+    document.dispatchEvent(tetrisLoadEvent);
+    // makes sures chat room changes when coming from nexus
+    changeChatRoom('tetris', 'Tetris');
   }
-  if (url === '/games/tetris') document.dispatchEvent(tetrisLoadEvent);
 }
