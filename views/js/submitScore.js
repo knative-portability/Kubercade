@@ -33,7 +33,6 @@ document.addEventListener('2048Load', () => {
   // wait until gameManagerInstance is created during page animation
   iframeWindow.addEventListener('animationend', () => {
     const actuator = iframeWindow.gameManagerInstance.actuator;
-    console.log(actuator);
     actuator.origMessage = actuator.message;
     actuator.message = () => {
       actuator.origMessage();
