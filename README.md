@@ -18,6 +18,12 @@ An app built as demonstration of portability for [Knative](https://knative.dev) 
 - High-score leaderboards.
 - Social media sharing.
 
+The requirements for the portability of this app include:
+
+- A PostgresSQL database.
+- A Knative installation where you have permission to deploy a Service in at least one namespace.
+- Ability to connect to the Service via a web browser.
+
 This app is built as part of a demonstration of portability project for [Knative](https://knative.dev). It is meant to show the key features of Knative, test the conformance across various cloud product implementations of Knative, and document with functioning sample code how one might develop, build, and deploy with Knative. Key features of Knative this app demonstrates include:
 
 - Develop services independently that can be individually deployed, updated, and auto-scaled
