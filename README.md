@@ -10,7 +10,7 @@ Try it [on Google Cloud Run](https://kubercade-l3zyoxchqa-uc.a.run.app/)!
 
 ## Introduction
 
-An app built as proof of portability for [Knative](https://knative.dev) that extends some open-source arcade games with social functionality. This social functionality includes:
+An app built as demonstration of portability for [Knative](https://knative.dev) that extends some open-source arcade games with social functionality. This social functionality includes:
 
 - Forum-style live chat.
 - Separate chat rooms for each game and a general chat.
@@ -18,7 +18,7 @@ An app built as proof of portability for [Knative](https://knative.dev) that ext
 - High-score leaderboards.
 - Social media sharing.
 
-This app is built as part of a proof of portability project for [Knative](https://knative.dev). It is meant to show the key features of Knative, test the conformance across various cloud product implementations of Knative, and document with functioning sample code how one might develop, build, and deploy with Knative. Key features of Knative this app demonstrates include:
+This app is built as part of a demonstration of portability project for [Knative](https://knative.dev). It is meant to show the key features of Knative, test the conformance across various cloud product implementations of Knative, and document with functioning sample code how one might develop, build, and deploy with Knative. Key features of Knative this app demonstrates include:
 
 - Develop services independently that can be individually deployed, updated, and auto-scaled
 - Deploy containerized code with minimal configuration, allowing the developer to focus on features rather than infrastructure
@@ -87,16 +87,20 @@ npm run fix
 
 ## Deployment
 
-This project is built for [Knative](https://knative.dev/) and should be able to be deployed on any cloud product built on Knative or on any Kubernetes cluster. It has been tested on [Google Cloud Run](https://cloud.google.com/run/). You can try it on [Google Cloud Run](https://cloud.google.com/run/) using this button.
+### Try it now
+
+You can try deploying it on [Google Cloud Run](https://cloud.google.com/run/) using the button below.
+
+First, you need to setup a PostgreSQL database and initialize it by executing [src/.schema.sql](src/.schema.sql). Once you've done that, enter its connection string when prompted by Google Cloud Shell.
+I.e. `postgres://{username}:{password}@{host}/{database}`
 
 [![Run on Google Cloud](https://storage.googleapis.com/cloudrun/button.svg)](https://console.cloud.google.com/cloudshell/editor?shellonly=true&cloudshell_image=gcr.io/cloudrun/button&cloudshell_git_repo=https://github.com/knative-portability/Kubercade.git)
 
-You also need to setup a PostgreSQL database and initialize it by executing [src/.schema.sql](src/.schema.sql). Once you've done that, enter its connection string when prompted by Google Cloud Shell.
-I.e. `postgres://{username}:{password}@{host}/{database}`
+### Where it can run
 
-This project is set up for continuous deployment to Google Cloud Run (managed) via [Cloud Build](https://cloud.google.com/run/docs/continuous-deployment), and it will automatically be built and deployed on pushes to the master branch of [this repository](https://github.com/knative-portability/Kubercade).
+This project is built for [Knative](https://knative.dev/) and should be able to be deployed on any cloud product built on Knative or on any Kubernetes cluster.
 
-You can also [manually deploy this project to a service like Cloud Run](https://cloud.google.com/run/docs/quickstarts/build-and-deploy). For example, to deploy to the service [SERVICE] in the GCP project with ID [PROJECT-ID] run:
+It has been tested on [Google Cloud Run](https://cloud.google.com/run/). The application is set up for continuous deployment to Google Cloud Run (managed) via [Cloud Build](https://cloud.google.com/run/docs/continuous-deployment), and it will automatically be built and deployed on pushes to the master branch of [this repository](https://github.com/knative-portability/Kubercade). You can also [manually deploy this project to a service like Cloud Run](https://cloud.google.com/run/docs/quickstarts/build-and-deploy). For example, to deploy to the service [SERVICE] in the GCP project with ID [PROJECT-ID] run:
 
 ```sh
 gcloud builds submit --tag gcr.io/[PROJECT-ID]/[SERVICE]
@@ -112,7 +116,6 @@ gcloud beta run deploy --image gcr.io/[PROJECT-ID]/[SERVICE] --platform managed
 - [TypeScript](https://www.typescriptlang.org/) - Typed superset of JavaScript that compiles to plain JavaScript.
 - [PostgreSQL](https://www.postgresql.org/) - Open Source Relational Database
 - [GitHub](https://github.com) - Development platform for open source
-- [Gunicorn](https://gunicorn.org/) - Python WSGI HTTP Server for UNIX
 
 ### Testing
 
