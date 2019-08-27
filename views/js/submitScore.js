@@ -10,6 +10,24 @@ document.addEventListener('pacmanLoad', () => {
   }
 });
 
+document.addEventListener('arkanoidLoad', () => {
+  const iframe = document.getElementById('kubercade_iframe');
+  iframe.addEventListener('load', () => {
+    const iframeWindow = iframe.contentWindow;
+    const origGameOverSignal = iframeWindow.gameOverSignal;
+    iframeWindow.gameOverSignal = () => {
+      origGameOverSignal();
+      const score = iframeWindow.score;
+      // Wait for game over screen 
+      setTimeout(() => {
+        scorePopUp(score, '/scores/arkanoid');
+      }, 1000);
+    }
+  }, {
+    once: true
+  });
+});
+
 document.addEventListener('2048Load', () => {
   const iframe = document.getElementById('kubercade_iframe');
   iframe.addEventListener('load', () => {
