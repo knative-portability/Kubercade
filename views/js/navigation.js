@@ -1,5 +1,6 @@
 let pacmanLoadEvent = new Event("pacmanLoad");
 let twenty48LoadEvent = new Event("2048Load");
+let tetrisLoadEvent = new Event('tetrisLoad');
 
 const changeActivePage = (url, chatRoom, gameName) => {
   changeIframePage(url);
@@ -21,5 +22,9 @@ const iframeChange = (url) => {
     document.dispatchEvent(twenty48LoadEvent);
     // makes sures chat room changes when coming from nexus
     changeChatRoom('2048', '2048');
+  } else if (path === '/games/tetris' || path === '/games/tetris/') {
+    document.dispatchEvent(tetrisLoadEvent);
+    // makes sures chat room changes when coming from nexus
+    changeChatRoom('tetris', 'Tetris');
   }
 }
