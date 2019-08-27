@@ -33,7 +33,6 @@ document.addEventListener('2048Load', () => {
   iframe.addEventListener('load', () => {
     const iframeWindow = iframe.contentWindow;
     const actuator = iframeWindow.gameManagerInstance.actuator;
-    console.log(actuator);
     actuator.origMessage = actuator.message;
     actuator.message = () => {
       actuator.origMessage();
