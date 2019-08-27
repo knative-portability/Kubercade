@@ -35,8 +35,8 @@ document.addEventListener('tetrisLoad', () => {
 document.addEventListener('minesweeperLoad', () => {
   const iframe = document.getElementById("kubercade_iframe");
   const iframeWindow = iframe.contentWindow;
-  const origGameover = iframeWindow.gameOver;
-  iframeWindow.gameOver = () => {
+  const origGameover = iframeWindow.winGame;
+  iframeWindow.winGame = () => {
     score = getMinesweeperScore(iframe)
     origGameover();
     scorePopUp(score, "/scores/minesweeper");
