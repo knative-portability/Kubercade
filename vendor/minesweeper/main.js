@@ -788,7 +788,7 @@ function addScores() {
     }
 
     //time = parseInt(seconds.innerHTML);
-    var s = prompt("Congratulations, you finished in " + time + " seconds!\nEnter your name if you wish to be added to the High score table:");
+    // var s = prompt("Congratulations, you finished in " + time + " seconds!\nEnter your name if you wish to be added to the High score table:");
 
     if (s !== null) {
         postScore(s, time, difficulty);
