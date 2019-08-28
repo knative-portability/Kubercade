@@ -10,4 +10,8 @@ https://github.com/reed-jones
 
 The minesweeper_js repository is used in Kubercade as a Minesweeper-like game. The original repository's code was imported into the `vendor` directory and run as static files.
 
-The original source code was not modified in order to integrate with the Kubercade high scores functionality. Instead, the `winGame` function from `main.js` is patched upon game load. 
+Some modifications were made to the original source code file `main.js` in order to facilitate integration with the Kubercade high-score system:
+
+- A window alert in `addScores` was removed to prevent having a double alert on game win.
+
+Additionally, the `winGame` function from `main.js` is patched upon game load without direct modification of the original code.
