@@ -1,5 +1,5 @@
 {
-  "name": "Kubercade",
+  "name": "kubercade",
   "env": {
     "DB_URL": {
       "description": "the connection string for your PostgreSQL instance"
