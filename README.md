@@ -106,7 +106,7 @@ You can try deploying it on [Google Cloud Run](https://cloud.google.com/run/) us
 First, you need to setup a PostgreSQL database and initialize it by executing [src/.schema.sql](src/.schema.sql). Once you've done that, enter its connection string when prompted by Google Cloud Shell.
 I.e. `postgres://{username}:{password}@{host}/{database}`
 
-[![Run on Google Cloud](https://storage.googleapis.com/cloudrun/button.svg)](https://console.cloud.google.com/cloudshell/editor?shellonly=true&cloudshell_image=gcr.io/cloudrun/button&cloudshell_git_repo=https://github.com/knative-portability/Kubercade.git)
+[![Run on Google Cloud](https://storage.googleapis.com/cloudrun/button.svg)](https://console.cloud.google.com/cloudshell/editor?shellonly=true&cloudshell_image=gcr.io/cloudrun/button&cloudshell_git_repo=https://github.com/knative-portability/kubercade.git)
 
 ## Built With
 
