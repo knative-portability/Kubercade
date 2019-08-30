@@ -1,4 +1,4 @@
-# Vue-Tetris
+# Minesweeper_js
 
 https://github.com/reed-jones/minesweeper_js
 
